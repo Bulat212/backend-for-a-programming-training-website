@@ -11,6 +11,7 @@ urlpatterns = [
     path('', projects, name='list'),
     # path('<int:project_id>/', views.project_detail, name='detail'),
     path('api/v1/', ProjectAPIList.as_view()),
-    # path('api/v1/<int:pk>/', ProjectAPIList.as_view()),
+    path('api/v1/<int:pk>/', ProjectAPIUpdate.as_view()),
+    path('api/v1/projectdetail/<int:pk>/', ProjectAPIDetail.as_view()),
 ]
 
