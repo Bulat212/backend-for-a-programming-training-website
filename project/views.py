@@ -1,0 +1,72 @@
+from tkinter import NO
+from django.core.serializers import serialize
+from django.forms import model_to_dict
+from django.shortcuts import render
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import generics
+
+
+from project.models import Project
+from project.serializers import ProjectSerializer
+
+# Create your views here.
+
+
+def projects(request):
+
+    projects_list = Project.objects.all()
+    
+    context = {
+        "projects": projects_list,
+    }
+
+    return render(request, "project/base.html", context)
+
+
+class ProjectAPIList(generics.ListCreateAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
+
+class ProjectAPIView(APIView):
+    def get(self, request):
+        project_list = Project.objects.all()
+        return Response({'posts': ProjectSerializer(project_list, many=True).data})
+    
+    def post(self, request):
+        serializer = ProjectSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save() 
+        return Response({'post': serializer.data})
+    
+    def put(self, request, *args, **kwargs):
+        pk = kwargs.get("pk", None)
+        if not pk:
+            return Response({'error': 'Метод PUT не разрешен'})
+        
+        try:
+            instance = Project.objects.get(id=pk)
+        except:
+            return Response({'error': 'Проект не найден'})
+        
+        serializer = ProjectSerializer(data=request.data, instance=instance) #если тут два параметра,
+        #то save автоматом вызовет update
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'post': serializer.data})
+    
+    def delete(self, request, *args, **kwargs):
+        pk = kwargs.get("pk", None)
+
+        if not pk:
+            return Response({"error": "Метод DELETE не разрешен"})
+        
+        try:
+            project = Project.objects.get(id=pk)
+            project.delete()
+        except:
+            return Response({"error": "Проект не найден"})
+        
+        return Response({'post': f'delete post {pk}'})

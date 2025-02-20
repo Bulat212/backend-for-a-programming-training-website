@@ -1,0 +1,9 @@
+.vscode
+
+__pycache__/
+
+db.sqlite3
+randoms/
+media/
+templates/
+migrations/
