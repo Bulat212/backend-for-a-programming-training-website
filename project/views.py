@@ -4,15 +4,14 @@ from django.forms import model_to_dict
 from django.shortcuts import render
 
 from rest_framework.views import APIView
+from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import generics
-
 
 from project.models import Project
 from project.serializers import ProjectSerializer
 
 # Create your views here.
-
 
 def projects(request):
 
@@ -24,18 +23,21 @@ def projects(request):
 
     return render(request, "project/base.html", context)
 
-
-class ProjectAPIList(generics.ListCreateAPIView):
+class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
-class ProjectAPIUpdate(generics.UpdateAPIView):
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
+# class ProjectAPIList(generics.ListCreateAPIView):
+#     queryset = Project.objects.all()
+#     serializer_class = ProjectSerializer
 
-class ProjectAPIDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
+# class ProjectAPIUpdate(generics.UpdateAPIView):
+#     queryset = Project.objects.all()
+#     serializer_class = ProjectSerializer
+
+# class ProjectAPIDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Project.objects.all()
+#     serializer_class = ProjectSerializer
 
 
 # class ProjectAPIView(APIView):
