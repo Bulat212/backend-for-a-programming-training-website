@@ -7,8 +7,9 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import generics
+from rest_framework.decorators import action
 
-from project.models import Project
+from project.models import Language, Project
 from project.serializers import ProjectSerializer
 
 # Create your views here.
@@ -24,8 +25,19 @@ def projects(request):
     return render(request, "project/base.html", context)
 
 class ProjectViewSet(viewsets.ModelViewSet):
-    queryset = Project.objects.all()
+    # queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+    def get_queryset(self):
+        pk = self.kwargs.get("pk")
+        if not pk:
+            return Project.objects.all()
+        return Project.objects.filter(pk=pk)
+    
+    @action(methods=['get'], detail=True)
+    def language(self, request, pk):
+        language = Language.objects.get(pk=pk)
+        return Response({'post': language.name})
 
 # class ProjectAPIList(generics.ListCreateAPIView):
 #     queryset = Project.objects.all()
