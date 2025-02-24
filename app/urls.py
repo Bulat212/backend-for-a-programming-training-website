@@ -19,14 +19,21 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 
+
 from app import settings
 from randoms import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('projects/', include('project.urls', namespace='projects')),
+    path('projects/', include('project.urls')),
     
+    path('api/auth/', include('rest_framework.urls')),
+
     
+    path('api/', include('users.urls')),
+    path('api/', include('project.urls')),
+
+
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
 

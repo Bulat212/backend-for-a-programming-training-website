@@ -8,6 +8,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 
 from project.models import Language, Project
 from project.serializers import ProjectSerializer
@@ -15,9 +16,8 @@ from project.serializers import ProjectSerializer
 # Create your views here.
 
 def projects(request):
-
     projects_list = Project.objects.all()
-    
+
     context = {
         "projects": projects_list,
     }
@@ -27,6 +27,7 @@ def projects(request):
 class ProjectViewSet(viewsets.ModelViewSet):
     # queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         pk = self.kwargs.get("pk")

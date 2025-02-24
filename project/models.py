@@ -35,3 +35,4 @@ class Language(models.Model):
 class ProjectLanguage(models.Model):
     project = models.ForeignKey(to=Project, on_delete=models.CASCADE, related_name='languages')
     language = models.ForeignKey(to=Language, on_delete=models.CASCADE, related_name='projects')
+
