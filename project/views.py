@@ -24,21 +24,23 @@ def projects(request):
 
     return render(request, "project/base.html", context)
 
-class ProjectViewSet(viewsets.ModelViewSet):
-    # queryset = Project.objects.all()
+class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        pk = self.kwargs.get("pk")
-        if not pk:
-            return Project.objects.all()
-        return Project.objects.filter(pk=pk)
+    # def get_queryset(self):
+    #     pk = self.kwargs.get("pk")
+    #     if not pk:
+    #         return Project.objects.all()
+    #     return Project.objects.filter(pk=pk)
     
-    @action(methods=['get'], detail=True)
+    @action(methods=['get'], detail=True) #True одна запись, False список
     def language(self, request, pk):
         language = Language.objects.get(pk=pk)
         return Response({'post': language.name})
+
+
 
 # class ProjectAPIList(generics.ListCreateAPIView):
 #     queryset = Project.objects.all()

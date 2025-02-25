@@ -3,16 +3,14 @@ from traitlets import default
 
 from project.models import Project
 
-
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         #fields=("slug", "name", "description") #поля которые будут возвращаться по запросу
         fields="__all__" #поля которые будут возвращаться по запросу
+    
+    
 
-    
-    
-    
     # slug = serializers.SlugField(required=False)
     # name = serializers.CharField()
     # description = serializers.CharField(required=False)

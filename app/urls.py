@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 
+from debug_toolbar.toolbar import debug_toolbar_urls
 
 from app import settings
 from randoms import views
@@ -32,12 +33,14 @@ urlpatterns = [
     
     path('api/', include('users.urls')),
     path('api/', include('project.urls')),
+    path('api/map/', include('map.urls')),
+
 
 
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
 
-]
+]+ debug_toolbar_urls()
 
 
 if settings.DEBUG:
