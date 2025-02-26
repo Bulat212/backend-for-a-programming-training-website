@@ -13,3 +13,4 @@ manage.py loaddata fixtures/pposition.json
 manage.py loaddata fixtures/projects.json
 manage.py loaddata fixtures/users.json
 
+python manage.py runserver
