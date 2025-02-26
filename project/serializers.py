@@ -1,6 +1,4 @@
 from rest_framework import serializers
-from traitlets import default
-
 from project.models import Project
 
 class ProjectSerializer(serializers.ModelSerializer):

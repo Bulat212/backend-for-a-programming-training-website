@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from traitlets import default
 
 from .models import ProjectMap, ProjectPosition
 

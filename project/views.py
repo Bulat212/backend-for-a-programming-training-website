@@ -40,6 +40,10 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
         language = Language.objects.get(pk=pk)
         return Response({'post': language.name})
 
+    # @action(methods=['get'], detail=False) #True одна запись, False список
+    # def started(self, request, pk):
+    #     language = Language.objects.get(pk=pk)
+    #     return Response({'post': language.name})
 
 
 # class ProjectAPIList(generics.ListCreateAPIView):

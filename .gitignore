@@ -6,4 +6,4 @@ db.sqlite3
 randoms/
 media/
 templates/
-migrations/
+venv/
