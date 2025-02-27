@@ -22,13 +22,13 @@ from django.conf.urls.static import static
 from debug_toolbar.toolbar import debug_toolbar_urls
 
 from app import settings
-from randoms import views
+from project import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('projects/', include('project.urls')),
     
-    path('api/auth/', include('rest_framework.urls')),
+    #path('api/auth/', include('rest_framework.urls')),
 
     
     path('api/', include('users.urls')),

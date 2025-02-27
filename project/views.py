@@ -2,6 +2,7 @@ from tkinter import NO
 from django.core.serializers import serialize
 from django.forms import model_to_dict
 from django.shortcuts import render
+from django.http import HttpResponse
 
 from rest_framework.views import APIView
 from rest_framework import viewsets
@@ -14,6 +15,13 @@ from project.models import Language, Project
 from project.serializers import ProjectSerializer
 
 # Create your views here.
+
+def index(request):
+    return HttpResponse("home page")
+
+def about(request):
+    return HttpResponse("about page")
+
 
 def projects(request):
     projects_list = Project.objects.all()
