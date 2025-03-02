@@ -63,12 +63,12 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
 #         return UserProject.objects.filter(user=self.request.user)
 
 
-class ProjectAPIDetail(mixins.RetrieveModelMixin,
-                                   mixins.UpdateModelMixin,
-                                   mixins.DestroyModelMixin,
-                                   mixins.CreateModelMixin):
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
+# class ProjectAPIDetail(mixins.RetrieveModelMixin,
+#                                    mixins.UpdateModelMixin,
+#                                    mixins.DestroyModelMixin,
+#                                    mixins.CreateModelMixin):
+#     queryset = Project.objects.all()
+#     serializer_class = ProjectSerializer
     
 
 # class ProjectAPIList(generics.ListCreateAPIView):
