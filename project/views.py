@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import mixins, GenericAPIView
 
 from project.models import Language, Project
 from project.serializers import ProjectSerializer, UserProjectSerializer
@@ -54,13 +55,20 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
     #     language = Language.objects.get(pk=pk)
     #     return Response({'post': language.name})
 
-class UserProjectViewSet(viewsets.ModelViewSet):
-    serializer_class = UserProjectSerializer
-    permission_classes = [IsAuthenticated]
+# class UserProjectViewSet(viewsets.ModelViewSet):
+#     serializer_class = UserProjectSerializer
+#     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        return UserProject.objects.filter(user=self.request.user)
+#     def get_queryset(self):
+#         return UserProject.objects.filter(user=self.request.user)
 
+
+class ProjectAPIDetail(mixins.RetrieveModelMixin,
+                                   mixins.UpdateModelMixin,
+                                   mixins.DestroyModelMixin,
+                                   mixins.CreateModelMixin):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
     
 
 # class ProjectAPIList(generics.ListCreateAPIView):
@@ -74,6 +82,8 @@ class UserProjectViewSet(viewsets.ModelViewSet):
 # class ProjectAPIDetail(generics.RetrieveUpdateDestroyAPIView):
 #     queryset = Project.objects.all()
 #     serializer_class = ProjectSerializer
+
+
 
 
 # class ProjectAPIView(APIView):

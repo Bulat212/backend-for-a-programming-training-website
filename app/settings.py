@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_extensions', #удобное расширение для рабоыты с scl запросами orm
     'rest_framework',
     "debug_toolbar",
+    "corsheaders",
 
     'project',
     'users',
@@ -60,6 +61,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 ROOT_URLCONF = 'app.urls'
