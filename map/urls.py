@@ -3,7 +3,7 @@ from django.urls import include, path
 from rest_framework.routers import SimpleRouter
 # from map.views import ProjectConnectionAPIView, ProjectConnectionViewSet
 
-from map.views import MapElementsView, ProjectConnectionListAPIView
+from map.views import MapElementsView, ProjectConnectionListAPIView, UserProjectMapView
 
 
 # router = SimpleRouter()
@@ -13,7 +13,7 @@ urlpatterns = [
     
     path('connection/', ProjectConnectionListAPIView.as_view()),
     path('elements/', MapElementsView.as_view()),
-    
+    path('user-project-map/', UserProjectMapView.as_view())
     
 
 

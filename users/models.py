@@ -27,7 +27,7 @@ class UserProject(models.Model):
     is_published = models.BooleanField(default=False)
     earned_stars = models.IntegerField(default=0)
     language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True, blank=True, related_name='user_projects')
-    finished_datee = models.DateTimeField(null=True, blank=True)
+    finished_date = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         verbose_name = 'Userproject'

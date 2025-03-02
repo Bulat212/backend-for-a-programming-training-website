@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from project.models import Project
+from users.models import UserProject
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
@@ -7,7 +8,13 @@ class ProjectSerializer(serializers.ModelSerializer):
         #fields=("slug", "name", "description") #поля которые будут возвращаться по запросу
         fields="__all__" #поля которые будут возвращаться по запросу
     
-    
+
+class UserProjectSerializer(serializers.ModelSerializer):
+    project_id = serializers.IntegerField(source='project.id')
+
+    class Meta:
+        model = UserProject
+        fields = ['project_id', 'is_completed', 'finished_date']
 
     # slug = serializers.SlugField(required=False)
     # name = serializers.CharField()

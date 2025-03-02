@@ -12,7 +12,8 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 
 from project.models import Language, Project
-from project.serializers import ProjectSerializer
+from project.serializers import ProjectSerializer, UserProjectSerializer
+from users.models import UserProject
 
 # Create your views here.
 
@@ -29,8 +30,8 @@ def projects(request):
     context = {
         "projects": projects_list,
     }
-
     return render(request, "project/base.html", context)
+
 
 class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Project.objects.all()
@@ -53,6 +54,14 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
     #     language = Language.objects.get(pk=pk)
     #     return Response({'post': language.name})
 
+class UserProjectViewSet(viewsets.ModelViewSet):
+    serializer_class = UserProjectSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return UserProject.objects.filter(user=self.request.user)
+
+    
 
 # class ProjectAPIList(generics.ListCreateAPIView):
 #     queryset = Project.objects.all()
