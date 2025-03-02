@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+from project.models import Language, Project
+
 class User(AbstractUser):
     email = models.EmailField(unique=True)
     description = models.TextField(verbose_name='Описание проекта', blank=True, null=True)
@@ -17,3 +19,20 @@ class User(AbstractUser):
         #verbose_name_plural = 'Users'
 
 
+class UserProject(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='projects')
+    is_completed = models.BooleanField(default=False)
+    code = models.TextField(blank=True)
+    is_published = models.BooleanField(default=False)
+    earned_stars = models.IntegerField(default=0)
+    language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True, blank=True, related_name='user_projects')
+    finished_datee = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Userproject'
+        #verbose_name_plural = 'Users'
+
+    def __str__(self):
+        return f"{self.user.username} - {self.project}"
+    

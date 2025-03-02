@@ -10,7 +10,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = ['email', 'username', 'password']
 
     def validate(self, data):
-        if User.objects.filter(email=data['email']):
+        if User.objects.filter(email=data['email']).exists():
             raise serializers.ValidationError({'email': 'Этот email уже зарегистрирован.'})
         return data
 
@@ -22,3 +22,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         return user
         # return User.objects.create_user(**validated_data)
+
+
+class AddUserProjectSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = User
+        fields = ['email', 'username', 'password']

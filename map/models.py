@@ -16,6 +16,7 @@ class ProjectMap(models.Model):
     def __str__(self): # в админке будут видны названия проектов иначе ProjectMap object (1)
         return str(self.project)
     
+    
 
 class ProjectPosition(models.Model):
     project = models.ForeignKey(to=Project, on_delete=models.CASCADE, related_name='positions')

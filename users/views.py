@@ -11,6 +11,8 @@ from .serializers import RegisterSerializer
 class RegisterView(CreateAPIView):
     serializer_class = RegisterSerializer
 
+
+
 # class RegisterView(APIView):
 #     def post(self, request):
 #         serializer = RegisterSerializer(data=request.data)
