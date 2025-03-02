@@ -14,5 +14,4 @@ python manage.py loaddata fixtures/Userprojects.json
 python manage.py loaddata fixtures/Projectmap.json
 
 
-
 python manage.py runserver
