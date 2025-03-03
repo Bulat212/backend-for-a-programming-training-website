@@ -7,13 +7,16 @@ from .views import *
 
 # app_name = 'projects'
 
-router = SimpleRouter()
-router.register(r'projects', ProjectViewSet, basename="project")
+router_project = SimpleRouter()
+router_user = SimpleRouter()
+router_user.register(r'projects', ProjectViewSet, basename="project")
+router_project.register(r'user-projects', UserProjectViewSet, basename="user-project")
 
 urlpatterns = [
     
     path('', projects, name='list'),
-    path('', include(router.urls)),
+    path('', include(router_user.urls)),
+    path('', include(router_project.urls)),
 
     # path('api/v1/', ProjectViewSet.as_view({'get': 'list'})),
     # path('api/v1/<int:pk>/', ProjectViewSet.as_view({'put': 'update'})),

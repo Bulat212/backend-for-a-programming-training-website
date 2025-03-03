@@ -11,7 +11,12 @@ from .serializers import RegisterSerializer
 class RegisterView(CreateAPIView):
     serializer_class = RegisterSerializer
 
-
+    def create(self, request):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        tokens = serializer.get_tokens(user)
+        return Response(tokens, status=status.HTTP_201_CREATED)
 
 # class RegisterView(APIView):
 #     def post(self, request):

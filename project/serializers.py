@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from project.models import Project
+from project.models import Language, Project
 from users.models import UserProject
 
-class ProjectSerializer(serializers.ModelSerializer):
+class ProjectSerializer(serializers.ModelSerializer):    
     class Meta:
         model = Project
         #fields=("slug", "name", "description") #поля которые будут возвращаться по запросу
@@ -10,11 +10,22 @@ class ProjectSerializer(serializers.ModelSerializer):
     
 
 class UserProjectSerializer(serializers.ModelSerializer):
-    project_id = serializers.IntegerField(source='project.id')
+    # project_id = serializers.IntegerField(source='project.id')
+    language = serializers.SlugRelatedField(slug_field='name', queryset=Language.objects.all(), required=False)
+    project_id = serializers.PrimaryKeyRelatedField(source='project', queryset=Project.objects.all())
+    project_name = serializers.CharField(source='project.name', read_only=True)
 
     class Meta:
         model = UserProject
-        fields = ['project_id', 'is_completed', 'finished_date']
+        fields = ['project_id', 'project_name', 'code', 'is_completed', 'is_published', 'earned_stars', 'language', 'finished_date']
+
+    # def create(self, validated_data):
+    #     # Извлекаем project_id из данных
+    #     project_id = validated_data.pop('project')['id']  # Берем ID из вложенного словаря
+    #     project = Project.objects.get(id=project_id)
+    #     user_project = UserProject.objects.create(project=project, **validated_data)
+    #     return user_project
+    
 
     # slug = serializers.SlugField(required=False)
     # name = serializers.CharField()

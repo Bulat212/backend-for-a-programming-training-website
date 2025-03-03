@@ -21,7 +21,7 @@ class User(AbstractUser):
 
 class UserProject(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='projects')
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='user_projects')
     is_completed = models.BooleanField(default=False)
     code = models.TextField(blank=True)
     is_published = models.BooleanField(default=False)

@@ -1,8 +1,10 @@
+from time import timezone
 from tkinter import NO
 from django.core.serializers import serialize
 from django.forms import model_to_dict
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
+from django.utils import timezone
 
 from rest_framework.views import APIView
 from rest_framework import viewsets
@@ -10,11 +12,11 @@ from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import mixins, GenericAPIView
 
 from project.models import Language, Project
 from project.serializers import ProjectSerializer, UserProjectSerializer
 from users.models import UserProject
+from map.models import ProjectMap
 
 # Create your views here.
 
@@ -55,21 +57,69 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
     #     language = Language.objects.get(pk=pk)
     #     return Response({'post': language.name})
 
-# class UserProjectViewSet(viewsets.ModelViewSet):
-#     serializer_class = UserProjectSerializer
-#     permission_classes = [IsAuthenticated]
+class UserProjectViewSet(viewsets.ModelViewSet):
+    serializer_class = UserProjectSerializer
+    permission_classes = [IsAuthenticated]
+    # http_method_names = ['get']  # Разрешаем только GET
 
-#     def get_queryset(self):
-#         return UserProject.objects.filter(user=self.request.user)
+    def get_queryset(self):
+        return UserProject.objects.filter(user=self.request.user)
 
+    def get_object(self):
+        queryset = self.get_queryset()
+        project_id = self.kwargs['pk']  # Используем pk как project_id
+        obj = get_object_or_404(queryset, project=project_id)  # Ищем по project_id
+        return obj
 
-# class ProjectAPIDetail(mixins.RetrieveModelMixin,
-#                                    mixins.UpdateModelMixin,
-#                                    mixins.DestroyModelMixin,
-#                                    mixins.CreateModelMixin):
-#     queryset = Project.objects.all()
-#     serializer_class = ProjectSerializer
+    def perform_create(self, serializer): #Автоматически добавляет user при создании записи.
+        serializer.save(user=self.request.user)
+
+    def update(self, request, pk=None):
+        user_project = self.get_object()
+        allowed_fields = {
+            key: value for key, value in request.data.items()
+            if key in ['code', 'is_published', 'earned_stars', 'language']
+        }
+        serializer = self.get_serializer(user_project, data=allowed_fields, partial=True) #partial частичное обновление
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
     
+    # ставит статус выполнен и текущее время
+    @action(methods=['put'], detail=True)
+    def end_project(self, request, pk=None):
+        user_project = self.get_object()  # Получаем объект по pk
+        if user_project.is_completed:
+            return Response({'error': 'Проект уже завершен'}, status=400)
+        
+        user_project.finished_date = timezone.now()
+        user_project.is_completed = True
+        user_project.save(update_fields=['finished_date', 'is_completed'])
+        serializer = self.get_serializer(user_project)
+        return Response(serializer.data)
+
+    @action(methods=['post'], detail=False)
+    def start_project(self, request):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        project = serializer.validated_data['project']
+        if UserProject.objects.filter(user=self.request.user, project=project).exists():
+            return Response({'error': 'Проект уже начат'}, status=400)
+        
+        if project.is_limited==False:
+            project_map = ProjectMap.objects.filter(project=project).first()
+            if project_map and project_map.prev_project:
+                prev_user_project = UserProject.objects.filter(user=self.request.user, project=project_map.prev_project).first()
+                if not prev_user_project:
+                    return Response({'error': 'Проект начать нельзя: предыдущий проект еще не начат'}, status=400)
+                if prev_user_project.is_completed==False:
+                    return Response({'error': 'Проект начать нельзя: предыдущий проект не завершен'}, status=400)
+
+        self.perform_create(serializer)
+        return Response(serializer.data)
+
+    
+
 
 # class ProjectAPIList(generics.ListCreateAPIView):
 #     queryset = Project.objects.all()
