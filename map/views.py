@@ -20,7 +20,7 @@ class MapElementsView(generics.ListAPIView):
     queryset = ProjectPosition.objects.filter(project__is_limited=False).select_related('project') 
     #select_relatred для жадной загрузки за один раз весь project
     serializer_class = ProjectSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
 class UserProjectMapView(generics.ListAPIView):
     queryset = ProjectMap.objects.all().select_related('project')

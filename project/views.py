@@ -100,6 +100,7 @@ class UserProjectViewSet(viewsets.ModelViewSet):
 
     @action(methods=['post'], detail=False)
     def start_project(self, request):
+        print("Request data:", request.data)  # Добавь для отладки
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         project = serializer.validated_data['project']
