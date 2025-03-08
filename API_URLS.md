@@ -5,31 +5,31 @@ API сервера позволяет управлять пользовател�
 1. **/register/ (POST)**
    - **POST**: Создает нового пользователя. Входные данные — JSON с полями name, email, password. Выходные данные — JSON с access и refresh токеном.
    {
-    "refresh": "asdasd",
-    "access": "asdasd"
+    "refresh": "string",
+    "access": "string"
    }
 
 2. **/token (GET)**
    - **GET**: Возвращает access и refresh токен пользователя. Входные данные email и password. Выходные данные — JSON с access и refresh токеном.
    Входные данные
    {
-    "email": "bulat",
+    "email": "string",
     "password": "asdasd"
    }
    Выходные
    {
-    "refresh": "asdasd",
-    "access": "asdasd"
+    "refresh": "string",
+    "access": "string"
    }
 
 3. **/token/refresh/ (POST)**
    - **POST**: Обновляет access токен. Входные данные — JSON с полями email и password, refresh. Выходные данные — JSON с access токеном.
    {
-      "refresh": "sdfsdf"
+      "refresh": "string"
    }
    Выход
    {
-      "access": "sdfsfsf"
+      "access": "string"
    }
 
 4. **/token/verify/ (POST)**
@@ -66,17 +66,17 @@ API сервера позволяет управлять пользовател�
 9. **/user_projects/start_project/ (POST)**
    - **POST**: Начинает новый проект для пользователя при соблюдении условий. Входные данные — JSON с project_id. Выходные данные — JSON с созданным проектом или сообщением об ошибке
    {
-    "project_id": 1
+    "project_id": int
    }
    Выход
    {
-    "project_id": 1,
-    "project_name": "Массивы",
-    "code": "",
-    "is_completed": false,
-    "is_published": false,
-    "earned_stars": 0,
-    "language": null,
+    "project_id": int,
+    "project_name": "string",
+    "code": "string",
+    "is_completed": bool,
+    "is_published": bool,
+    "earned_stars": int,
+    "language": null, или может быть "string"
     "finished_date": null
    }  
 
@@ -84,12 +84,12 @@ API сервера позволяет управлять пользовател�
    - **GET**: Возвращает соединения проектов на карте. Входных данных нет. Выходные данные — JSON с полями project, prev_project
 [
     {
-        "project": 1,
+        "project": int,
         "prev_project": null
     },
     {
-        "project": 2,
-        "prev_project": 1
+        "project": int,
+        "prev_project": int
     },
 ]
 
@@ -97,22 +97,22 @@ API сервера позволяет управлять пользовател�
    - **GET**: Возвращает информацию о проектах на карте. Входных данных нет. Выходные данные — JSON с полями project_id, position_x, position_y, name, description, experience, coins
 [
     {
-      "project_id": 1,
-      "position_x": 1.0,
-      "position_y": 1.0,
-      "name": "Массивы",
-      "description": "Описание массивов",
-      "experience": null,
-      "coins": null
+      "project_id": int,
+      "position_x": float,
+      "position_y": float,
+      "name": "string",
+      "description": "string",
+      "experience": null, или int
+      "coins": null или int
     },
     {
-      "project_id": 2,
-      "position_x": 10.0,
-      "position_y": 1.0,
-      "name": "Матрицы",
-      "description": "Описание матрицы",
-      "experience": null,
-      "coins": null
+      "project_id": int,
+      "position_x": float,
+      "position_y": float,
+      "name": "string",
+      "description": "string",
+      "experience": null, или int
+      "coins": null или int
     },
 ]
 
@@ -120,13 +120,13 @@ API сервера позволяет управлять пользовател�
    - **GET**: Возвращает информацию об открытых проектах пользователя. Входных данные access токен. Выходные данные — JSON с полями project_id, is_open, is_completed
 [
    {
-      "project_id": 1,
-      "is_open": true,
-      "is_completed": true
+      "project_id": int,
+      "is_open": bool,
+      "is_completed": bool
    },
    {
-      "project_id": 2,
-      "is_open": true,
-      "is_completed": false
+      "project_id": int,
+      "is_open": bool,
+      "is_completed": bool
    },
 ]
