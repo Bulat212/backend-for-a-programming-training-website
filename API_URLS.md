@@ -32,17 +32,26 @@ API сервера позволяет управлять пользовател�
       "access": "sdfsfsf"
    }
 
-4. **/projects/ (GET)**
+4. **/token/verify/ (POST)**
+   - **POST**: Проверяет валидный ли access токен. Входные данные access токен.
+   В случае валидности вернет {}
+   Если не валиден:
+   {
+    "detail": "Token is invalid or expired",
+    "code": "token_not_valid"
+   }
+
+5. **/projects/ (GET)**
    - **GET**: Возвращает список всех проектов. Входные данные access токен. Выходные данные — JSON со списком проектов.
 
 
-5. **/user-projects/ (GET, PUT, DELETE)**
+6. **/user-projects/ (GET, PUT, DELETE)**
    - **GET**: Возвращает список пользовательских проектов. Входные данные access токен. Выходные данные — JSON со списком проектов пользователя.
    - **POST**: есть но его уберу потом он не нужен
    - **PUT**: /{id проекта}/
    
 
-6. **/user_projects/{id}/ (GET, PUT, DELETE)**
+7. **/user_projects/{id}/ (GET, PUT, DELETE)**
    - **GET**: Возвращает пользовательский проект с переданным id. Входные данные access токен. Выходные данные — JSON проектом пользователя.
    - **PUT**: Обновляет информацию о пользовательском проекте. Входные данные — JSON с изменяемыми полями (code, is_published, earned_stars, language) и access токен. Выходные данные — JSON с обновленным проектом.
    - **DELETE**: Удаляет проект пользователя из таблицы userProjects. Входные данные - access токен. Выходные ничего если успешно,
@@ -51,10 +60,10 @@ API сервера позволяет управлять пользовател�
       "detail": "No UserProject matches the given query."
    }
 
-7. **/user_projects/{id}/end_project/ (PUT)**
+8. **/user_projects/{id}/end_project/ (PUT)**
    - **PUT**: Завершает проект пользователя и устанавливает дату завершения. Входные данные id проекта передается в запросе. Выходные данные — JSON с обновленным статусом проекта или сообщением о том что проект завершить нельзя.
 
-8. **/user_projects/start_project/ (POST)**
+9. **/user_projects/start_project/ (POST)**
    - **POST**: Начинает новый проект для пользователя при соблюдении условий. Входные данные — JSON с project_id. Выходные данные — JSON с созданным проектом или сообщением об ошибке
    {
     "project_id": 1
@@ -71,7 +80,7 @@ API сервера позволяет управлять пользовател�
     "finished_date": null
    }  
 
-7. **/map/connection/ (GET)**
+10. **/map/connection/ (GET)**
    - **GET**: Возвращает соединения проектов на карте. Входных данных нет. Выходные данные — JSON с полями project, prev_project
 [
     {
@@ -84,7 +93,7 @@ API сервера позволяет управлять пользовател�
     },
 ]
 
-7. **/map/elements/ (GET)**
+11. **/map/elements/ (GET)**
    - **GET**: Возвращает информацию о проектах на карте. Входных данных нет. Выходные данные — JSON с полями project_id, position_x, position_y, name, description, experience, coins
 [
     {
@@ -107,7 +116,7 @@ API сервера позволяет управлять пользовател�
     },
 ]
 
-7. **/map/user-project-map/ (GET)**
+12. **/map/user-project-map/ (GET)**
    - **GET**: Возвращает информацию об открытых проектах пользователя. Входных данные access токен. Выходные данные — JSON с полями project_id, is_open, is_completed
 [
    {
