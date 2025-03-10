@@ -52,11 +52,6 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
         language = Language.objects.get(pk=pk)
         return Response({'post': language.name})
 
-    # @action(methods=['get'], detail=False) #True одна запись, False список
-    # def started(self, request, pk):
-    #     language = Language.objects.get(pk=pk)
-    #     return Response({'post': language.name})
-
 class UserProjectViewSet(viewsets.ModelViewSet):
     serializer_class = UserProjectSerializer
     permission_classes = [IsAuthenticated]
@@ -120,6 +115,11 @@ class UserProjectViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     
+# class TemporaryProjectsView(generics.ListAPIView):
+#     queryset = Project.objects.filter(project__is_limited=True).select_related('projects') 
+#     serializer_class = ProjectSerializer
+#     permission_classes = [IsAuthenticated]
+
 
 
 # class ProjectAPIList(generics.ListCreateAPIView):
