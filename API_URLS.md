@@ -130,3 +130,12 @@ API сервера позволяет управлять пользовател�
       "is_completed": bool
    },
 ]
+
+13. **/usermininfo/ (GET)** авториизован
+   - **GET**: Возвращает минимальную информацию об открытых проектах пользователя. Входные данные access токен. Выходные данные — JSON с полями username, coins, stars, nickname_id
+   {
+    "username": string,
+    "coins": int,
+    "stars": int,
+    "nickname_id": int, 0 если нет активного ника
+   }

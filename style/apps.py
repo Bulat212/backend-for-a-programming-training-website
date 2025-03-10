@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class MapConfig(AppConfig):
+class StyleConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'map'
-    verbose_name = 'Карта'
+    name = 'style'
+    verbose_name = 'Стили'
