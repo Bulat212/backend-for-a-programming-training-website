@@ -45,6 +45,14 @@ class UserStyle(models.Model):
             ).exclude(id=self.id).update(is_active=False)
         super().save(*args, **kwargs)
 
+        active_nickname = UserStyle.objects.filter(user=self.user, is_active=True, style__category__name='nickname').first()
+        active_background_profile = UserStyle.objects.filter(user=self.user, is_active=True, style__category__name='background').first()
+
+        self.user.nickname_id = active_nickname.style if active_nickname else None
+        self.user.background_profile = active_background_profile.style if active_background_profile else None
+        self.user.save()
+
+
     class Meta:
         verbose_name = 'Стиль пользователя'
         verbose_name_plural = 'Стили пользователя'

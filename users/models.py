@@ -2,14 +2,29 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 from project.models import Language, Project
+# from style.models import Style
 
 class User(AbstractUser):
     email = models.EmailField(unique=True)
-    description = models.TextField(verbose_name='Описание проекта', blank=True, null=True)
+    description = models.TextField(verbose_name='Обо мне', blank=True, null=True)
     photo = models.ImageField(upload_to="users/%Y/%m/%d/", blank=True, null=True)
     experience = models.PositiveIntegerField(default=0)
     coins = models.IntegerField(default=0)
     stars = models.IntegerField(default=0)
+    nickname_id = models.ForeignKey(
+        'style.Style',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='nickname_projects'
+    )
+    background_profile = models.ForeignKey(
+        'style.Style',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='background_projects'
+    )
 
     USERNAME_FIELD = 'email'  # Вход по email
     REQUIRED_FIELDS = ['username']  # Username обязателен, но не используется для логина

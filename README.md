@@ -20,6 +20,5 @@ python manage.py loaddata fixtures/UserStyle.json
 python manage.py runserver
 
 
-
 для себя
 manage.py dumpdata style.Style > fixtures/styles.json
