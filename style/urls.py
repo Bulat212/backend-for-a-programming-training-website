@@ -1,11 +1,11 @@
 
 from django.urls import path
 
-from style.views import StyleList
+from style.views import StyleViewSet
 
 
 urlpatterns = [
-    path('', StyleList.as_view(), name='shop'),
-
+    path('', StyleViewSet.as_view({'get': 'list'}), name='shop'),
+    path('<int:pk>/', StyleViewSet.as_view({'get': 'retrieve'}), name='shop'),
 ]
 

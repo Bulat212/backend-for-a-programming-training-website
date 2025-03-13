@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     "debug_toolbar",
     "corsheaders",
+    'django_filters',
 
     'project',
     'users',
