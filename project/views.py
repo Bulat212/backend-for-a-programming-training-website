@@ -47,10 +47,10 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
     #         return Project.objects.all()
     #     return Project.objects.filter(pk=pk)
     
-    @action(methods=['get'], detail=True) #True одна запись, False список
-    def language(self, request, pk):
-        language = Language.objects.get(pk=pk)
-        return Response({'post': language.name})
+    # @action(methods=['get'], detail=True) #True одна запись, False список
+    # def language(self, request, pk):
+    #     language = Language.objects.get(pk=pk)
+    #     return Response({'post': language.name})
 
 class UserProjectViewSet(viewsets.ModelViewSet):
     serializer_class = UserProjectSerializer
@@ -85,7 +85,7 @@ class UserProjectViewSet(viewsets.ModelViewSet):
     def end_project(self, request, pk=None):
         user_project = self.get_object()  # Получаем объект по pk
         if user_project.is_completed:
-            return Response({'error': 'Проект уже завершен'}, status=400)
+            return Response({'detail': 'Проект уже завершен'}, status=400)
         
         user_project.finished_date = timezone.now()
         user_project.is_completed = True
@@ -95,21 +95,20 @@ class UserProjectViewSet(viewsets.ModelViewSet):
 
     @action(methods=['post'], detail=False)
     def start_project(self, request):
-        print("Request data:", request.data)  # Добавь для отладки
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         project = serializer.validated_data['project']
         if UserProject.objects.filter(user=self.request.user, project=project).exists():
-            return Response({'error': 'Проект уже начат'}, status=400)
+            return Response({'detail': 'Проект уже начат'}, status=400)
         
         if project.is_limited==False:
             project_map = ProjectMap.objects.filter(project=project).first()
             if project_map and project_map.prev_project:
                 prev_user_project = UserProject.objects.filter(user=self.request.user, project=project_map.prev_project).first()
                 if not prev_user_project:
-                    return Response({'error': 'Проект начать нельзя: предыдущий проект еще не начат'}, status=400)
+                    return Response({'detail': 'Проект начать нельзя: предыдущий проект еще не начат'}, status=400)
                 if prev_user_project.is_completed==False:
-                    return Response({'error': 'Проект начать нельзя: предыдущий проект не завершен'}, status=400)
+                    return Response({'detail': 'Проект начать нельзя: предыдущий проект не завершен'}, status=400)
 
         self.perform_create(serializer)
         return Response(serializer.data)
