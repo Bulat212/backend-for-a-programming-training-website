@@ -23,7 +23,7 @@ class User(AbstractUser):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name='background_projects'
+        related_name='background_profile'
     )
 
     USERNAME_FIELD = 'email'  # Вход по email

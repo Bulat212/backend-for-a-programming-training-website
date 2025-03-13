@@ -116,7 +116,7 @@ API сервера позволяет управлять пользовател�
     },
 ]
 
-12. **/map/user-project-map/ (GET)**
+12. **/map/user-project-map/ (GET)** авторизован
    - **GET**: Возвращает информацию об открытых проектах пользователя. Входных данные access токен. Выходные данные — JSON с полями project_id, is_open, is_completed
 [
    {
@@ -131,7 +131,7 @@ API сервера позволяет управлять пользовател�
    },
 ]
 
-13. **/usermininfo/ (GET)** авториизован
+13. **/usermininfo/ (GET)** авторизован
    - **GET**: Возвращает минимальную информацию об открытых проектах пользователя. Входные данные access токен. Выходные данные — JSON с полями username, coins, stars, nickname_id
    {
     "username": string,
@@ -139,3 +139,12 @@ API сервера позволяет управлять пользовател�
     "stars": int,
     "nickname_id": int, 0 если нет активного ника
    }
+
+14. **/usermininfo/ (GET)**
+   - **GET**: Возвращает информацию о стилях. Выходные данные — JSON с полями name, price_in_coin , price_in_stars, category
+   {
+      "name": string,
+      "price_in_coin": int,
+      "price_in_stars": int,
+      "category": int
+   },

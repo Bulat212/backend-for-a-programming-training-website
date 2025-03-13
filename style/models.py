@@ -19,7 +19,8 @@ class Category(models.Model):
 
 class Style(models.Model):
     name = models.CharField(max_length=50)
-    price = models.IntegerField(default=0)
+    price_in_coin = models.IntegerField(default=0)
+    price_in_stars = models.IntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     is_available = models.BooleanField(default=False)
 
@@ -46,7 +47,7 @@ class UserStyle(models.Model):
         super().save(*args, **kwargs)
 
         active_nickname = UserStyle.objects.filter(user=self.user, is_active=True, style__category__name='nickname').first()
-        active_background_profile = UserStyle.objects.filter(user=self.user, is_active=True, style__category__name='background').first()
+        active_background_profile = UserStyle.objects.filter(user=self.user, is_active=True, style__category__name='background_profile').first()
 
         self.user.nickname_id = active_nickname.style if active_nickname else None
         self.user.background_profile = active_background_profile.style if active_background_profile else None
