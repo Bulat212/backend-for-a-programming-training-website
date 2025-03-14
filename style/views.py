@@ -12,6 +12,8 @@ from rest_framework import status
 
 from style.models import Style, UserStyle
 from style.serializers import StyleSerializer, UserStyleSerializer
+
+from users.models import User
 # Create your views here.
 
 
@@ -66,11 +68,35 @@ class UserStyleAPIView(generics.ListCreateAPIView):
         serializer.is_valid(raise_exception=True)
 
         style = serializer.validated_data['style']
-
+        
         userstyle_is_exist =  UserStyle.objects.filter(user=self.request.user, style=style).exists()
         if userstyle_is_exist:
             return Response({'detail': 'Этот стиль уже куплен.'}, status=status.HTTP_400_BAD_REQUEST)
         
-        self.perform_create(serializer)
-        self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        currency = serializer.validated_data['currency']
+        style_price_coin = style.price_in_coin
+        style_price_stars = style.price_in_stars
+
+        shopping_successfull = False
+
+        if currency=="stars":
+            user_stars = request.user.stars
+            if user_stars >= style_price_stars:
+                request.user.stars -= style_price_stars
+                request.user.save()
+                shopping_successfull = True
+        
+        if currency == "coins":
+            user_coins = request.user.coins
+            if user_coins >= style_price_coin:
+                request.user.coins -= style_price_coin
+                request.user.save()
+                shopping_successfull = True
+       
+        if shopping_successfull:
+            self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        
+        else:
+            return Response({"detail": "Не хватает средств."}, status=status.HTTP_400_BAD_REQUEST)

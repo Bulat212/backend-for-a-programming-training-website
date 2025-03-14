@@ -13,8 +13,13 @@ class StyleSerializer(serializers.ModelSerializer):
 
 class UserStyleSerializer(serializers.ModelSerializer):    
     style = serializers.SlugRelatedField(slug_field="name", queryset=Style.objects.all())
+    currency = serializers.CharField(write_only=True)
 
     class Meta:
         model = UserStyle
-        fields=["style", "is_active"] #поля которые будут возвращаться по запросу
+        fields=["style", "is_active", "currency"] #поля которые будут возвращаться по запросу
     
+    def create(self, validated_data):
+        currency = validated_data.pop('currency')
+        user_style = UserStyle.objects.create(**validated_data)
+        return user_style
