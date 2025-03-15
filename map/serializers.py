@@ -1,10 +1,13 @@
+from pyclbr import Class
 from rest_framework import serializers
+from django.db.models import Q
 
 import project
+from project.views import projects
 from users.models import UserProject
 
 from .models import ProjectMap, ProjectPosition
-
+from project.models import Project
 
 # class ProjectMapSerializer(serializers.Serializer):
 #     project_id= serializers.IntegerField( allow_null=True)
@@ -17,7 +20,7 @@ class ProjectConnectionsSerializer(serializers.ModelSerializer):
         fields = ["project", "prev_project"]  #поля которые будут возвращаться по запросу
 
 
-class ProjectSerializer(serializers.ModelSerializer):
+class ProjectPositionSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source='project.name')
     description = serializers.CharField(source='project.description')
     experience = serializers.IntegerField(source='project.experience')
@@ -28,6 +31,10 @@ class ProjectSerializer(serializers.ModelSerializer):
         model = ProjectPosition
         fields = ["project_id", "position_x", "position_y", "name", "description", "experience", "coins"]  #поля которые будут возвращаться по запросу
 
+class AdminProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = ["id", "name"]
 
 class UserProjectMapSerializer(serializers.ModelSerializer):
     # project = ProjectSerializer(source='project.positions.first')
@@ -53,3 +60,56 @@ class UserProjectMapSerializer(serializers.ModelSerializer):
     def get_is_completed(self, obj):
         user = self.context['request'].user
         return UserProject.objects.filter(user=user, project=obj.project, is_completed=True).exists()
+
+
+class AddMapProjcects(serializers.ModelSerializer):
+    project_id = serializers.IntegerField()
+    prev_project_id = serializers.IntegerField(required=False, allow_null=True)
+    position_x = serializers.FloatField(write_only=True)
+    position_y = serializers.FloatField(write_only=True)
+
+    class Meta:
+        model = ProjectMap
+        fields = ['project_id', 'prev_project_id', 'position_x', 'position_y']
+
+    def create(self, validated_data):
+        project_id = validated_data.pop('project_id')
+        prev_project_id = validated_data.pop('prev_project_id', None)
+        position_x = validated_data.pop('position_x')
+        position_y = validated_data.pop('position_y')
+
+        project = Project.objects.get(id=project_id)
+        prev_project = Project.objects.get(id=prev_project_id) if prev_project_id else None
+
+        project_exists_in_map= ProjectMap.objects.filter(project_id=prev_project_id, prev_project_id=project_id).first()
+        if project_exists_in_map:
+            project_exists_in_map.project_id = project_id
+            project_exists_in_map.prev_project_id = prev_project_id
+            project_exists_in_map.save()
+            
+            new_map_project = project_exists_in_map
+            # new_map_project = ProjectMap.objects.update(project=project, prev_project_id=prev_project_id)
+        else:
+            new_map_project, created = ProjectMap.objects.update_or_create(project=project, defaults={'prev_project': prev_project})
+
+        ProjectPosition.objects.update_or_create(project=project, defaults={'position_x': position_x, 'position_y': position_y})
+
+        return new_map_project
+    
+    def validate(self, data):
+        project_id=data.get('project_id')
+        prev_project_id=data.get('prev_project_id')
+        position_x = data.get('position_x')
+        position_y = data.get('position_y')
+
+        if not Project.objects.filter(id=project_id).exists():
+            raise serializers.ValidationError(f"Проект с id={project_id} не найден.")
+        
+        if prev_project_id and not Project.objects.filter(id=prev_project_id).exists():
+            raise serializers.ValidationError(f"Предыдущий проект с id={prev_project_id} не найден.")
+
+        if ProjectPosition.objects.filter(Q(position_x=position_x) & Q(position_y=position_y) & ~Q(project_id=project_id)).exists():
+            raise serializers.ValidationError(f"Позиция на карте уже занята.")
+
+        return data
+    

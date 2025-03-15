@@ -168,3 +168,59 @@ API сервера позволяет управлять пользовател�
     "is_active": bool,
     "currency": "stars" or "coins" в зависимости от того, за что покупает
    }
+
+16. **/admin-list-map-project/ (GET)** админ
+   - **GET**: Возвращает список проектов, которых нет на карте. Выходные данные — JSON с полями id, name
+[
+   {
+      "id": 1,
+      "name": "Массивы"
+   },
+   {
+      "id": 4,
+      "name": "База данных"
+   },
+]
+
+17. **/admin-create-map/ (POST)** админ
+   - **POST**: Добавляет размещенные проекты в таблицы ProjectPosition, ProjectMap проектов. 
+   Входные данные JSON список из project_id, prev_project_id, position_x, position_y
+   [
+    {
+      "project_id": 2,
+      "prev_project_id": 1,
+      "position_x": 124,
+      "position_y": 123
+    },
+    {
+      "project_id": 5,
+      "prev_project_id": 2,
+      "position_x": 14,
+      "position_y": 111
+    }
+   ]
+
+   Выходные данные — JSON с полями project_id, prev_project_id
+   [
+      {
+         "project_id": 2,
+         "prev_project_id": 1
+      },
+      {
+         "project_id": 5,
+         "prev_project_id": 2
+      }
+   ]
+
+   Если разместить на позиции где уже есть проект, то выдаст ошибку
+   {
+      "non_field_errors": [
+            "Позиция на карте уже занята."
+      ]
+   },
+   Если передать id проекта которого нет, то выдаст ошибку
+   {
+      "non_field_errors": [
+            "Проект с id=123 не найден."
+      ]
+   },

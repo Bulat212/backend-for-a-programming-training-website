@@ -6,8 +6,7 @@ from project.models import Project
 class ProjectMap(models.Model):
     project = models.ForeignKey(to=Project, on_delete=models.CASCADE, related_name='maps')
     prev_project = models.ForeignKey(to=Project, on_delete=models.SET_NULL, null=True, blank=True, related_name='next_projects')
-    # is_open = models.BooleanField(default=False)
-    # is_completed = models.BooleanField(default=False)
+
 
     class Meta:
         verbose_name = 'Карта проектов'
@@ -15,7 +14,6 @@ class ProjectMap(models.Model):
     
     def __str__(self): # в админке будут видны названия проектов иначе ProjectMap object (1)
         return str(self.project)
-    
     
 
 class ProjectPosition(models.Model):
