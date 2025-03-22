@@ -253,7 +253,7 @@ API сервера позволяет управлять пользовател�
     }
    ]
 
-20. **/temporary-projects/ (GET)** авторизован
+20. **/finished-projects/ (GET)** авторизован
    - **Get**: Выдает список завершенных проектов пользователя. Выходные данные JSON с полями проекта id, name, description, experience, difficulty, coins
    [
     {
