@@ -1,3 +1,5 @@
+from dataclasses import field
+from django.utils import timezone
 from rest_framework import serializers
 from project.models import Language, Project
 from users.models import UserProject
@@ -19,6 +21,26 @@ class UserProjectSerializer(serializers.ModelSerializer):
         model = UserProject
         fields = ['project_id', 'project_name', 'code', 'is_completed', 'is_published', 'earned_stars', 'language', 'finished_date']
 
+
+class TemporaryProjects(serializers.ModelSerializer):
+    time_remaining = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Project
+        fields = ['id', 'name', 'description', 'theory', 'time_remaining', 'experience', 'difficulty', 'coins']
+
+    def get_time_remaining(self, obj):
+        if obj.time_to_leave < timezone.now():
+            return "Время истекло"
+        remeaning = obj.time_to_leave - timezone.now()
+        days = remeaning.days
+        hours, remainder  = divmod(remeaning.seconds, 3600)
+        minutes, seconds = divmod(remainder , 60)
+        return f"Оставшееся время - {days} дней, {hours} часов, {minutes} минут."
+   
+   
+   
+   
     # def create(self, validated_data):
     #     # Извлекаем project_id из данных
     #     project_id = validated_data.pop('project')['id']  # Берем ID из вложенного словаря

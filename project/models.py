@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
@@ -7,10 +8,10 @@ class Project(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название проекта') #verbose для админки
     description = models.TextField(verbose_name='Описание проекта', blank=True)
     theory = models.TextField(verbose_name='Теория', blank=True)
-    time_to_leave = models.TimeField(default='00:00:00')
-    experience = models.PositiveIntegerField(blank=True, null=True)
-    difficulty = models.IntegerField(blank=True, null=True)
-    coins = models.IntegerField(blank=True, null=True)
+    time_to_leave = models.DateTimeField(default=timezone.now)
+    experience = models.PositiveIntegerField(blank=True, null=True, default=0)
+    difficulty = models.IntegerField(blank=True, null=True, default=0)
+    coins = models.IntegerField(blank=True, null=True, default=0)
     created_data = models.DateTimeField(auto_now_add=True)
     is_limited = models.BooleanField(default=False)
 
@@ -21,7 +22,7 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
-
+    
 class Language(models.Model):
     name = models.CharField(max_length=100, unique=True)
 

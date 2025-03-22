@@ -17,7 +17,8 @@ urlpatterns = [
     path('', projects, name='list'),
     path('', include(router_user.urls)),
     path('', include(router_project.urls)),
-
+    path('temporary-projects/', TemporaryProjectsView.as_view()),
+    
     # path('api/v1/', ProjectViewSet.as_view({'get': 'list'})),
     # path('api/v1/<int:pk>/', ProjectViewSet.as_view({'put': 'update'})),
 ]
