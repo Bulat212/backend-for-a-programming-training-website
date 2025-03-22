@@ -226,15 +226,40 @@ API сервера позволяет управлять пользовател�
    },
 
 18. **/temporary-projects/ (GET)** авторизован
-   - **Get**: Выдает список временных проектов. Выходные данные JSON с полями проекта id, name, description, theory, time_remaining (оставшееся время жизни проекта), experience, difficulty, coins
-
+   - **Get**: Выдает список временных проектов. Выходные данные JSON с полями проекта id, name, description, time_remaining (оставшееся время жизни проекта), experience, difficulty, coins
+   Либо вернется пустой список если нет временных проектов
    [
     {
       "id": int,
       "name": str,
       "description": str,
-      "theory": str,
       "time_remaining": "Оставшееся время - 0 дней, 23 часов, 58 минут.", str
+      "experience": int или null
+      "difficulty": int или null
+      "coins": int или null
+    }
+   ]
+
+19. **/started-projects/ (GET)** авторизован
+   - **Get**: Выдает список начатых проектов пользователя. Выходные данные JSON с полями проекта id, name, description, experience, difficulty, coins
+   [
+    {
+      "id": int,
+      "name": str,
+      "description": str,
+      "experience": int или null
+      "difficulty": int или null
+      "coins": int или null
+    }
+   ]
+
+20. **/temporary-projects/ (GET)** авторизован
+   - **Get**: Выдает список завершенных проектов пользователя. Выходные данные JSON с полями проекта id, name, description, experience, difficulty, coins
+   [
+    {
+      "id": int,
+      "name": str,
+      "description": str,
       "experience": int или null
       "difficulty": int или null
       "coins": int или null

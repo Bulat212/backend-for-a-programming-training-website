@@ -27,7 +27,7 @@ class TemporaryProjects(serializers.ModelSerializer):
     
     class Meta:
         model = Project
-        fields = ['id', 'name', 'description', 'theory', 'time_remaining', 'experience', 'difficulty', 'coins']
+        fields = ['id', 'name', 'description', 'time_remaining', 'experience', 'difficulty', 'coins']
 
     def get_time_remaining(self, obj):
         if obj.time_to_leave < timezone.now():
@@ -39,8 +39,20 @@ class TemporaryProjects(serializers.ModelSerializer):
         return f"Оставшееся время - {days} дней, {hours} часов, {minutes} минут."
    
    
-   
-   
+class StatusUserProject(serializers.ModelSerializer):
+    id = serializers.IntegerField()
+    name = serializers.CharField(source='project.name')
+    description = serializers.CharField(source='project.description')
+    experience = serializers.IntegerField(source='project.experience')
+    difficulty = serializers.IntegerField(source='project.difficulty')
+    coins = serializers.IntegerField(source='project.coins')
+
+    class Meta:
+        model = UserProject
+        fields = ['id', 'name', 'description', 'experience', 'difficulty', 'coins']
+
+
+
     # def create(self, validated_data):
     #     # Извлекаем project_id из данных
     #     project_id = validated_data.pop('project')['id']  # Берем ID из вложенного словаря

@@ -14,7 +14,7 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 
 from project.models import Language, Project
-from project.serializers import ProjectSerializer, TemporaryProjects, UserProjectSerializer
+from project.serializers import ProjectSerializer, StatusUserProject, TemporaryProjects, UserProjectSerializer
 from users.models import UserProject
 from map.models import ProjectMap
 
@@ -124,6 +124,23 @@ class TemporaryProjectsView(generics.ListAPIView):
             is_limited=True,
             time_to_leave__gt=timezone.now()
         )
+
+
+class StartedProjectsView(generics.ListAPIView):
+    serializer_class = StatusUserProject
+    permission_classes= [IsAuthenticated]
+
+    def get_queryset(self):
+        return UserProject.objects.filter(user=self.request.user, is_completed=False)
+    
+
+class FinishedProjectsView(generics.ListAPIView):
+    serializer_class = StatusUserProject
+    permission_classes= [IsAuthenticated]
+
+    def get_queryset(self):
+        return UserProject.objects.filter(user=self.request.user, is_completed=True)
+    
 
 
 # class ProjectAPIList(generics.ListCreateAPIView):
