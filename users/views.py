@@ -5,11 +5,12 @@ from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets
 
 from style.models import UserStyle
 from users.models import User
 
-from .serializers import RegisterSerializer, UserMinInfoSerializer
+from .serializers import ProfileSerializer, RegisterSerializer, UserMinInfoSerializer
 
 # Create your views here.
 class RegisterView(CreateAPIView):
@@ -33,6 +34,16 @@ class UserMinInfoView(APIView):
         return Response(serializer.data)
 
 
+class ProfileView(APIView):
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        user = request.user
+        serializer = ProfileSerializer(user)
+        return Response(serializer.data)
+    
+    
 # class RegisterView(APIView):
 #     def post(self, request):
 #         serializer = RegisterSerializer(data=request.data)

@@ -7,7 +7,7 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView
 )
 
-from .views import RegisterView, UserMinInfoView
+from .views import ProfileView, RegisterView, UserMinInfoView
 
 
 urlpatterns = [
@@ -18,5 +18,6 @@ urlpatterns = [
 
 
     path('usermininfo/', UserMinInfoView.as_view()),
+    path('profile/', ProfileView.as_view()),
 ]
 

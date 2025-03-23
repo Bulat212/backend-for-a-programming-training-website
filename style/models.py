@@ -57,6 +57,9 @@ class UserStyle(models.Model):
     class Meta:
         verbose_name = 'Стиль пользователя'
         verbose_name_plural = 'Стили пользователя'
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'style'], name='unique_user_style')
+        ]
 
     def __str__(self):
         return f"{self.user} - {self.style} - {self.style.category}"

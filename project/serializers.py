@@ -1,4 +1,4 @@
-from dataclasses import field
+from dataclasses import field, fields
 from django.utils import timezone
 from rest_framework import serializers
 from project.models import Language, Project
@@ -51,6 +51,12 @@ class StatusUserProject(serializers.ModelSerializer):
         model = UserProject
         fields = ['id', 'name', 'description', 'experience', 'difficulty', 'coins']
 
+
+class LastProjectSerializer(serializers.ModelSerializer):
+    project_name = serializers.CharField(source='project.name')
+    class Meta:
+        model = UserProject
+        fields= ['project_id', 'project_name']
 
 
     # def create(self, validated_data):

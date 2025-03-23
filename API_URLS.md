@@ -132,24 +132,37 @@ API сервера позволяет управлять пользовател�
 ]
 
 13. **/usermininfo/ (GET)** авторизован
-   - **GET**: Возвращает минимальную информацию об открытых проектах пользователя. Входные данные access токен. Выходные данные — JSON с полями username, coins, stars, nickname_id
+   - **GET**: Возвращает минимальную информацию об открытых проектах пользователя. Входные данные access токен. Выходные данные — JSON с полями username, coins, stars, photo, nickname_id
    {
     "username": string,
     "coins": int,
     "stars": int,
+    "photo": "http://127.0.0.1:8000/media/profile_pictures/image313.png",
     "nickname_id": int, 0 если нет активного ника
    }
 
 14. **/shop/ (GET)**
    - **GET**: Возвращает информацию о стилях. Выходные данные — JSON с полями name, price_in_coin , price_in_stars, category
+   
+   [
+      {
+         "name": string,
+         "price_in_coin": int,
+         "price_in_stars": int,
+         "category": int
+      },
+   ]
+
+15. **/shop/id/ (GET)**
+   - **GET**: Возвращает информацию о стиле с конкретным id. Выходные данные — JSON с полями name, price_in_coin , price_in_stars, category
    {
       "name": string,
       "price_in_coin": int,
       "price_in_stars": int,
       "category": int
-   },
+   }
 
-15. **/shop/? (GET)**
+16. **/shop/? (GET)**
    После вопросительного знака можно вставить следующее:
    - price_in_stars__lt=10   фильтрация по цене за звезды меньше 10
    - price_in_stars__gt=10   фильтрация по цене за звезды больше 10
@@ -157,7 +170,8 @@ API сервера позволяет управлять пользовател�
    - price_in_coin__lt=10    фильтрация по цене за коины меньше 10
    - category=nickname       фильтрация по названию категории nickname
 
-15. **/userstyle/ (GET, POST)** авторизован
+
+17. **/userstyle/ (GET, POST)** авторизован
    - **GET**: Возвращает информацию о стилях юзера. Выходные данные — JSON с полями style, is_active
    - **POST**: Добавляет новую запись в таблицу UserStyle.(допустим если человек купил в магазине стиль). Входные данные — JSON с полями style, is_active, currency. Выходные данные — JSON с полями style, is_active если стиль приобрелся и добавился в таблицу.
    Eсли стиль уже есть - "detail": "Этот стиль уже куплен."
@@ -169,7 +183,7 @@ API сервера позволяет управлять пользовател�
     "currency": "stars" or "coins" в зависимости от того, за что покупает
    }
 
-16. **/admin-list-map-project/ (GET)** админ
+18. **/admin-list-map-project/ (GET)** админ
    - **GET**: Возвращает список проектов, которых нет на карте. Выходные данные — JSON с полями id, name
 [
    {
@@ -182,7 +196,7 @@ API сервера позволяет управлять пользовател�
    },
 ]
 
-17. **/admin-create-map/ (POST)** админ
+19. **/admin-create-map/ (POST)** админ
    - **POST**: Добавляет размещенные проекты в таблицы ProjectPosition, ProjectMap проектов. 
    Входные данные JSON список из project_id, prev_project_id, position_x, position_y
    [
@@ -225,7 +239,7 @@ API сервера позволяет управлять пользовател�
       ]
    },
 
-18. **/temporary-projects/ (GET)** авторизован
+20. **/temporary-projects/ (GET)** авторизован
    - **Get**: Выдает список временных проектов. Выходные данные JSON с полями проекта id, name, description, time_remaining (оставшееся время жизни проекта), experience, difficulty, coins
    Либо вернется пустой список если нет временных проектов
    [
@@ -240,7 +254,7 @@ API сервера позволяет управлять пользовател�
     }
    ]
 
-19. **/started-projects/ (GET)** авторизован
+21. **/started-projects/ (GET)** авторизован
    - **Get**: Выдает список начатых проектов пользователя. Выходные данные JSON с полями проекта id, name, description, experience, difficulty, coins
    [
     {
@@ -253,7 +267,7 @@ API сервера позволяет управлять пользовател�
     }
    ]
 
-20. **/finished-projects/ (GET)** авторизован
+22. **/finished-projects/ (GET)** авторизован
    - **Get**: Выдает список завершенных проектов пользователя. Выходные данные JSON с полями проекта id, name, description, experience, difficulty, coins
    [
     {
@@ -265,3 +279,22 @@ API сервера позволяет управлять пользовател�
       "coins": int или null
     }
    ]
+
+
+23. **/profile/ (GET)** авторизован
+   - **Get**: Выдает информацию о пользователе. last_projects - список последних 5 выполненных проектов
+{
+    "id": int,
+    "username": str,
+    "description": str,
+    "photo": null или "/media/profile_pictures/image313.png"
+    "experience": int,
+    "nickname_id": int,
+    "background_profile": int,
+    "last_projects": [
+        {
+            "project_id": int,
+            "project_name": str
+        }
+    ]
+}

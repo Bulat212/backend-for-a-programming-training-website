@@ -1,9 +1,12 @@
+from dataclasses import field
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
+from traitlets import default
 
+from project.serializers import LastProjectSerializer
 from style.models import Category, Style, UserStyle
 
-from .models import User
+from .models import User, UserProject
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -32,41 +35,14 @@ class RegisterSerializer(serializers.ModelSerializer):
             'refresh': str(refresh),
             'access': str(refresh.access_token),
         }
-
-
-# class UserMinInfoSerializer(serializers.ModelSerializer):
-#     nickname_id = serializers.SerializerMethodField()
-#     # nickname_id = serializers.PrimaryKeyRelatedField(source='style',
-#     #     queryset=Style.objects.all(),
-#     #     required=False)
-#     username = serializers.CharField(source='user.username')
-#     coins = serializers.IntegerField(source='user.coins')
-#     stars = serializers.IntegerField(source='user.stars')
-
-#     class Meta:
-#         model = UserStyle
-#         fields = ['username', 'nickname_id', 'coins', 'stars']
-        
-#     def get_nickname_id(self, obj):
-#         user = self.context['request'].user
-#         user_style = UserStyle.objects.filter(user=user, style__category__id=2, is_active=True).first()
-#         # user_style = UserStyle.objects.select_related('style__category', 'user').filter(user=user, style__category__id=2, is_active=True).first()
-#         if user_style:
-#             return user_style.style.id
-#         return 0
+    
         
 class UserMinInfoSerializer(serializers.ModelSerializer):
-    # nickname_id = serializers.PrimaryKeyRelatedField(source='style',
-    #     queryset=Style.objects.all(),
-    #     required=False)
-    username = serializers.CharField()
-    coins = serializers.IntegerField()
-    stars = serializers.IntegerField()
     nickname_id = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ['username', 'coins', 'stars', 'nickname_id']
+        fields = ['username', 'coins', 'stars', 'photo', 'nickname_id']
         
     def get_nickname_id(self, obj):
         user = self.context['request'].user
@@ -74,3 +50,17 @@ class UserMinInfoSerializer(serializers.ModelSerializer):
         if user_style:
             return user_style.style.id
         return 0
+    
+
+class ProfileSerializer(serializers.ModelSerializer):
+    nickname_id = serializers.IntegerField(source='nickname_id.id', default=0)
+    background_profile = serializers.IntegerField(source='background_profile.id', default=0)
+    last_projects = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'description', 'photo', 'experience', 'nickname_id', 'background_profile', 'last_projects']
+
+    def get_last_projects(self, obj):
+        last_projects = UserProject.objects.filter(user=obj, is_completed=True).order_by('-finished_date')[:2]
+        return LastProjectSerializer(last_projects, many=True).data
