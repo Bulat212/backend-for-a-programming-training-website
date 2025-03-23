@@ -9,9 +9,9 @@ class Project(models.Model):
     description = models.TextField(verbose_name='Описание проекта', blank=True)
     theory = models.TextField(verbose_name='Теория', blank=True)
     time_to_leave = models.DateTimeField(default=timezone.now)
-    experience = models.PositiveIntegerField(blank=True, null=True, default=0)
-    difficulty = models.IntegerField(blank=True, null=True, default=0)
-    coins = models.IntegerField(blank=True, null=True, default=0)
+    experience = models.PositiveIntegerField(default=0)
+    difficulty = models.IntegerField(default=0)
+    coins = models.IntegerField(default=0)
     created_data = models.DateTimeField(auto_now_add=True)
     is_limited = models.BooleanField(default=False)
 
