@@ -1,5 +1,10 @@
+from locale import currency
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.template.defaultfilters import time
+from django.utils import timezone
+from django.db.models import F
+from django.db.models import Sum
 
 from project.models import Language, Project
 # from style.models import Style
@@ -55,11 +60,29 @@ class UserProgress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     stars = models.IntegerField(default=0)
     experience = models.IntegerField(default=0)
-    date = models.DateTimeField(null=True, blank=True)
+    date = models.DateField(default=timezone.now)
+
+
+    class Meta:
+        ordering = ['-date']
+
+    def __str__(self):
+        return f"{self.user} - exp:{self.experience} - stars:{self.stars} - {self.date}"
+
+
+
+class ProgressLog(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    experience_change = models.IntegerField(default=0)
+    stars_change = models.IntegerField(default=0)  
+    date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.user} - exp:{self.experience_change} - stars:{self.stars_change} - {self.date}"
 
 
 class UserSkill(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     language = models.ForeignKey(Language, on_delete=models.CASCADE)
     experience = models.IntegerField(default=0)
- 
+

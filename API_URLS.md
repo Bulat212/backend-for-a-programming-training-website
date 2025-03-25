@@ -298,3 +298,53 @@ API сервера позволяет управлять пользовател�
         }
     ]
 }
+
+24. **/user-graph/ (GET)** авторизован
+   - **Get**: Выдает информацию о прогрессе юзера.
+   [
+    {
+      "user": 2,
+      "experience": 5,
+      "date": "2025-03-25"
+    },
+    {
+      "user": 2,
+      "experience": 3,
+      "date": "2025-03-20"
+    },
+   ]
+
+25. **/experience-ranking/[period]/[limit]/ (GET)** 
+   - **Get**: Выдает рейтинг юзеров по опыту. Вместо period можно указать week или month (string), limit - сколько юзеров выводить (int)
+   [
+    {
+      "user__id": 2,
+      "user__username": "bulat",
+      "total_experience": 132
+    },
+    {
+      "user__id": 1,
+      "user__username": "root",
+      "total_experience": 123
+    }
+]
+
+26. **/stars-ranking/[period]/[limit]/ (GET)** 
+   - **Get**: Выдает рейтинг юзеров по звездам. Вместо period можно указать week или month (string), limit - сколько юзеров выводить (int)
+[
+   {
+      "user__id": 1,
+      "user__username": "root",
+      "total_stars": 123
+   },
+   {
+      "user__id": 3,
+      "user__username": "andrey",
+      "total_stars": 123
+   },
+   {
+      "user__id": 2,
+      "user__username": "bulat",
+      "total_stars": 12
+   }
+]

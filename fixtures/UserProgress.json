@@ -1,0 +1,1 @@
+[{"model": "users.userprogress", "pk": 2, "fields": {"user": 2, "stars": 3, "experience": 3, "date": "2025-03-20"}}, {"model": "users.userprogress", "pk": 3, "fields": {"user": 2, "stars": 2, "experience": 2, "date": "2025-03-01"}}, {"model": "users.userprogress", "pk": 4, "fields": {"user": 2, "stars": 5, "experience": 5, "date": "2025-03-25"}}]

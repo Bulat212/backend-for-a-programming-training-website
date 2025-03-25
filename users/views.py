@@ -6,11 +6,13 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
+from rest_framework import generics
 
-from style.models import UserStyle
-from users.models import User
 
-from .serializers import ProfileSerializer, RegisterSerializer, UserMinInfoSerializer
+from users.models import UserProgress
+from users.utils import get_experiece_ranking
+
+from .serializers import ProfileSerializer, RegisterSerializer, UserExpGraphSerializer, UserMinInfoSerializer, UserRankingExperienceSerializer, UserRankingStarsSerializer
 
 # Create your views here.
 class RegisterView(CreateAPIView):
@@ -43,7 +45,43 @@ class ProfileView(APIView):
         serializer = ProfileSerializer(user)
         return Response(serializer.data)
     
-    
+
+class UserExpGraphView(generics.ListAPIView):
+    serializer_class = UserExpGraphSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return UserProgress.objects.filter(user=self.request.user)
+
+
+class ExperienceRatingView(APIView):
+    def get(self, request, period, limit):
+        users = get_experiece_ranking("experience", period, limit)
+        serializer = UserRankingExperienceSerializer(users, many=True)
+        
+        return Response(serializer.data)
+
+
+class StarsRatingView(APIView):
+    def get(self, request, period, limit):
+        users = get_experiece_ranking("stars", period, limit)
+        serializer = UserRankingStarsSerializer(users, many=True)
+        
+        return Response(serializer.data)
+
+# class WeeklyRankngView(APIView):
+#     def get(self, request):
+#         one_week_ago = timezone.now() - timedelta(days=7)
+#         users = User.objects.values('id', 'username').annotate(
+#             earned_experience=Coalesce(Sum('userprogress__experience', filter=Q(userprogress__date__gte=one_week_ago)), Value(0)),
+#             earned_stars=Coalesce(Sum('userprogress__stars', filter=Q(userprogress__date__gte=one_week_ago)), Value(0))
+#         ).order_by('-earned_experience', '-earned_stars')
+
+#         return Response(list(users))
+
+
+
+
 # class RegisterView(APIView):
 #     def post(self, request):
 #         serializer = RegisterSerializer(data=request.data)

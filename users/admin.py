@@ -2,9 +2,12 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from style.models import Style
-from .models import User, UserProject
+from .models import ProgressLog, User, UserProgress, UserProject, UserSkill
 
 admin.site.register(UserProject)
+admin.site.register(UserProgress)
+admin.site.register(ProgressLog)
+admin.site.register(UserSkill)
 
 class CustomUserAdmin(UserAdmin):
     model = User

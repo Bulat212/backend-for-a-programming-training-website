@@ -6,7 +6,7 @@ from traitlets import default
 from project.serializers import LastProjectSerializer
 from style.models import Category, Style, UserStyle
 
-from .models import User, UserProject
+from .models import ProgressLog, User, UserProgress, UserProject
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -64,3 +64,23 @@ class ProfileSerializer(serializers.ModelSerializer):
     def get_last_projects(self, obj):
         last_projects = UserProject.objects.filter(user=obj, is_completed=True).order_by('-finished_date')[:2]
         return LastProjectSerializer(last_projects, many=True).data
+
+
+
+class UserRankingExperienceSerializer(serializers.Serializer):
+    user__id = serializers.IntegerField()
+    user__username = serializers.CharField()
+    total_experience = serializers.IntegerField()
+
+
+class UserRankingStarsSerializer(serializers.Serializer):
+    user__id = serializers.IntegerField()
+    user__username = serializers.CharField()
+    total_stars = serializers.IntegerField()
+
+
+
+class UserExpGraphSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProgress
+        fields = ['user', 'experience', 'date']
