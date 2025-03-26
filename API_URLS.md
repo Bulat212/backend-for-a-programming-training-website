@@ -322,18 +322,18 @@ API сервера позволяет управлять пользовател�
    - **Get**: Выдает информацию о прогрессе юзера.
    [
     {
-      "user": 2,
+      "user": str,
       "experience": 5,
       "date": "2025-03-25"
     },
     {
-      "user": 2,
+      "user": str,
       "experience": 3,
       "date": "2025-03-20"
     },
    ]
 
-26. **/experience-ranking/[period]/[limit]/ (GET)** 
+26. **/experience-ranking/<str:period>/<int:limit>/ (GET)** 
    - **Get**: Выдает рейтинг юзеров по опыту. Вместо period можно указать week или month (string), limit - сколько юзеров выводить (int)
    [
     {
@@ -348,7 +348,7 @@ API сервера позволяет управлять пользовател�
     }
 ]
 
-27. **/stars-ranking/[period]/[limit]/ (GET)** 
+27. **/stars-ranking/<str:period>/<int:limit>/ (GET)** 
    - **Get**: Выдает рейтинг юзеров по звездам. Вместо period можно указать week или month (string), limit - сколько юзеров выводить (int)
 [
    {
@@ -367,3 +367,44 @@ API сервера позволяет управлять пользовател�
       "total_stars": 12
    }
 ]
+
+
+27. **/user-skills/ (GET, POST)** авторизован
+   - **GET**: Выдает список навыков пользователя вместе с опытом. 
+   Вывод
+   [
+      {
+         "user": str,
+         "language": "Python",str
+         "experience": int
+      },
+      {
+         "user": str,
+         "language": "Java",str
+         "experience": int
+      }
+   ]
+
+   - **POST**: Входные параметры - JSON с полями language, experience 
+   Входные данные
+   {
+    "language": "Python",
+    "experience": 1
+   }
+   
+   Вывод
+   {
+    "user": "bulat",
+    "language": "Python",
+    "experience": 650
+   }
+
+   При неверных данных
+   {
+    "language": [
+        "Объект с name=у не существует."
+    ],
+    "experience": [
+        "Введите правильное число."
+    ]
+   }

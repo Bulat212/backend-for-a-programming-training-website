@@ -1,7 +1,7 @@
 from django.db.models import Sum
 from django.utils import timezone
 
-from users.models import ProgressLog, UserProgress
+from users.models import ProgressLog, UserProgress, UserSkill
 
 
 def update_user_progress(user, experience=0, stars=0):
@@ -45,3 +45,11 @@ def get_experiece_ranking(rank_type, period, limit=None):
 
     return users
 
+
+def update_or_create_user_skill(user, language, experience=0):
+    user_skill, created = UserSkill.objects.get_or_create(user=user, language=language)
+
+    user_skill.experience += experience
+    user_skill.save()
+    
+    return user_skill

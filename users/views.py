@@ -1,4 +1,7 @@
+from django.core.serializers import serialize
+from django.db.models import Sum
 from django.shortcuts import render
+from django.templatetags.i18n import language
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -7,12 +10,15 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
 from rest_framework import generics
+from rest_framework import mixins
 
 
-from users.models import User, UserProgress
-from users.utils import get_experiece_ranking
+from project.models import Language
+from users.models import User, UserProgress, UserSkill
 
-from .serializers import ProfileSerializer, RegisterSerializer, UserExpGraphSerializer, UserMinInfoSerializer, UserRankingExperienceSerializer, UserRankingStarsSerializer
+from users.utils import get_experiece_ranking, update_or_create_user_skill
+
+from .serializers import ProfileSerializer, RegisterSerializer, UserExpGraphSerializer, UserMinInfoSerializer, UserRankingExperienceSerializer, UserRankingStarsSerializer, UserSkillsSerializer
 
 # Create your views here.
 class RegisterView(CreateAPIView):
@@ -72,16 +78,28 @@ class StarsRatingView(APIView):
         
         return Response(serializer.data)
 
-# class WeeklyRankngView(APIView):
-#     def get(self, request):
-#         one_week_ago = timezone.now() - timedelta(days=7)
-#         users = User.objects.values('id', 'username').annotate(
-#             earned_experience=Coalesce(Sum('userprogress__experience', filter=Q(userprogress__date__gte=one_week_ago)), Value(0)),
-#             earned_stars=Coalesce(Sum('userprogress__stars', filter=Q(userprogress__date__gte=one_week_ago)), Value(0))
-#         ).order_by('-earned_experience', '-earned_stars')
 
-#         return Response(list(users))
+class UserSkillsAPIView(APIView):
+    permission_classes = [IsAuthenticated]
 
+    def get(self, request):
+        users = UserSkill.objects.filter(user=request.user)
+        return Response(UserSkillsSerializer(users, many=True).data)
+
+    def post(self, request):
+        serializer = UserSkillsSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        user = request.user
+        language_name = request.data.get('language')
+        experience = request.data.get('experience')
+
+        language = Language.objects.get(name = language_name)
+        user_skill= update_or_create_user_skill(user, language, experience)
+
+        serializer = UserSkillsSerializer(user_skill) #передаем просто объект user_skill,
+        # валидировать и сохранять не нужно, без data= потому что передаем объект, а не словарь
+        return Response(serializer.data)
 
 
 

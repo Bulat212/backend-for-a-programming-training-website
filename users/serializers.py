@@ -1,12 +1,15 @@
 from dataclasses import field
+from urllib import request
+from django.db.models import QuerySet
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 from traitlets import default
 
+from project.models import Language
 from project.serializers import LastProjectSerializer
 from style.models import Category, Style, UserStyle
 
-from .models import ProgressLog, User, UserProgress, UserProject
+from .models import ProgressLog, User, UserProgress, UserProject, UserSkill
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -68,7 +71,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         return LastProjectSerializer(last_projects, many=True).data
 
 
-
 class UserRankingExperienceSerializer(serializers.Serializer):
     user__id = serializers.IntegerField()
     user__username = serializers.CharField()
@@ -83,6 +85,17 @@ class UserRankingStarsSerializer(serializers.Serializer):
 
 
 class UserExpGraphSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(source='user.username')
     class Meta:
         model = UserProgress
         fields = ['user', 'experience', 'date']
+
+
+class UserSkillsSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(source='user.username', read_only=True)
+    language = serializers.SlugRelatedField(slug_field='name', queryset=Language.objects.all(), required=True)
+    experience = serializers.IntegerField(required=True)
+
+    class Meta:
+        model = UserSkill
+        fields = ['user', 'language', 'experience']

@@ -7,7 +7,7 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView
 )
 
-from .views import ProfileView, RegisterView, StarsRatingView, UserExpGraphView, UserMinInfoView, ExperienceRatingView
+from .views import ProfileView, RegisterView, StarsRatingView, UserExpGraphView, UserMinInfoView, ExperienceRatingView, UserSkillsAPIView
 
 
 urlpatterns = [
@@ -22,6 +22,7 @@ urlpatterns = [
     path('user-graph/', UserExpGraphView.as_view()),
     path('experience-ranking/<str:period>/<int:limit>/', ExperienceRatingView.as_view()),
     path('stars-ranking/<str:period>/<int:limit>/', StarsRatingView.as_view()),
+    path('user-skills/', UserSkillsAPIView.as_view()),
     
 ]
 

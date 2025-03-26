@@ -35,8 +35,8 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']  # Username обязателен, но не используется для логина
 
     class Meta:
-        verbose_name = 'User'
-        #verbose_name_plural = 'Users'
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
 
 
 class UserProject(models.Model):
@@ -50,8 +50,8 @@ class UserProject(models.Model):
     finished_date = models.DateTimeField(null=True, blank=True)
 
     class Meta:
-        verbose_name = 'Userproject'
-        #verbose_name_plural = 'Users'
+        verbose_name = 'Проект пользователя'
+        verbose_name_plural = 'Проекты пользователя'
 
     def __str__(self):
         return f"{self.user.username} - {self.project}"
@@ -68,7 +68,10 @@ class UserProgress(models.Model):
 
     def __str__(self):
         return f"{self.user} - exp:{self.experience} - stars:{self.stars} - {self.date}"
-
+    
+    class Meta:
+        verbose_name = 'Прогресс пользователя'
+        verbose_name_plural = 'Прогресс пользователей'
 
 
 class ProgressLog(models.Model):
@@ -85,4 +88,12 @@ class UserSkill(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     language = models.ForeignKey(Language, on_delete=models.CASCADE)
     experience = models.IntegerField(default=0)
+
+    class Meta:
+        verbose_name = 'Навык пользователя'
+        verbose_name_plural = 'Навыки пользователей'
+
+    def __str__(self):
+        return f"{self.user} - {self.language} - exp:{self.experience}"
+
 
