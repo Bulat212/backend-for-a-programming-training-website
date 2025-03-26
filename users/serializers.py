@@ -53,9 +53,11 @@ class UserMinInfoSerializer(serializers.ModelSerializer):
     
 
 class ProfileSerializer(serializers.ModelSerializer):
-    nickname_id = serializers.IntegerField(source='nickname_id.id', default=0)
-    background_profile = serializers.IntegerField(source='background_profile.id', default=0)
-    last_projects = serializers.SerializerMethodField()
+    username = serializers.CharField(required=False)
+    experience = serializers.IntegerField(read_only=True)
+    nickname_id = serializers.IntegerField(source='nickname_id.id', default=0, read_only=True)
+    background_profile = serializers.IntegerField(source='background_profile.id', default=0, read_only=True)
+    last_projects = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = User

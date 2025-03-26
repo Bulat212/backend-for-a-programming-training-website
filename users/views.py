@@ -9,7 +9,7 @@ from rest_framework import viewsets
 from rest_framework import generics
 
 
-from users.models import UserProgress
+from users.models import User, UserProgress
 from users.utils import get_experiece_ranking
 
 from .serializers import ProfileSerializer, RegisterSerializer, UserExpGraphSerializer, UserMinInfoSerializer, UserRankingExperienceSerializer, UserRankingStarsSerializer
@@ -36,14 +36,17 @@ class UserMinInfoView(APIView):
         return Response(serializer.data)
 
 
-class ProfileView(APIView):
+class ProfileView(generics.RetrieveAPIView):
     serializer_class = ProfileSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user
     
-    def get(self, request):
-        user = request.user
-        serializer = ProfileSerializer(user)
-        return Response(serializer.data)
+    # def get(self, request):
+    #     user = request.user
+    #     serializer = ProfileSerializer(user)
+    #     return Response(serializer.data)
     
 
 class UserExpGraphView(generics.ListAPIView):

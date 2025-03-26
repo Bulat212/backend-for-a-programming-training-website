@@ -183,7 +183,21 @@ API сервера позволяет управлять пользовател�
     "currency": "stars" or "coins" в зависимости от того, за что покупает
    }
 
-18. **/admin-list-map-project/ (GET)** админ
+
+18. **/userstyle/<int:style_id>/(PUT)** авторизован
+   - **PUT**: Обновляет стиль профиля или ника. Входных данные в url строке - id стиля который нужно активировать. Если у пользователя нет такого стиля выведет ошибку - "detail":"У пользователя нет такого стиля."
+   Если успешно акивируется, то выведет следующее
+   Пример запроса 
+   PUT /userstyle/1/
+   Вывод:
+   {
+    "style": str,
+    "is_active": true
+   }
+
+
+
+19. **/admin-list-map-project/ (GET)** админ
    - **GET**: Возвращает список проектов, которых нет на карте. Выходные данные — JSON с полями id, name
 [
    {
@@ -196,7 +210,7 @@ API сервера позволяет управлять пользовател�
    },
 ]
 
-19. **/admin-create-map/ (POST)** админ
+20. **/admin-create-map/ (POST)** админ
    - **POST**: Добавляет размещенные проекты в таблицы ProjectPosition, ProjectMap проектов. 
    Входные данные JSON список из project_id, prev_project_id, position_x, position_y
    [
@@ -239,7 +253,7 @@ API сервера позволяет управлять пользовател�
       ]
    },
 
-20. **/temporary-projects/ (GET)** авторизован
+21. **/temporary-projects/ (GET)** авторизован
    - **Get**: Выдает список временных проектов. Выходные данные JSON с полями проекта id, name, description, time_remaining (оставшееся время жизни проекта), experience, difficulty, coins
    Либо вернется пустой список если нет временных проектов
    [
@@ -254,7 +268,7 @@ API сервера позволяет управлять пользовател�
     }
    ]
 
-21. **/started-projects/ (GET)** авторизован
+22. **/started-projects/ (GET)** авторизован
    - **Get**: Выдает список начатых проектов пользователя. Выходные данные JSON с полями проекта id, name, description, experience, difficulty, coins
    [
     {
@@ -267,7 +281,7 @@ API сервера позволяет управлять пользовател�
     }
    ]
 
-22. **/finished-projects/ (GET)** авторизован
+23. **/finished-projects/ (GET)** авторизован
    - **Get**: Выдает список завершенных проектов пользователя. Выходные данные JSON с полями проекта id, name, description, experience, difficulty, coins
    [
     {
@@ -281,25 +295,30 @@ API сервера позволяет управлять пользовател�
    ]
 
 
-23. **/profile/ (GET)** авторизован
-   - **Get**: Выдает информацию о пользователе. last_projects - список последних 5 выполненных проектов
+24. **/profile/ (GET, PUT)** авторизован
+   - **GET**: Выдает информацию о пользователе. last_projects - список последних 5 выполненных проектов
+   - **PUT**: Можно изменить информацию о пользователе. Поля которые можно менять: username, description, photo.
+
+Пример GET запроса
 {
-    "id": int,
-    "username": str,
-    "description": str,
-    "photo": null или "/media/profile_pictures/image313.png"
-    "experience": int,
-    "nickname_id": int,
-    "background_profile": int,
-    "last_projects": [
-        {
-            "project_id": int,
-            "project_name": str
-        }
-    ]
+   "id": int,
+   "username": str,
+   "description": str,
+   "photo": null или "/media/profile_pictures/image313.png"
+   "experience": int,
+   "nickname_id": int,
+   "background_profile": int,
+   "last_projects": [
+      {
+         "project_id": int,
+         "project_name": str
+      }
+   ]
 }
 
-24. **/user-graph/ (GET)** авторизован
+
+
+25. **/user-graph/ (GET)** авторизован
    - **Get**: Выдает информацию о прогрессе юзера.
    [
     {
@@ -314,7 +333,7 @@ API сервера позволяет управлять пользовател�
     },
    ]
 
-25. **/experience-ranking/[period]/[limit]/ (GET)** 
+26. **/experience-ranking/[period]/[limit]/ (GET)** 
    - **Get**: Выдает рейтинг юзеров по опыту. Вместо period можно указать week или month (string), limit - сколько юзеров выводить (int)
    [
     {
@@ -329,7 +348,7 @@ API сервера позволяет управлять пользовател�
     }
 ]
 
-26. **/stars-ranking/[period]/[limit]/ (GET)** 
+27. **/stars-ranking/[period]/[limit]/ (GET)** 
    - **Get**: Выдает рейтинг юзеров по звездам. Вместо period можно указать week или month (string), limit - сколько юзеров выводить (int)
 [
    {

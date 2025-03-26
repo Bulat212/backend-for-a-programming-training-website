@@ -1,3 +1,4 @@
+from pyexpat import model
 from rest_framework import serializers
 
 from style.models import Style, UserStyle
@@ -23,3 +24,11 @@ class UserStyleSerializer(serializers.ModelSerializer):
         currency = validated_data.pop('currency')
         user_style = UserStyle.objects.create(**validated_data)
         return user_style
+    
+class UserStyleSetIsActiveSerializer(serializers.ModelSerializer):
+    style = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = UserStyle
+        fields = ["style", "is_active"]
+        
