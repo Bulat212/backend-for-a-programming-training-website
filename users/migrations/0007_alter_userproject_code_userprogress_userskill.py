@@ -8,7 +8,6 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('project', '0005_alter_project_coins_alter_project_difficulty_and_more'),
         ('users', '0006_alter_user_photo'),
     ]
 

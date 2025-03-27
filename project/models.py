@@ -8,6 +8,7 @@ class Project(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название проекта') #verbose для админки
     description = models.TextField(verbose_name='Описание проекта', blank=True)
     theory = models.TextField(verbose_name='Теория', blank=True)
+    # time_to_leave = models.TimeField(default=timezone.now)
     time_to_leave = models.DateTimeField(default=timezone.now)
     experience = models.PositiveIntegerField(default=0)
     difficulty = models.IntegerField(default=0)

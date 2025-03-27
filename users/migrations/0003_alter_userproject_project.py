@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('project', '0002_alter_projectlanguage_language_and_more'),
+
         ('users', '0002_rename_finished_datee_userproject_finished_date'),
     ]
 
