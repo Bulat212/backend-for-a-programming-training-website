@@ -79,7 +79,8 @@ class UserProjectViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response(serializer.data)
-    
+
+
     # ставит статус выполнен и текущее время
     @action(methods=['put'], detail=True)
     def end_project(self, request, pk=None):
