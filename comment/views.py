@@ -1,3 +1,4 @@
+from logging.config import valid_ident
 from lzma import FORMAT_ALONE
 from shutil import register_unpack_format
 from django.core.serializers import serialize
@@ -11,7 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 
-from comment.serializers import CommentSerializer, ProjectCommentSerializer, SetLikeInCodeSerializer
+from comment.serializers import CommentSerializer, ProjectCommentSerializer, SetLikeInCodeSerializer, WriteCommentSerializer
 from users.models import UserProject
 
 from .models import Comment, Like
@@ -53,7 +54,17 @@ class SetLikeInUserProjectView(generics.RetrieveAPIView):
         return Response({"message": f"Лайк добавлен на {user_project}.", "data": serializer.data})
 
 
+class WriteCommentAPIView(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = WriteCommentSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+    
+    def create(self, request):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        return Response(serializer.data)
 
-
-
+        

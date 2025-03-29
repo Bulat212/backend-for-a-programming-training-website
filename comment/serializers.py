@@ -51,3 +51,11 @@ class SetLikeInCodeSerializer(serializers.ModelSerializer):
         if liker:
             return liker.username
         return None
+    
+
+class WriteCommentSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(source='user.username', read_only=True)
+
+    class Meta:
+        model = Comment
+        fields = ['user', 'user_project', 'text']
