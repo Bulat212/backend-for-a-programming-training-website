@@ -49,7 +49,7 @@ class StatusUserProject(serializers.ModelSerializer):
 
     class Meta:
         model = UserProject
-        fields = ['id', 'name', 'description', 'experience', 'difficulty', 'coins']
+        fields = ['id', 'name', 'description', 'experience', 'difficulty', 'coins', 'earned_stars']
 
 
 class LastProjectSerializer(serializers.ModelSerializer):

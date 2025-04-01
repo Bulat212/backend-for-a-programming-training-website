@@ -5,6 +5,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 from traitlets import default
 
+from app import settings
 from project.models import Language
 from project.serializers import LastProjectSerializer
 from style.models import Category, Style, UserStyle
@@ -56,6 +57,7 @@ class UserMinInfoSerializer(serializers.ModelSerializer):
     
 
 class ProfileSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
     username = serializers.CharField(required=False)
     experience = serializers.IntegerField(read_only=True)
     nickname_id = serializers.IntegerField(source='nickname_id.id', default=0, read_only=True)
@@ -72,16 +74,30 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class UserRankingExperienceSerializer(serializers.Serializer):
-    user__id = serializers.IntegerField()
-    user__username = serializers.CharField()
+    id = serializers.IntegerField(source='user.id')
+    username = serializers.CharField(source='user.username')
+    photo = serializers.ImageField(source='user.photo')
+    nickname_id = serializers.IntegerField(source='user.nickname_id.id')
     total_experience = serializers.IntegerField()
+
+    # def get_photo(self, obj):
+    #     user_photo = obj.get('user__photo')
+    #     if user_photo:
+    #         return f"{settings.MEDIA_URL}{user_photo}"
+    #     return None
+    # def get_photo(self, obj):
+    #     user = User.objects.filter(id=obj['user__id']).first()
+
+    #     return user.photo if user else None
 
 
 class UserRankingStarsSerializer(serializers.Serializer):
     user__id = serializers.IntegerField()
     user__username = serializers.CharField()
+    user__photo = serializers.ImageField()
+    user__nickname_id = serializers.IntegerField()
     total_stars = serializers.IntegerField()
-
+    
 
 
 class UserExpGraphSerializer(serializers.ModelSerializer):
