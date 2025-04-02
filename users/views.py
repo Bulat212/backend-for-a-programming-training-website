@@ -42,13 +42,27 @@ class UserMinInfoView(APIView):
         return Response(serializer.data)
 
 
-class ProfileView(generics.RetrieveAPIView):
+class ProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
         return self.request.user
     
+    def update(self, request):
+        user = request.user
+        
+        username_data = request.data.get('username', None)
+        if username_data and User.objects.filter(username=username_data).exists():
+            return Response({"error": "Username уже занят."})
+        
+        serializer = ProfileSerializer(instance=user, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+        
+
+
     # def get(self, request):
     #     user = request.user
     #     serializer = ProfileSerializer(user)

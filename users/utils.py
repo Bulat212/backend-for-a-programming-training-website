@@ -33,12 +33,20 @@ def get_experiece_ranking(rank_type, period, limit=None):
     elif period == "month":
         start_data = today.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
         
+    # if rank_type=="experience":
+    #     users = ProgressLog.objects.filter(date__gte=start_data, experience_change__gt=0).values('user__id', 'user__username', 'user__photo', 'user__nickname_id').annotate(
+    #         total_experience = Sum('experience_change')).order_by('-total_experience')
+    # elif rank_type == "stars":
+    #     users = ProgressLog.objects.filter(date__gte=start_data, stars_change__gt=0).values('user__id', 'user__username', 'user__photo', 'user__nickname_id').annotate(
+    #         total_stars = Sum('stars_change')).order_by('-total_stars')
+
     if rank_type=="experience":
-        users = ProgressLog.objects.filter(date__gte=start_data, experience_change__gt=0).values('user__id', 'user__username').annotate(
+        users = ProgressLog.objects.filter(date__gte=start_data, experience_change__gt=0).select_related('user').annotate(
             total_experience = Sum('experience_change')).order_by('-total_experience')
     elif rank_type == "stars":
-        users = ProgressLog.objects.filter(date__gte=start_data, stars_change__gt=0).values('user__id', 'user__username').annotate(
+        users = ProgressLog.objects.filter(date__gte=start_data, stars_change__gt=0).select_related('user').annotate(
             total_stars = Sum('stars_change')).order_by('-total_stars')
+
 
     if limit:
         users = users[:limit]
