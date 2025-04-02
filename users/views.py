@@ -80,15 +80,14 @@ class UserExpGraphView(generics.ListAPIView):
 class ExperienceRatingView(APIView):
     def get(self, request, period, limit):
         users = get_experiece_ranking("experience", period, limit)
-        serializer = UserRankingExperienceSerializer(users, many=True)
-        
+        serializer = UserRankingExperienceSerializer(users, many=True, context={'request': request})
         return Response(serializer.data)
 
 
 class StarsRatingView(APIView):
     def get(self, request, period, limit):
         users = get_experiece_ranking("stars", period, limit)
-        serializer = UserRankingStarsSerializer(users, many=True)
+        serializer = UserRankingStarsSerializer(users, many=True, context={'request': request})
         
         return Response(serializer.data)
 

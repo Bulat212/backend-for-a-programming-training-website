@@ -74,30 +74,51 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class UserRankingExperienceSerializer(serializers.Serializer):
-    id = serializers.IntegerField(source='user.id')
-    username = serializers.CharField(source='user.username')
-    photo = serializers.ImageField(source='user.photo')
-    nickname_id = serializers.IntegerField(source='user.nickname_id.id')
+    user_id = serializers.IntegerField(source='user__id')
+    username = serializers.CharField(source='user__username')
+    photo = serializers.SerializerMethodField()
+    nickname_id = serializers.SerializerMethodField()
     total_experience = serializers.IntegerField()
 
-    # def get_photo(self, obj):
-    #     user_photo = obj.get('user__photo')
-    #     if user_photo:
-    #         return f"{settings.MEDIA_URL}{user_photo}"
-    #     return None
-    # def get_photo(self, obj):
-    #     user = User.objects.filter(id=obj['user__id']).first()
-
-    #     return user.photo if user else None
+    def get_nickname_id(self, obj):
+        if not obj['user__nickname_id']:
+            return 0
+        return obj['user__nickname_id']
+    
+    def get_photo(self, obj):
+        user_photo = obj.get('user__photo')
+        if not user_photo:
+            return None
+        
+        request = self.context.get('request')
+        if request:
+            return request.build_absolute_uri(f"{settings.MEDIA_URL}{user_photo}")
+        
+        return f"{settings.MEDIA_URL}{user_photo}"
 
 
 class UserRankingStarsSerializer(serializers.Serializer):
-    user__id = serializers.IntegerField()
-    user__username = serializers.CharField()
-    user__photo = serializers.ImageField()
-    user__nickname_id = serializers.IntegerField()
+    user_id = serializers.IntegerField(source='user__id')
+    username = serializers.CharField(source='user__username')
+    photo = serializers.SerializerMethodField()
+    nickname_id = serializers.SerializerMethodField()
     total_stars = serializers.IntegerField()
     
+    def get_nickname_id(self, obj):
+        if not obj['user__nickname_id']:
+            return 0
+        return obj['user__nickname_id']
+
+    def get_photo(self, obj):
+        user_photo = obj.get('user__photo')
+        if not user_photo:
+            return None
+        
+        request = self.context.get('request')
+        if request:
+            return request.build_absolute_uri(f"{settings.MEDIA_URL}{user_photo}")
+        
+        return f"{settings.MEDIA_URL}{user_photo}"
 
 
 class UserExpGraphSerializer(serializers.ModelSerializer):
