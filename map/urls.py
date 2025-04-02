@@ -18,10 +18,5 @@ urlpatterns = [
     path('admin-list-map-project/', AdminProjectListAPIView.as_view()),
     
     
-
-
-    # path('connectionAPIView/', ProjectConnectionAPIView.as_view()),
-    # path('connectionViewSet/', ProjectConnectionViewSet.as_view({'get': 'list'})),
-    # path('', include(router.urls)),
 ]
 

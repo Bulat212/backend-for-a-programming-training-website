@@ -53,7 +53,7 @@ API сервера позволяет управлять пользовател�
    - **POST**: есть но его уберу потом он не нужен
    - **PUT**: /{id проекта}/
    
-**2.2 /user_projects/{id}/ (GET, PUT, DELETE)**
+**2.2 /user-projects/{id}/ (GET, PUT, DELETE)**
    - **GET**: Возвращает пользовательский проект с переданным id. Входные данные access токен. Выходные данные — JSON проектом пользователя.
    - **PUT**: Обновляет информацию о пользовательском проекте. Входные данные — JSON с изменяемыми полями (code, is_published, earned_stars, language) и access токен. Выходные данные — JSON с обновленным проектом.
    - **DELETE**: Удаляет проект пользователя из таблицы userProjects. Входные данные - access токен. Выходные ничего если успешно,
@@ -62,10 +62,10 @@ API сервера позволяет управлять пользовател�
       "detail": "No UserProject matches the given query."
    }
 
-**2.3 /user_projects/{id}/end_project/ (PUT)**
+**2.3 /user-projects/{id}/end_project/ (PUT)**
    - **PUT**: Завершает проект пользователя и устанавливает дату завершения. Входные данные id проекта передается в запросе. Выходные данные — JSON с обновленным статусом проекта или сообщением о том что проект завершить нельзя.
 
-**2.4 /user_projects/start_project/ (POST)**
+**2.4 /user-projects/start_project/ (POST)**
    - **POST**: Начинает новый проект для пользователя при соблюдении условий. Входные данные — JSON с project_id. Выходные данные — JSON с созданным проектом или сообщением об ошибке
    {
     "project_id": int
@@ -86,7 +86,7 @@ API сервера позволяет управлять пользовател�
    - **Get**: Выдает список начатых проектов пользователя. Выходные данные JSON с полями проекта id, name, description, experience, difficulty, coins
    [
     {
-      "id": int,
+      "project_id": int,
       "name": str,
       "description": str,
       "experience": int или null
@@ -99,7 +99,7 @@ API сервера позволяет управлять пользовател�
    - **Get**: Выдает список завершенных проектов пользователя. Выходные данные JSON с полями проекта id, name, description, experience, difficulty, coins
    [
     {
-      "id": int,
+      "project_id": int,
       "name": str,
       "description": str,
       "experience": int или null
@@ -386,13 +386,14 @@ API сервера позволяет управлять пользовател�
    }
 
 **7.4 /usermininfo/ (GET)** авторизован
-   - **GET**: Возвращает минимальную информацию об открытых проектах пользователя. Входные данные access токен. Выходные данные — JSON с полями username, coins, stars, photo, nickname_id
+   - **GET**: Возвращает минимальную информацию об открытых проектах пользователя. Входные данные access токен. Выходные данные — JSON с полями username, coins, stars, photo, nickname_id, is_staff - если true то админ, если false то обычный юзер
    {
     "username": string,
     "coins": int,
     "stars": int,
     "photo": "http://127.0.0.1:8000/media/profile_pictures/image313.png",
-    "nickname_id": int, 0 если нет активного ника
+    "nickname_id": int, 0 если нет активного ника,
+    "is_staff": true
    }
 
 

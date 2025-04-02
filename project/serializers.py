@@ -7,7 +7,6 @@ from users.models import UserProject
 class ProjectSerializer(serializers.ModelSerializer):    
     class Meta:
         model = Project
-        #fields=("slug", "name", "description") #поля которые будут возвращаться по запросу
         fields="__all__" #поля которые будут возвращаться по запросу
     
 
@@ -40,7 +39,7 @@ class TemporaryProjects(serializers.ModelSerializer):
    
    
 class StatusUserProject(serializers.ModelSerializer):
-    id = serializers.IntegerField()
+    project_id = serializers.PrimaryKeyRelatedField(source='project', queryset=Project.objects.all())
     name = serializers.CharField(source='project.name')
     description = serializers.CharField(source='project.description')
     experience = serializers.IntegerField(source='project.experience')
@@ -49,11 +48,13 @@ class StatusUserProject(serializers.ModelSerializer):
 
     class Meta:
         model = UserProject
-        fields = ['id', 'name', 'description', 'experience', 'difficulty', 'coins']
+        fields = ['project_id', 'name', 'description', 'experience', 'difficulty', 'coins']
 
 
 class LastProjectSerializer(serializers.ModelSerializer):
     project_name = serializers.CharField(source='project.name')
+    project_id = serializers.PrimaryKeyRelatedField(source='project', queryset=Project.objects.all())
+
     class Meta:
         model = UserProject
         fields= ['project_id', 'project_name']
