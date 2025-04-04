@@ -15,10 +15,12 @@ class UserProjectSerializer(serializers.ModelSerializer):
     language = serializers.SlugRelatedField(slug_field='name', queryset=Language.objects.all(), required=False)
     project_id = serializers.PrimaryKeyRelatedField(source='project', queryset=Project.objects.all())
     project_name = serializers.CharField(source='project.name', read_only=True)
+    project_description = serializers.CharField(source='project.description')
+    project_theory = serializers.CharField(source='project.theory')
 
     class Meta:
         model = UserProject
-        fields = ['project_id', 'project_name', 'code', 'is_completed', 'is_published', 'earned_stars', 'language', 'finished_date']
+        fields = ['project_id', 'project_name', 'project_description', 'project_theory', 'code', 'is_completed', 'is_published', 'earned_stars', 'language', 'finished_date']
 
 
 class TemporaryProjects(serializers.ModelSerializer):

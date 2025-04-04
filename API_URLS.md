@@ -74,6 +74,8 @@ API сервера позволяет управлять пользовател�
    {
     "project_id": int,
     "project_name": "string",
+    "project_description": str,
+    "project_theory": str,
     "code": "string",
     "is_completed": bool,
     "is_published": bool,
