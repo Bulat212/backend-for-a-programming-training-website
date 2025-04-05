@@ -33,12 +33,16 @@ class ExecuteCodeView(generics.ListCreateAPIView):
         language = serializer.validated_data.get("language")
         input_data = serializer.validated_data.get("input_data", "")
         project_id = serializer.validated_data.get("project")
+        user_project = serializer.validated_data.get("user_project")
         
         if language not in LANGUAGE_IDS:
           return Response({"error": "Unsupported language"}, status=400)
         
         token = execute_code(code, LANGUAGE_IDS[language], input_data)
         time.sleep(2)  # Ждем завершения выполнения
+        
+        # if not token:
+        #     Response({"error":"Попытки закончились."})
         
         result = get_execution_result(token)
         output = result.get("stdout") or result.get("stderr")
@@ -51,6 +55,9 @@ class ExecuteCodeView(generics.ListCreateAPIView):
             input_data=input_data,
             output=output
         )
+
+        user_project.code = code
+        user_project.save()
     
         return Response({
             "output": output,
@@ -67,9 +74,11 @@ class CheckSolutionAPIView(APIView):
 
         code = serializer.validated_data.get("code")
         language = serializer.validated_data.get("language")
-        input_data = serializer.validated_data.get("input_data", "")
+        # input_data = serializer.validated_data.get("input_data", "")
         project = serializer.validated_data.get("project")
-        
+        user_project = serializer.validated_data.get("user_project")
+        user_project.code = code
+        user_project.save()
         if language not in LANGUAGE_IDS:
             return Response({"error": "Unsupported language"}, status=400)
         
@@ -94,22 +103,14 @@ class CheckSolutionAPIView(APIView):
                 return Response({
                     "output": output,
                     "status": "Failed",
-                    "expected": test.output,
-                    "received": output
+                    # "expected": test.output,
+                    # "received": output
                 })
-        
-        # submission = CodeExecution.objects.create(
-        #     user=self.request.user,
-        #     code=code,
-        #     project=project_id,
-        #     language=language,
-        #     input_data=input_data,
-        #     output=output
-        # )
 
         new_user_progress= update_user_progress(request.user, project.experience)
-        
+       
+
         return Response({
-            "output": output,
+            # "output": output,
             "status": result["status"]["description"]
         })

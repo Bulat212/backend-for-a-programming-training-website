@@ -5,6 +5,7 @@ from rest_framework import serializers
 
 from compiler.models import CodeExecution
 from project.models import Project
+from users.models import UserProject
 
 class CodeExecutionSerializer(serializers.ModelSerializer):
     user = serializers.CharField(required=False)
@@ -13,8 +14,9 @@ class CodeExecutionSerializer(serializers.ModelSerializer):
     input_data = serializers.CharField(required=False)
     output = serializers.CharField(required=False, read_only=True)
     project = serializers.PrimaryKeyRelatedField(queryset=Project.objects.all())
+    user_project = serializers.PrimaryKeyRelatedField(queryset=UserProject.objects.all())
 
     class Meta:
         model = CodeExecution
-        fields = ['user', 'project', 'code', 'language', 'input_data', 'output', 'created_at']
+        fields = ['user', 'project', 'user_project', 'code', 'language', 'input_data', 'output', 'created_at']
 

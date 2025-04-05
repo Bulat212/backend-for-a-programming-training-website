@@ -23,7 +23,10 @@ def execute_code(code, language_id, input_data=""):
         json=data,
         headers=HEADERS
     )
-    return response.json()["token"]  # ID выполнения
+    # print(response)
+    # if response.status_code == 429:
+    #     return None 
+    return response.json()["token"] # ID выполнения
 
 def get_execution_result(token):
     response = requests.get(

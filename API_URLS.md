@@ -524,9 +524,43 @@ API сервера позволяет управлять пользовател�
 **10. Компилятор**
 
 **10.1 /code-executor/ (POST)** авторизован
-   - **POST**: Отправляет код на компиляцию. Входные данные - code, language, input_data(не обязательно), project
+   - **POST**: Отправляет код на компиляцию. Входные данные - user_project - id проекта юзера из таблицы user_project, code, language, input_data(не обязательно), project
 
+   {
+      "user_project":1,
+      "project":1,
+      "input_data":"3\n6",
+      "code":"a=int(input())\nb=int(input())\nprint(a+b)",
+      "language":"python"
+   }
+
+   Успешный ответ
+   {
+      "output": "9\n",
+      "status": "Accepted"
+   }
+   Ответ с ошибкой
+   {
+    "output": "Traceback (most recent call last):\n  File \"script.py\", line 2, in<module>\n b=int(input())\nValueError: invalid literal for int() with base 10: 's'\n",
+    "status": "Runtime Error (NZEC)"
+   }
 
 **10.1 /code-executor/check-solution/ (POST)** авторизован
-   - **POST**: Отправляет код на проверку. Входные данные - code, language, project
+   - **POST**: Отправляет код на проверку. Входные данные - user_project - id проекта юзера из таблицы user_project, code, language, project
+Пример входных данных
+   {
+      "user_project":1,
+      "project":1,
+      "code":"a=int(input())\nb=int(input())\nprint(a+b)",
+      "language":"python"
+   }
 
+   Пример упешного вывода
+   {
+    "status": "Accepted"
+   }
+   Пример ошибки
+   {
+    "output": "Traceback (most recent call last):\n  File \"script.py\", line 3, in <module>\n    print(a+b)\nTypeError: can only concatenate str (not \"int\") to str\n",
+    "status": "Failed"
+   }

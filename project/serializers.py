@@ -12,22 +12,21 @@ class ProjectSerializer(serializers.ModelSerializer):
     
 
 class UserProjectSerializer(serializers.ModelSerializer):
-    # project_id = serializers.IntegerField(source='project.id')
+    user_project = serializers.IntegerField(source='id')
     language = serializers.SlugRelatedField(slug_field='name', queryset=Language.objects.all(), required=False)
     project_id = serializers.PrimaryKeyRelatedField(source='project', queryset=Project.objects.all())
     project_name = serializers.CharField(source='project.name', read_only=True)
     project_description = serializers.CharField(source='project.description')
     project_theory = serializers.CharField(source='project.theory')
-    code = serializers.SerializerMethodField()
 
     class Meta:
         model = UserProject
-        fields = ['project_id', 'project_name', 'project_description', 'project_theory', 'code', 'is_completed', 'is_published', 'earned_stars', 'language', 'finished_date']
+        fields = ['user_project', 'project_id', 'project_name', 'project_description', 'project_theory', 'code', 'is_completed', 'is_published', 'earned_stars', 'language', 'finished_date']
 
-    def get_code(self, obj):
-        user_code = CodeExecution.objects.filter(user=obj.user, project=obj.project).order_by('-created_at').first()
-        print(user_code)
-        return user_code.code if user_code else ""
+    # def get_code(self, obj):
+    #     user_code = CodeExecution.objects.filter(user=obj.user, project=obj.project).order_by('-created_at').first()
+    #     # print(user_code)
+    #     return user_code.code if user_code else ""
 
 
 class TemporaryProjects(serializers.ModelSerializer):

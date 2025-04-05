@@ -10,7 +10,10 @@ def update_user_progress(user, experience=0, stars=0):
     current_experience = user_progress.experience if user_progress else 0
     current_stars = user_progress.stars if user_progress else 0
     
-    new_user_progress, created = UserProgress.objects.get_or_create(user=user, date=timezone.now().date())
+    if user_progress and user_progress.date==timezone.now().date():
+        new_user_progress = user_progress
+    else:
+        new_user_progress, created = UserProgress.objects.create(user=user, date=timezone.now().date())
 
     new_user_progress.experience = experience + current_experience
     new_user_progress.stars = stars + current_stars
