@@ -51,8 +51,7 @@ API сервера позволяет управлять пользовател�
 **2.1 /user-projects/ (GET, PUT, DELETE)**
    - **GET**: Возвращает список пользовательских проектов. Входные данные access токен. Выходные данные — JSON со списком проектов пользователя.
    - **POST**: есть но его уберу потом он не нужен
-   - **PUT**: /{id проекта}/
-   
+
 **2.2 /user-projects/{id}/ (GET, PUT, DELETE)**
    - **GET**: Возвращает пользовательский проект с переданным id. Входные данные access токен. Выходные данные — JSON проектом пользователя.
    - **PUT**: Обновляет информацию о пользовательском проекте. Входные данные — JSON с изменяемыми полями (code, is_published, earned_stars, language) и access токен. Выходные данные — JSON с обновленным проектом.
@@ -93,7 +92,8 @@ API сервера позволяет управлять пользовател�
       "description": str,
       "experience": int или null
       "difficulty": int или null
-      "coins": int или null
+      "coins": int или null,
+      "earned_stars": int
     }
    ]
 
@@ -106,7 +106,8 @@ API сервера позволяет управлять пользовател�
       "description": str,
       "experience": int или null
       "difficulty": int или null
-      "coins": int или null
+      "coins": int или null,
+      "earned_stars": int
     }
    ]
 
@@ -518,3 +519,14 @@ API сервера позволяет управлять пользовател�
     "user_project": 4,
     "text": "я булат и оставлю коммент под gena"
 }
+
+
+**10. Компилятор**
+
+**10.1 /code-executor/ (POST)** авторизован
+   - **POST**: Отправляет код на компиляцию. Входные данные - code, language, input_data(не обязательно), project
+
+
+**10.1 /code-executor/check-solution/ (POST)** авторизован
+   - **POST**: Отправляет код на проверку. Входные данные - code, language, project
+

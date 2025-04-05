@@ -1,6 +1,7 @@
 from dataclasses import field, fields
 from django.utils import timezone
 from rest_framework import serializers
+from compiler.models import CodeExecution
 from project.models import Language, Project
 from users.models import UserProject
 
@@ -17,10 +18,16 @@ class UserProjectSerializer(serializers.ModelSerializer):
     project_name = serializers.CharField(source='project.name', read_only=True)
     project_description = serializers.CharField(source='project.description')
     project_theory = serializers.CharField(source='project.theory')
+    code = serializers.SerializerMethodField()
 
     class Meta:
         model = UserProject
         fields = ['project_id', 'project_name', 'project_description', 'project_theory', 'code', 'is_completed', 'is_published', 'earned_stars', 'language', 'finished_date']
+
+    def get_code(self, obj):
+        user_code = CodeExecution.objects.filter(user=obj.user, project=obj.project).order_by('-created_at').first()
+        print(user_code)
+        return user_code.code if user_code else ""
 
 
 class TemporaryProjects(serializers.ModelSerializer):
@@ -50,7 +57,7 @@ class StatusUserProject(serializers.ModelSerializer):
 
     class Meta:
         model = UserProject
-        fields = ['project_id', 'name', 'description', 'experience', 'difficulty', 'coins']
+        fields = ['project_id', 'name', 'description', 'experience', 'difficulty', 'coins', 'earned_stars']
 
 
 class LastProjectSerializer(serializers.ModelSerializer):

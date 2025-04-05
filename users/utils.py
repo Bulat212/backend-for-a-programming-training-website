@@ -3,7 +3,6 @@ from django.utils import timezone
 
 from users.models import ProgressLog, UserProgress, UserSkill
 
-
 def update_user_progress(user, experience=0, stars=0):
     
     user_progress = UserProgress.objects.filter(user=user).order_by('-date').first()
@@ -21,7 +20,6 @@ def update_user_progress(user, experience=0, stars=0):
         ProgressLog.objects.create(user=user, experience_change=experience, stars_change=stars)
 
     return new_user_progress
-
 
 
 def get_experiece_ranking(rank_type, period, limit=None):

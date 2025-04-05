@@ -8,7 +8,7 @@ pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
  
-python manage.py loaddata fixtures/user.json fixtures/projects.json fixtures/Projectposition.json fixtures/Userprojects.json fixtures/Projectmap.json fixtures/Category.json fixtures/styles.json fixtures/UserStyle.json fixtures/ProgressLog.json fixtures/UserProgress.json fixtures/UserSkill.json fixtures/Language.json fixtures/Comment.json
+python manage.py loaddata fixtures/user.json fixtures/projects.json fixtures/Projectposition.json fixtures/Userprojects.json fixtures/Projectmap.json fixtures/Category.json fixtures/styles.json fixtures/UserStyle.json fixtures/ProgressLog.json fixtures/UserProgress.json fixtures/UserSkill.json fixtures/Language.json fixtures/Comment.json fixtures/CodeExecution.json fixtures/Test.json
 python manage.py loaddata fixtures/user.json
 python manage.py loaddata fixtures/projects.json
 python manage.py loaddata fixtures/Projectposition.json
@@ -22,6 +22,8 @@ python manage.py loaddata fixtures/UserProgress.json
 python manage.py loaddata fixtures/UserSkill.json
 python manage.py loaddata fixtures/Language.json
 python manage.py loaddata fixtures/Comment.json
+python manage.py loaddata fixtures/CodeExecution.json
+python manage.py loaddata fixtures/Test.json
 
 
 python manage.py runserver
