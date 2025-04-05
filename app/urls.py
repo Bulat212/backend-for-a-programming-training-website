@@ -36,6 +36,7 @@ urlpatterns = [
     path('api/map/', include('map.urls')),
     path('api/', include('style.urls')),
     path('api/', include('comment.urls')),
+    path('api/', include('compiler.urls')),
 
 
 

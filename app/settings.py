@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'map',
     'style',
     'comment',
+    'compiler',
 ]
 
 MIDDLEWARE = [
