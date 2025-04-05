@@ -1,4 +1,5 @@
 from pyexpat import model
+from unicodedata import category
 from rest_framework import serializers
 
 from style.models import Style, UserStyle
@@ -15,10 +16,11 @@ class StyleSerializer(serializers.ModelSerializer):
 class UserStyleSerializer(serializers.ModelSerializer):    
     style = serializers.SlugRelatedField(slug_field="name", queryset=Style.objects.all())
     currency = serializers.CharField(write_only=True)
+    category = serializers.CharField(source="style.category.name", read_only=True)
 
     class Meta:
         model = UserStyle
-        fields=["style", "is_active", "currency"] #поля которые будут возвращаться по запросу
+        fields=["style", "is_active", "currency", "category"] #поля которые будут возвращаться по запросу
     
     def create(self, validated_data):
         currency = validated_data.pop('currency')
