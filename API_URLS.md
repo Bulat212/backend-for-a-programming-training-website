@@ -64,7 +64,7 @@ API сервера позволяет управлять пользовател�
 **2.3 /user-projects/{id}/end_project/ (PUT)**
    - **PUT**: Завершает проект пользователя и устанавливает дату завершения. Входные данные id проекта передается в запросе. Выходные данные — JSON с обновленным статусом проекта или сообщением о том что проект завершить нельзя.
 
-**2.4 /user-projects/start_project/ (POST)**
+<!-- **2.4 /user-projects/start_project/ (POST)**
    - **POST**: Начинает новый проект для пользователя при соблюдении условий. Входные данные — JSON с project_id. Выходные данные — JSON с созданным проектом или сообщением об ошибке
    {
     "project_id": int
@@ -81,7 +81,28 @@ API сервера позволяет управлять пользовател�
     "earned_stars": int,
     "language": null, или может быть "string"
     "finished_date": null
-   }  
+   }   -->
+
+**2.4 /user-projects/get_user_project/ (POST)**
+   - **POST**: Начинает новый проект для пользователя при соблюдении условий. Входные данные — JSON с project_id. Выходные данные — JSON с созданным проектом или сообщением об ошибке
+   {
+    "project_id": int
+   }
+   Выход
+   {
+    "user_project": int,
+    "project_id": int,
+    "project_name": "string",
+    "project_description": str,
+    "project_theory": str,
+    "code": "string",
+    "is_completed": bool,
+    "is_published": bool,
+    "earned_stars": int,
+    "language": null, или может быть "string"
+    "finished_date": null
+   } 
+   
 
 **2.5 /started-projects/ (GET)** авторизован
    - **Get**: Выдает список начатых проектов пользователя. Выходные данные JSON с полями проекта id, name, description, experience, difficulty, coins

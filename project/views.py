@@ -95,12 +95,22 @@ class UserProjectViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     @action(methods=['post'], detail=False)
-    def start_project(self, request):
+    def get_user_project(self, request):
+
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         project = serializer.validated_data['project']
-        if UserProject.objects.filter(user=self.request.user, project=project).exists():
-            return Response({'detail': 'Проект уже начат'}, status=400)
+
+        user_project = UserProject.objects.filter(user=self.request.user, project=project).first()
+        if user_project:
+            serializer = self.get_serializer(instance=user_project)
+            return Response(serializer.data)
+        
+        # serializer = self.get_serializer(data=request.data)
+        # serializer.is_valid(raise_exception=True)
+        
+        # if UserProject.objects.filter(user=self.request.user, project=project).exists():
+        #     return Response({'detail': 'Проект уже начат'}, status=400)
         
         if project.is_limited==False:
             project_map = ProjectMap.objects.filter(project=project).first()

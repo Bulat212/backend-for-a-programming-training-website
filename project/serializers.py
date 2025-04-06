@@ -1,4 +1,5 @@
 from dataclasses import field, fields
+from os import read
 from django.utils import timezone
 from rest_framework import serializers
 from compiler.models import CodeExecution
@@ -12,12 +13,12 @@ class ProjectSerializer(serializers.ModelSerializer):
     
 
 class UserProjectSerializer(serializers.ModelSerializer):
-    user_project = serializers.IntegerField(source='id')
+    user_project = serializers.IntegerField(source='id', read_only=True)
     language = serializers.SlugRelatedField(slug_field='name', queryset=Language.objects.all(), required=False)
     project_id = serializers.PrimaryKeyRelatedField(source='project', queryset=Project.objects.all())
     project_name = serializers.CharField(source='project.name', read_only=True)
-    project_description = serializers.CharField(source='project.description')
-    project_theory = serializers.CharField(source='project.theory')
+    project_description = serializers.CharField(source='project.description', read_only=True)
+    project_theory = serializers.CharField(source='project.theory', read_only=True)
 
     class Meta:
         model = UserProject
