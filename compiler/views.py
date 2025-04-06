@@ -107,7 +107,7 @@ class CheckSolutionAPIView(APIView):
                     # "received": output
                 })
 
-        new_user_progress= update_user_progress(request.user, project.experience)
+        # new_user_progress= update_user_progress(request.user, project.experience)
        
 
         return Response({
