@@ -99,7 +99,17 @@ API сервера позволяет управлять пользовател�
     "is_completed": bool,
     "is_published": bool,
     "earned_stars": int,
-    "language": null, или может быть "string"
+    "language": null, или может быть "string",
+    "available_languages": [
+      {
+         "name": "Python",
+         "compiler_name": "python"
+      },
+      {
+         "name": "C++",
+         "compiler_name": "cpp"
+      }
+    ],
     "finished_date": null
    } 
    
@@ -286,12 +296,12 @@ API сервера позволяет управлять пользовател�
    - **GET**: Возвращает информацию о стилях юзера. Выходные данные — JSON с полями style, is_active, category
   [
    {
-      "style": "Cyber Red",
+      "style_id": 2,
       "is_active": true,
       "category": "nickname"
    },
    {
-      "style": "Gold Shine",
+      "style_id": 2,
       "is_active": false,
       "category": "nickname"
     },
@@ -301,7 +311,7 @@ API сервера позволяет управлять пользовател�
    Если не хватает средств - "detail": "Не хватает средств."
    
    {
-    "style": string,
+    "style_id":int,
     "is_active": bool,
     "currency": "stars" or "coins" в зависимости от того, за что покупает
    }

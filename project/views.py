@@ -17,6 +17,7 @@ from project.models import Language, Project
 from project.serializers import ProjectSerializer, StatusUserProject, TemporaryProjects, UserProjectSerializer
 from users.models import UserProject
 from map.models import ProjectMap
+from users.utils import update_user_progress
 
 # Create your views here.
 
@@ -88,6 +89,9 @@ class UserProjectViewSet(viewsets.ModelViewSet):
         if user_project.is_completed:
             return Response({'detail': 'Проект уже завершен'}, status=400)
         
+        project = Project.objects.get(id=pk)
+        update_user_progress(request.user, project.experience)
+        
         user_project.finished_date = timezone.now()
         user_project.is_completed = True
         user_project.save(update_fields=['finished_date', 'is_completed'])
@@ -103,7 +107,9 @@ class UserProjectViewSet(viewsets.ModelViewSet):
 
         user_project = UserProject.objects.filter(user=self.request.user, project=project).first()
         if user_project:
-            serializer = self.get_serializer(instance=user_project)
+            serializer = self.get_serializer(instance=user_project, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
             return Response(serializer.data)
         
         # serializer = self.get_serializer(data=request.data)

@@ -26,6 +26,7 @@ class Project(models.Model):
     
 class Language(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    compiler_name = models.CharField(max_length=100, unique=True, verbose_name='Имя для компилятора')
 
     class Meta:
         verbose_name = 'Язык программирования'
@@ -38,3 +39,13 @@ class ProjectLanguage(models.Model):
     project = models.ForeignKey(to=Project, on_delete=models.CASCADE, related_name='projects')
     language = models.ForeignKey(to=Language, on_delete=models.CASCADE, related_name='languages')
 
+    class Meta:
+        ordering = ['project__name']
+        verbose_name = 'Язык для проекта'
+        verbose_name_plural = 'Языки для проектов'
+        constraints = [
+            models.UniqueConstraint(fields=['project', 'language'], name='unique_project_language')
+        ] 
+        
+    def __str__(self):
+        return f"{self.project.name} - {self.language.name}"

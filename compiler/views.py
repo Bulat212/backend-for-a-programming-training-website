@@ -35,10 +35,10 @@ class ExecuteCodeView(generics.ListCreateAPIView):
         project_id = serializer.validated_data.get("project")
         user_project = serializer.validated_data.get("user_project")
         
-        if language not in LANGUAGE_IDS:
+        if language.compiler_name not in LANGUAGE_IDS:
           return Response({"error": "Unsupported language"}, status=400)
         
-        token = execute_code(code, LANGUAGE_IDS[language], input_data)
+        token = execute_code(code, LANGUAGE_IDS[language.compiler_name], input_data)
         time.sleep(2)  # Ждем завершения выполнения
         
         # if not token:
@@ -79,7 +79,7 @@ class CheckSolutionAPIView(APIView):
         user_project = serializer.validated_data.get("user_project")
         user_project.code = code
         user_project.save()
-        if language not in LANGUAGE_IDS:
+        if language.compiler_name not in LANGUAGE_IDS:
             return Response({"error": "Unsupported language"}, status=400)
         
         tests = Test.objects.filter(project=project)
@@ -91,7 +91,7 @@ class CheckSolutionAPIView(APIView):
             # print(input_data)
             # print("end")
             formatted_input= test.input_data.replace('\\n', '\n')
-            token = execute_code(code, LANGUAGE_IDS[language], formatted_input)
+            token = execute_code(code, LANGUAGE_IDS[language.compiler_name], formatted_input)
             time.sleep(2)  # Ждем завершения выполнения
             
             result = get_execution_result(token)

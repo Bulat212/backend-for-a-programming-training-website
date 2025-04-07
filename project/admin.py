@@ -1,12 +1,11 @@
 from django.contrib import admin
 
-from project.models import Language, Project
+from project.models import Language, Project, ProjectLanguage
 
 # Register your models here.
-# admin.site.register(Project)
-# admin.site.register(Language)
 
 admin.site.register(Language)
+admin.site.register(ProjectLanguage)
 
 
 @admin.register(Project)

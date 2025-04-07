@@ -7,17 +7,18 @@ from users.models import User
 # Create your models here.
 
 class CodeExecution(models.Model):
-    LANGUAGE_CHOICES = [ 
-     ('python', 'Python'), 
-     ('javascript', 'JavaScript'), 
-     ('java', 'Java'), 
-     ('cpp', 'C++'), 
-    ]
+    # LANGUAGE_CHOICES = [ 
+    #  ('python', 'Python'), 
+    #  ('javascript', 'JavaScript'), 
+    #  ('java', 'Java'), 
+    #  ('cpp', 'C++'), 
+    # ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True)
     code = models.TextField()
-    language = models.CharField(max_length=20, choices=LANGUAGE_CHOICES)
+    language = models.CharField()
+    # language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
     input_data = models.TextField(blank=True, null=True)
     output = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
