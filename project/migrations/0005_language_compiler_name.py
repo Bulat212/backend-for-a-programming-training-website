@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='language',
             name='compiler_name',
-            field=models.CharField(default='python', max_length=100, verbose_name='Имя для Judge0'),
+            field=models.CharField(default='python', max_length=100, verbose_name='Имя для компилятора'),
             preserve_default=False,
         ),
     ]

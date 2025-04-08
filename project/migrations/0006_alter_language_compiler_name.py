@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='language',
             name='compiler_name',
-            field=models.CharField(max_length=100, unique=True, verbose_name='Имя для Judge0'),
+            field=models.CharField(max_length=100, unique=True, verbose_name='Имя для компилятора'),
         ),
     ]
