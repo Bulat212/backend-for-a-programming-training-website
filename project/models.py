@@ -26,7 +26,7 @@ class Project(models.Model):
     
 class Language(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    compiler_name = models.CharField(max_length=100, unique=True, verbose_name='Имя для компилятора')
+    compiler_name = models.CharField(max_length=100, unique=True, verbose_name='Имя для компилятора', null=True)
 
     class Meta:
         verbose_name = 'Язык программирования'

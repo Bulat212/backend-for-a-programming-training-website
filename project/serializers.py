@@ -25,7 +25,7 @@ class ProjectLanguageSerializer(serializers.ModelSerializer):
 
 class UserProjectSerializer(serializers.ModelSerializer):
     user_project = serializers.IntegerField(source='id', read_only=True)
-    language = serializers.SlugRelatedField(slug_field='name', queryset=Language.objects.all(), required=False, default=Language.objects.get(id=1))
+    # language = serializers.SlugRelatedField(slug_field='name', queryset=Language.objects.all(), required=False, default=Language.objects.get(id=1))
     project_id = serializers.PrimaryKeyRelatedField(source='project', queryset=Project.objects.all())
     project_name = serializers.CharField(source='project.name', read_only=True)
     project_description = serializers.CharField(source='project.description', read_only=True)
