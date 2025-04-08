@@ -19,6 +19,7 @@ urlpatterns = [
 
     path('usermininfo/', UserMinInfoView.as_view()),
     path('profile/', ProfileView.as_view()),
+    path('profile/<int:id>/', ProfileView.as_view()),
     path('user-graph/', UserExpGraphView.as_view()),
     path('experience-ranking/<str:period>/<int:limit>/', ExperienceRatingView.as_view()),
     path('stars-ranking/<str:period>/<int:limit>/', StarsRatingView.as_view()),

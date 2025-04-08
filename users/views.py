@@ -47,6 +47,12 @@ class ProfileView(generics.RetrieveUpdateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
+        user_id = self.kwargs.get("id", None)
+        if user_id:
+            try:
+                return User.objects.get(id=user_id)
+            except User.DoesNotExist:
+                raise Response({"error": "Пользователь с таким id не найден."})
         return self.request.user
     
     def update(self, request):

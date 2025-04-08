@@ -328,6 +328,18 @@ API сервера позволяет управлять пользовател�
     "is_active": true
    }
 
+   Если нужно выключить стиль у пользователя, то добавляем id в url и передаем is_active:false
+   
+   PUT /userstyle/1/
+   Входные данные
+   {
+    "is_active": false
+   }
+   Выходные данные
+   {
+    "style": "Neon Blue",
+    "is_active": false
+   }
 
 
 **6. Проекты**
@@ -376,7 +388,21 @@ API сервера позволяет управлять пользовател�
    ]
 }
 
-**7.2 /user-graph/ (GET)** авторизован
+**7.2 /profile/<int:id>/ (GET)** авторизован
+   - **GET**: Выдает информацию о пользователе по id. last_projects - список последних 5 выполненных проектов
+   Пример запроса GET /api/profile/1/
+   {
+    "id": 1,
+    "username": "root",
+    "description": "",
+    "photo": "http://127.0.0.1:8000/media/profile_pictures/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2024-12-19_104405.png",
+    "experience": 0,
+    "nickname_id": 3,
+    "background_profile": 0,
+    "last_projects": []
+   }
+
+**7.3 /user-graph/ (GET)** авторизован
    - **Get**: Выдает информацию о прогрессе юзера.
    [
     {
@@ -391,7 +417,7 @@ API сервера позволяет управлять пользовател�
     },
    ]
 
-**7.3 /user-skills/ (GET, POST)** авторизован
+**7.4 /user-skills/ (GET, POST)** авторизован
    - **GET**: Выдает список навыков пользователя вместе с опытом. 
    Вывод
    [
@@ -431,7 +457,7 @@ API сервера позволяет управлять пользовател�
       ]
    }
 
-**7.4 /usermininfo/ (GET)** авторизован
+**7.5 /usermininfo/ (GET)** авторизован
    - **GET**: Возвращает минимальную информацию об открытых проектах пользователя. Входные данные access токен. Выходные данные — JSON с полями username, coins, stars, photo, nickname_id, is_staff - если true то админ, если false то обычный юзер
    {
     "username": string,
