@@ -25,8 +25,8 @@ class ProjectLanguageSerializer(serializers.ModelSerializer):
 
 class UserProjectSerializer(serializers.ModelSerializer):
     user_project = serializers.IntegerField(source='id', read_only=True)
-    # language = serializers.SlugRelatedField(slug_field='name', queryset=Language.objects.all(), required=False, default=Language.objects.get(id=1))
-    project_id = serializers.PrimaryKeyRelatedField(source='project', queryset=Project.objects.all())
+    language = serializers.SlugRelatedField(slug_field='compiler_name', queryset=Language.objects.all(), required=False, default=Language.objects.get(id=5))
+    project = serializers.PrimaryKeyRelatedField(queryset=Project.objects.all())
     project_name = serializers.CharField(source='project.name', read_only=True)
     project_description = serializers.CharField(source='project.description', read_only=True)
     project_theory = serializers.CharField(source='project.theory', read_only=True)
@@ -34,10 +34,10 @@ class UserProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProject
-        fields = ['user_project', 'project_id', 'project_name', 'project_description', 'project_theory', 'code', 'is_completed', 'is_published', 'earned_stars', 'language', 'available_languages', 'finished_date']
+        fields = ['user_project', 'project', 'project_name', 'project_description', 'project_theory', 'code', 'is_completed', 'is_published', 'earned_stars', 'language', 'available_languages', 'finished_date']
 
     def get_available_languages(self, obj):
-        project_languages = ProjectLanguage.objects.filter(project=obj.project_id).select_related('language')
+        project_languages = ProjectLanguage.objects.filter(project=obj.project).select_related('language')
         return ProjectLanguageSerializer(project_languages, many=True).data
 
     # def get_code(self, obj):

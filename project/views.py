@@ -90,9 +90,14 @@ class UserProjectViewSet(viewsets.ModelViewSet):
         if user_project.is_completed:
             return Response({'detail': 'Проект уже завершен'}, status=400)
         
-        project = Project.objects.get(id=pk)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        code = serializer.validated_data['code']
+        language = serializer.validated_data['language']
+        project = serializer.validated_data['project']
+        # project = Project.objects.get(id=pk)
 
-        result_tests = run_tests(user_project.code, user_project.language, project)
+        result_tests = run_tests(code, language, project)
         if result_tests['status']==False:
             return Response({"Project completion status": "Failed"})
          
@@ -100,6 +105,8 @@ class UserProjectViewSet(viewsets.ModelViewSet):
         
         user_project.finished_date = timezone.now()
         user_project.is_completed = True
+        user_project.code = code
+        user_project.language = language
         user_project.save(update_fields=['finished_date', 'is_completed'])
         serializer = self.get_serializer(user_project)
         return Response(serializer.data)
