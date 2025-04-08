@@ -14,9 +14,9 @@ from rest_framework import mixins
 
 
 from project.models import Language
-from users.models import User, UserProgress, UserSkill
+from users.models import ProgressLog, User, UserProgress, UserSkill
 
-from users.utils import get_experiece_ranking, update_or_create_user_skill
+from users.utils import get_ranking, update_or_create_user_skill
 
 from .serializers import ProfileSerializer, RegisterSerializer, UserExpGraphSerializer, UserMinInfoSerializer, UserRankingExperienceSerializer, UserRankingStarsSerializer, UserSkillsSerializer
 
@@ -79,17 +79,26 @@ class UserExpGraphView(generics.ListAPIView):
 
 class ExperienceRatingView(APIView):
     def get(self, request, period, limit):
-        users = get_experiece_ranking("experience", period, limit)
-        serializer = UserRankingExperienceSerializer(users, many=True, context={'request': request})
-        return Response(serializer.data)
+        current_user = request.user if request.user.is_authenticated else None
+        users = get_ranking("experience", period, limit, current_user)
+
+        curret_user_serializer = UserRankingExperienceSerializer(users['current_user'], context={'request': request}) if current_user else None
+        users_serializer = UserRankingExperienceSerializer(users['users'], many=True, context={'request': request})
+        return Response({'users': users_serializer.data, 'current_user_ranking':curret_user_serializer.data if current_user else None})
 
 
 class StarsRatingView(APIView):
     def get(self, request, period, limit):
-        users = get_experiece_ranking("stars", period, limit)
-        serializer = UserRankingStarsSerializer(users, many=True, context={'request': request})
+        current_user = request.user if request.user.is_authenticated else None
+        users = get_ranking("stars", period, limit, current_user)
         
-        return Response(serializer.data)
+        curret_user_serializer = UserRankingStarsSerializer(users['current_user'], context={'request': request}) if current_user else None
+        users_serializer = UserRankingStarsSerializer(users['users'], many=True, context={'request': request})
+        return Response({'users': users_serializer.data, 'current_user_ranking':curret_user_serializer.data if current_user else None})
+
+        # serializer = UserRankingStarsSerializer(users, many=True, context={'request': request})
+        
+        # return Response(serializer.data)
 
 
 class UserSkillsAPIView(APIView):

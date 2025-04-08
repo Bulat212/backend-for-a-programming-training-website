@@ -1,5 +1,7 @@
 from dataclasses import field
+from http import server
 from urllib import request
+from django.db.models import Sum
 from django.db.models import QuerySet
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -78,7 +80,7 @@ class UserRankingExperienceSerializer(serializers.Serializer):
     username = serializers.CharField(source='user__username')
     photo = serializers.SerializerMethodField()
     nickname_id = serializers.SerializerMethodField()
-    total_experience = serializers.IntegerField()
+    total_experience = serializers.IntegerField(required=False)
 
     def get_nickname_id(self, obj):
         if not obj['user__nickname_id']:

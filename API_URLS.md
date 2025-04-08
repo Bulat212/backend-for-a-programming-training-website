@@ -447,41 +447,60 @@ API сервера позволяет управлять пользовател�
 
 **8.1 /experience-ranking/<str:period>/<int:limit>/ (GET)** 
    - **Get**: Выдает рейтинг юзеров по опыту. Вместо period можно указать week, month или all_time (string), limit - сколько юзеров выводить (int)
-   [
-    {
-      "user__id": 2,
-      "username": "bulat",
-      "photo": "http://127.0.0.1:8000/media/profile_pictures/image313.png",
-      "nickname_id": 6,
-      "total_experience": 132
-    },
-    {
-      "user__id": 1,
-      "username": "root",
-      "photo": "http://127.0.0.1:8000/media/profile_pictures/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2024-12-19_104405.png",
-      "nickname_id": 3,
-      "total_experience": 123
-    }
-]
+{
+   "users": [
+      {
+         "user_id": 3,
+         "username": "andrey",
+         "photo": null,
+         "nickname_id": 0,
+         "total_experience": 1032
+      },
+      {
+         "user_id": 1,
+         "username": "root",
+         "photo": "http://127.0.0.1:8000/media/profile_pictures/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2024-12-19_104405.png",
+         "nickname_id": 3,
+         "total_experience": 123
+      }
+   ],
+   "current_user_ranking": {
+      "user_id": 6,
+      "username": "victor",
+      "photo": "http://127.0.0.1:8000/media/profile_pictures/image_2025-04-07_21-39-05.png",
+      "nickname_id": 0,
+      "total_experience": 0
+   }
+}
+
 
 **8.2 /stars-ranking/<str:period>/<int:limit>/ (GET)** 
-   - **Get**: Выдает рейтинг юзеров по звездам. Вместо period можно указать week, month или all_time (string), limit - сколько юзеров выводить (int)
-[
-   {
-      "user__id": 1,
-      "username": "root",
-      "photo": "http://127.0.0.1:8000/media/profile_pictures/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2024-12-19_104405.png",
-      "nickname_id": 3,
-      "total_stars": 123
-   },
-   {
-      "user__id": 2,
-      "username": "bulat",
-      "photo": "http://127.0.0.1:8000/media/profile_pictures/image313.png",
-      "nickname_id": 6,
-      "total_stars": 12
+   - **Get**: Выдает рейтинг юзеров по звездам. Вместо period можно указать week, month или all_time (string), limit - сколько юзеров выводить (int). users - список юзеров. current_user_ranking - текущий пользователь., если чел не зареганый то вернет current_user_ranking : null
+{
+   "users": [
+      {
+         "user_id": 3,
+         "username": "andrey",
+         "photo": null,
+         "nickname_id": 0,
+         "total_stars": 123
+      },
+      {
+         "user_id": 1,
+         "username": "root",
+         "photo": "http://127.0.0.1:8000/media/profile_pictures/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2024-12-19_104405.png",
+         "nickname_id": 3,
+         "total_stars": 123
+      }
+   ],
+   "current_user_ranking": {
+      "user_id": 6,
+      "username": "victor",
+      "photo": "http://127.0.0.1:8000/media/profile_pictures/image_2025-04-07_21-39-05.png",
+      "nickname_id": 0,
+      "total_stars": 0
    }
-]
+}
 
 
 **9. Комментарии**

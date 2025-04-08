@@ -25,7 +25,7 @@ def update_user_progress(user, experience=0, stars=0):
     return new_user_progress
 
 
-def get_experiece_ranking(rank_type, period, limit=None):
+def get_ranking(rank_type, period, limit=None, current_user=None):
     
     today = timezone.now()
     if period == "week":
@@ -49,11 +49,34 @@ def get_experiece_ranking(rank_type, period, limit=None):
         filters['stars_change__gt']=0
         users = ProgressLog.objects.filter(**filters).values('user__id', 'user__username', 'user__photo', 'user__nickname_id').annotate(
             total_stars = Sum('stars_change')).order_by('-total_stars')
-
+    
     if limit:
         users = users[:limit]
 
-    return users
+    current_user_data = None
+    if current_user:
+        if rank_type == "experience":
+            current_user_data = ProgressLog.objects.filter(user=current_user, **filters).values(
+                'user__id', 'user__username', 'user__photo', 'user__nickname_id'
+            ).annotate(total_experience=Sum('experience_change')).order_by('-total_experience')
+        elif rank_type == "stars":
+            current_user_data = ProgressLog.objects.filter(user=current_user, **filters).values(
+                'user__id', 'user__username', 'user__photo', 'user__nickname_id'
+            ).annotate(total_stars=Sum('stars_change')).order_by('-total_stars')
+
+        if current_user_data.exists():
+            current_user_data = current_user_data.first()
+        else:
+            current_user_data = {
+                "user__id": current_user.id,
+                "user__username": current_user.username,
+                "user__photo": getattr(current_user, "photo", None),
+                "user__nickname_id": getattr(current_user, "nickname_id", None),
+                "total_experience": 0 if rank_type == "experience" else None,
+                "total_stars": 0 if rank_type == "stars" else None,
+            }
+
+    return {'users':users, 'current_user':current_user_data}
 
 
 def update_or_create_user_skill(user, language, experience=0):
