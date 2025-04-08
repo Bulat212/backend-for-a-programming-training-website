@@ -111,8 +111,32 @@ class UserSkillsAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        users = UserSkill.objects.filter(user=request.user)
-        return Response(UserSkillsSerializer(users, many=True).data)
+        user = request.user
+        all_languages = Language.objects.all()
+
+        user_skills = UserSkill.objects.filter(user=request.user)
+        
+        languages_with_zero_experience = []
+        if not user_skills.exists():
+            for lang in all_languages:
+                new_lang = {}
+                new_lang["language"] = lang.name
+                new_lang["experience"] = 0
+                languages_with_zero_experience.append(new_lang)
+
+            return Response(languages_with_zero_experience)
+        
+        user_skill_serializer = UserSkillsSerializer(user_skills, many=True).data
+        
+        user_languages =[]
+        for skill in user_skill_serializer:
+            user_languages.append(skill['language'])
+        
+        for language in all_languages:
+            if language.name not in user_languages:
+                user_skill_serializer.append({'language':language.name, 'experience':0})
+        
+        return Response(user_skill_serializer)
 
     def post(self, request):
         serializer = UserSkillsSerializer(data=request.data)

@@ -131,10 +131,10 @@ class UserExpGraphSerializer(serializers.ModelSerializer):
 
 
 class UserSkillsSerializer(serializers.ModelSerializer):
-    user = serializers.CharField(source='user.username', read_only=True)
+    # user = serializers.CharField(source='user.username', read_only=True)
     language = serializers.SlugRelatedField(slug_field='name', queryset=Language.objects.all(), required=True)
     experience = serializers.IntegerField(required=True)
 
     class Meta:
         model = UserSkill
-        fields = ['user', 'language', 'experience']
+        fields = ['language', 'experience']

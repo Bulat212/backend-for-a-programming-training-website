@@ -420,18 +420,20 @@ API сервера позволяет управлять пользовател�
 **7.4 /user-skills/ (GET, POST)** авторизован
    - **GET**: Выдает список навыков пользователя вместе с опытом. 
    Вывод
-   [
-      {
-         "user": str,
-         "language": "Python",str
-         "experience": int
-      },
-      {
-         "user": str,
-         "language": "Java",str
-         "experience": int
-      }
-   ]
+[
+   {
+      "language": "Python",
+      "experience": 0
+   },
+   {
+      "language": "Java",
+      "experience": 0
+   },
+   {
+      "language": "C++",
+      "experience": 0
+   }
+]
 
    - **POST**: Входные параметры - JSON с полями language, experience 
    Входные данные
@@ -442,7 +444,6 @@ API сервера позволяет управлять пользовател�
 
    Вывод
    {
-      "user": "bulat",
       "language": "Python",
       "experience": 650
    }
