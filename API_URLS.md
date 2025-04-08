@@ -64,6 +64,10 @@ API сервера позволяет управлять пользовател�
 **2.3 /user-projects/{id}/end_project/ (PUT)**
    - **PUT**: Завершает проект пользователя и устанавливает дату завершения. Входные данные id проекта передается в запросе. Выходные данные — JSON с обновленным статусом проекта или сообщением о том что проект завершить нельзя.
 
+   В случае не прохода тестов выведет ошибку
+   {
+    "Project completion status": "Failed"
+   }
 <!-- **2.4 /user-projects/start_project/ (POST)**
    - **POST**: Начинает новый проект для пользователя при соблюдении условий. Входные данные — JSON с project_id. Выходные данные — JSON с созданным проектом или сообщением об ошибке
    {
@@ -646,10 +650,10 @@ API сервера позволяет управлять пользовател�
 
    Пример упешного вывода
    {
-    "status": "Accepted"
+    "status": True
    }
    Пример ошибки
    {
     "output": "Traceback (most recent call last):\n  File \"script.py\", line 3, in <module>\n    print(a+b)\nTypeError: can only concatenate str (not \"int\") to str\n",
-    "status": "Failed"
+    "status": False
    }

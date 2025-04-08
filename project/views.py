@@ -18,6 +18,7 @@ from project.serializers import ProjectSerializer, StatusUserProject, TemporaryP
 from users.models import UserProject
 from map.models import ProjectMap
 from users.utils import update_user_progress
+from compiler.utils import run_tests
 
 # Create your views here.
 
@@ -90,6 +91,11 @@ class UserProjectViewSet(viewsets.ModelViewSet):
             return Response({'detail': 'Проект уже завершен'}, status=400)
         
         project = Project.objects.get(id=pk)
+
+        result_tests = run_tests(user_project.code, user_project.language, project)
+        if result_tests['status']==False:
+            return Response({"Project completion status": "Failed"})
+         
         update_user_progress(request.user, project.experience)
         
         user_project.finished_date = timezone.now()

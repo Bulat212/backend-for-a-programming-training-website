@@ -19,6 +19,10 @@ def update_user_progress(user, experience=0, stars=0):
     new_user_progress.stars = stars + current_stars
     new_user_progress.save()
 
+    user.experience = experience + current_experience
+    user.stars = stars + current_stars
+    user.save()
+
     if experience != 0 or stars != 0: 
         ProgressLog.objects.create(user=user, experience_change=experience, stars_change=stars)
 
