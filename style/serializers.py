@@ -30,8 +30,10 @@ class UserStyleSerializer(serializers.ModelSerializer):
     
 class UserStyleSetIsActiveSerializer(serializers.ModelSerializer):
     style = serializers.CharField(read_only=True)
+    clear_category = serializers.CharField(required=False)
+    is_active = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = UserStyle
-        fields = ["style", "is_active"]
+        fields = ["style", "is_active", "clear_category"]
         

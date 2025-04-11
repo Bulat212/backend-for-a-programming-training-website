@@ -338,17 +338,21 @@ API сервера позволяет управлять пользовател�
     "is_active": true
    }
 
-   Если нужно выключить стиль у пользователя, то добавляем id в url и передаем is_active:false
+   Если нужно выключить стиль у пользователя, то добавляем id=0 в url и передаем поле clear_category
    
-   PUT /userstyle/1/
+   PUT /userstyle/0/
    Входные данные
    {
-    "is_active": false
+      "clear_category": "nickname" или "background_profile" смотря что хотим выключить
    }
    Выходные данные
    {
-    "style": "Neon Blue",
+    "style": "Gold Shine",
     "is_active": false
+   }
+   Если такого активного стиля нет то выведет следующее
+   {
+    "detail": "У пользователя нет такого активного стиля."
    }
 
 

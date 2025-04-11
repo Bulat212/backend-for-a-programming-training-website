@@ -112,6 +112,25 @@ class UserStyleSetIsActiveView(generics.UpdateAPIView):
 
     def put(self, request, *args, **kwargs):
         style_id = kwargs.get("style_id", None)
+
+        if style_id==0:
+            category = request.data.get("clear_category")
+            if category=="nickname":
+                user_style = UserStyle.objects.filter(style__category=2, user=request.user, is_active=True).first()
+                if not user_style:
+                    return Response({"detail":"У пользователя нет такого активного стиля."})
+                else:
+                    user_style.is_active = False
+            
+            elif(category=="background_profile"):
+                user_style = UserStyle.objects.filter(style__category=1, user=request.user, is_active=True).first()
+                if not user_style:
+                    return Response({"detail":"У пользователя нет такого активного стиля."})
+                else:
+                    user_style.is_active = False
+
+            user_style.save()
+            return Response(UserStyleSetIsActiveSerializer(instance = user_style).data)
         
         user_style = UserStyle.objects.filter(style=style_id, user=request.user).first()
         if not user_style:
