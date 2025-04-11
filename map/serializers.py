@@ -1,4 +1,5 @@
 from pyclbr import Class
+from django.db import transaction
 from rest_framework import serializers
 from django.db.models import Q
 
@@ -62,7 +63,7 @@ class UserProjectMapSerializer(serializers.ModelSerializer):
         return UserProject.objects.filter(user=user, project=obj.project, is_completed=True).exists()
 
 
-class AddMapProjcects(serializers.ModelSerializer):
+class AddMapProjects(serializers.ModelSerializer):
     project_id = serializers.IntegerField()
     prev_project_id = serializers.IntegerField(required=False, allow_null=True)
     position_x = serializers.FloatField(write_only=True)
@@ -73,6 +74,7 @@ class AddMapProjcects(serializers.ModelSerializer):
         fields = ['project_id', 'prev_project_id', 'position_x', 'position_y']
 
     def create(self, validated_data):
+
         project_id = validated_data.pop('project_id')
         prev_project_id = validated_data.pop('prev_project_id', None)
         position_x = validated_data.pop('position_x')
@@ -81,17 +83,7 @@ class AddMapProjcects(serializers.ModelSerializer):
         project = Project.objects.get(id=project_id)
         prev_project = Project.objects.get(id=prev_project_id) if prev_project_id else None
 
-        project_exists_in_map= ProjectMap.objects.filter(project_id=prev_project_id, prev_project_id=project_id).first()
-        if project_exists_in_map:
-            project_exists_in_map.project_id = project_id
-            project_exists_in_map.prev_project_id = prev_project_id
-            project_exists_in_map.save()
-            
-            new_map_project = project_exists_in_map
-            # new_map_project = ProjectMap.objects.update(project=project, prev_project_id=prev_project_id)
-        else:
-            new_map_project, created = ProjectMap.objects.update_or_create(project=project, defaults={'prev_project': prev_project})
-
+        new_map_project, created = ProjectMap.objects.update_or_create(project=project, defaults={'prev_project': prev_project})
         ProjectPosition.objects.update_or_create(project=project, defaults={'position_x': position_x, 'position_y': position_y})
 
         return new_map_project
@@ -99,8 +91,6 @@ class AddMapProjcects(serializers.ModelSerializer):
     def validate(self, data):
         project_id=data.get('project_id')
         prev_project_id=data.get('prev_project_id')
-        position_x = data.get('position_x')
-        position_y = data.get('position_y')
 
         if not Project.objects.filter(id=project_id).exists():
             raise serializers.ValidationError(f"Проект с id={project_id} не найден.")
@@ -108,8 +98,24 @@ class AddMapProjcects(serializers.ModelSerializer):
         if prev_project_id and not Project.objects.filter(id=prev_project_id).exists():
             raise serializers.ValidationError(f"Предыдущий проект с id={prev_project_id} не найден.")
 
-        if ProjectPosition.objects.filter(Q(position_x=position_x) & Q(position_y=position_y) & ~Q(project_id=project_id)).exists():
-            raise serializers.ValidationError(f"Позиция на карте уже занята.")
-
         return data
-    
+
+
+class AddMapProjectsListSerializer(serializers.ListSerializer):
+    def create(self, validated_data_list):
+        with transaction.atomic():
+            ProjectMap.objects.all().delete()
+            ProjectPosition.objects.all().delete()
+
+            created_objects = []
+            for validated_data in validated_data_list:
+                serializer = AddMapProjects(data=validated_data)
+                serializer.is_valid(raise_exception=True)
+                created_objects.append(serializer.save())
+
+        return created_objects
+
+
+class AddMapProjectsSerializer(AddMapProjects):
+    class Meta(AddMapProjects.Meta):
+        list_serializer_class = AddMapProjectsListSerializer

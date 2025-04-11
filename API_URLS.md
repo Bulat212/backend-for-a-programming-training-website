@@ -208,7 +208,7 @@ API сервера позволяет управлять пользовател�
    },
 ]
 
-**3.4 /admin-list-map-project/ (GET)** админ
+**3.4 /map/admin-list-map-project/ (GET)** админ
    - **GET**: Возвращает список проектов, которых нет на карте. Выходные данные — JSON с полями id, name
 [
    {
@@ -221,7 +221,7 @@ API сервера позволяет управлять пользовател�
    },
 ]
 
-**3.5 /admin-create-map/ (POST)** админ
+**3.5 /map/admin-create-map/ (POST)** админ
    - **POST**: Добавляет размещенные проекты в таблицы ProjectPosition, ProjectMap проектов. 
    Входные данные JSON список из project_id, prev_project_id, position_x, position_y
    [

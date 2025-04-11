@@ -8,7 +8,7 @@ from django.db.models import Prefetch
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework import status
 
-from map.serializers import AddMapProjcects, ProjectConnectionsSerializer, ProjectPositionSerializer, AdminProjectSerializer, UserProjectMapSerializer
+from map.serializers import AddMapProjects, AddMapProjectsSerializer, ProjectConnectionsSerializer, ProjectPositionSerializer, AdminProjectSerializer, UserProjectMapSerializer
 from map.models import ProjectMap, ProjectPosition
 from project.models import Project 
 # Create your views here.
@@ -37,7 +37,7 @@ class AdminProjectListAPIView(generics.ListAPIView):
 
 
 class AdminMapCreateAPIView(generics.CreateAPIView):
-    serializer_class = AddMapProjcects
+    serializer_class = AddMapProjectsSerializer
     permission_classes = [IsAdminUser]
 
     def create(self, request, *args, **kwargs):
