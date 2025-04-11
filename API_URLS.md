@@ -510,7 +510,8 @@ API сервера позволяет управлять пользовател�
       "username": "victor",
       "photo": "http://127.0.0.1:8000/media/profile_pictures/image_2025-04-07_21-39-05.png",
       "nickname_id": 0,
-      "total_experience": 0
+      "total_experience": 0,
+      "position": 4
    }
 }
 
@@ -539,7 +540,8 @@ API сервера позволяет управлять пользовател�
       "username": "victor",
       "photo": "http://127.0.0.1:8000/media/profile_pictures/image_2025-04-07_21-39-05.png",
       "nickname_id": 0,
-      "total_stars": 0
+      "total_stars": 0,
+      "position": 4
    }
 }
 

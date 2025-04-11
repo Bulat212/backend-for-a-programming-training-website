@@ -54,11 +54,19 @@ def get_ranking(rank_type, period, limit=None, current_user=None):
         users = ProgressLog.objects.filter(**filters).values('user__id', 'user__username', 'user__photo', 'user__nickname_id').annotate(
             total_stars = Sum('stars_change')).order_by('-total_stars')
     
-    if limit:
-        users = users[:limit]
+    
 
+    current_user_position = None
     current_user_data = None
+
     if current_user:
+        for index, user in enumerate(users):
+            if user['user__id'] == current_user.id:
+                current_user_position = index + 1
+                current_user_data = user
+                break
+
+
         if rank_type == "experience":
             current_user_data = ProgressLog.objects.filter(user=current_user, **filters).values(
                 'user__id', 'user__username', 'user__photo', 'user__nickname_id'
@@ -79,6 +87,11 @@ def get_ranking(rank_type, period, limit=None, current_user=None):
                 "total_experience": 0 if rank_type == "experience" else None,
                 "total_stars": 0 if rank_type == "stars" else None,
             }
+
+        current_user_data['position'] = current_user_position
+
+    if limit:
+        users = users[:limit]
 
     return {'users':users, 'current_user':current_user_data}
 

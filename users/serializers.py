@@ -1,5 +1,6 @@
 from dataclasses import field
 from http import server
+from turtle import position
 from urllib import request
 from django.db.models import Sum
 from django.db.models import QuerySet
@@ -81,6 +82,7 @@ class UserRankingExperienceSerializer(serializers.Serializer):
     photo = serializers.SerializerMethodField()
     nickname_id = serializers.SerializerMethodField()
     total_experience = serializers.IntegerField(required=False)
+    position = serializers.IntegerField(required=False)
 
     def get_nickname_id(self, obj):
         if not obj['user__nickname_id']:
@@ -105,6 +107,7 @@ class UserRankingStarsSerializer(serializers.Serializer):
     photo = serializers.SerializerMethodField()
     nickname_id = serializers.SerializerMethodField()
     total_stars = serializers.IntegerField()
+    position = serializers.IntegerField(required=False)
     
     def get_nickname_id(self, obj):
         if not obj['user__nickname_id']:
