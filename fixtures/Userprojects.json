@@ -1,1 +1,521 @@
-[{"model": "users.userproject", "pk": 1, "fields": {"user": 2, "project": 1, "is_completed": true, "code": "print(\"massivi\")", "is_published": true, "earned_stars": 7, "language": null, "finished_date": null}}, {"model": "users.userproject", "pk": 2, "fields": {"user": 2, "project": 3, "is_completed": false, "code": "print(\"Деревья\")", "is_published": true, "earned_stars": 1, "language": null, "finished_date": null}}, {"model": "users.userproject", "pk": 3, "fields": {"user": 6, "project": 3, "is_completed": true, "code": "print(\"Написал victor\")", "is_published": true, "earned_stars": 11, "language": null, "finished_date": null}}, {"model": "users.userproject", "pk": 4, "fields": {"user": 4, "project": 1, "is_completed": true, "code": "", "is_published": true, "earned_stars": 12, "language": null, "finished_date": null}}]
+[
+    {
+        "model": "users.userproject",
+        "pk": 1,
+        "fields": {
+            "user": 2,
+            "project": 1,
+            "is_completed": true,
+            "code": "print('Hello, World!')",
+            "is_published": true,
+            "earned_stars": 3,
+            "language": 1,
+            "finished_date": "2025-05-01T10:00:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "project": 2,
+            "is_completed": true,
+            "code": "weight = float(input('Вес (кг): '))\nheight = float(input('Рост (м): '))\nbmi = weight / (height ** 2)\nprint(f'Ваш ИМТ: {bmi:.1f}')",
+            "is_published": true,
+            "earned_stars": 4,
+            "language": 1,
+            "finished_date": "2025-05-02T11:30:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 3,
+        "fields": {
+            "user": 2,
+            "project": 3,
+            "is_completed": true,
+            "code": "def celsius_to_fahrenheit(c):\n    return c * 9/5 + 32\n\nc = float(input('Градусы Цельсия: '))\nprint(f'{c}°C = {celsius_to_fahrenheit(c)}°F')",
+            "is_published": false,
+            "earned_stars": 5,
+            "language": 1,
+            "finished_date": "2025-05-03T14:15:00Z"
+        }
+    },
+
+    {
+        "model": "users.userproject",
+        "pk": 4,
+        "fields": {
+            "user": 3,
+            "project": 1,
+            "is_completed": true,
+            "code": "console.log('Hello, World!')",
+            "is_published": true,
+            "earned_stars": 3,
+            "language": 2,
+            "finished_date": "2025-05-01T09:20:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 5,
+        "fields": {
+            "user": 3,
+            "project": 4,
+            "is_completed": true,
+            "code": "const isEven = num => num % 2 === 0;\nconsole.log(isEven(10)); // true",
+            "is_published": true,
+            "earned_stars": 4,
+            "language": 2,
+            "finished_date": "2025-05-02T16:45:00Z"
+        }
+    },
+
+    {
+        "model": "users.userproject",
+        "pk": 6,
+        "fields": {
+            "user": 4,
+            "project": 1,
+            "is_completed": true,
+            "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}",
+            "is_published": true,
+            "earned_stars": 3,
+            "language": 3,
+            "finished_date": "2025-05-01T13:10:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 7,
+        "fields": {
+            "user": 4,
+            "project": 5,
+            "is_completed": true,
+            "code": "import java.util.Scanner;\n\npublic class Calculator {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // код калькулятора\n    }\n}",
+            "is_published": false,
+            "earned_stars": 6,
+            "language": 3,
+            "finished_date": "2025-05-03T10:30:00Z"
+        }
+    },
+
+    {
+        "model": "users.userproject",
+        "pk": 8,
+        "fields": {
+            "user": 5,
+            "project": 1,
+            "is_completed": true,
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Hello, World!\" << endl;\n    return 0;\n}",
+            "is_published": true,
+            "earned_stars": 3,
+            "language": 4,
+            "finished_date": "2025-05-01T08:15:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 9,
+        "fields": {
+            "user": 5,
+            "project": 2,
+            "is_completed": true,
+            "code": "#include <iostream>\n#include <cmath>\nusing namespace std;\n\nint main() {\n    double weight, height;\n    cin >> weight >> height;\n    cout << \"BMI: \" << weight / pow(height, 2) << endl;\n    return 0;\n}",
+            "is_published": true,
+            "earned_stars": 4,
+            "language": 4,
+            "finished_date": "2025-05-02T12:20:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 10,
+        "fields": {
+            "user": 5,
+            "project": 6,
+            "is_completed": true,
+            "code": "#include <iostream>\nusing namespace std;\n\nlong factorial(int n) {\n    return (n == 0) ? 1 : n * factorial(n-1);\n}\n\nint main() {\n    int num;\n    cin >> num;\n    cout << factorial(num) << endl;\n    return 0;\n}",
+            "is_published": true,
+            "earned_stars": 6,
+            "language": 4,
+            "finished_date": "2025-05-04T15:10:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 11,
+        "fields": {
+            "user": 5,
+            "project": 7,
+            "is_completed": true,
+            "code": "#include <iostream>\n#include <cmath>\nusing namespace std;\n\nbool isPrime(int n) {\n    if (n <= 1) return false;\n    for (int i = 2; i <= sqrt(n); i++)\n        if (n % i == 0) return false;\n    return true;\n}\n\nint main() {\n    int num;\n    cin >> num;\n    cout << (isPrime(num) ? \"Prime\" : \"Not prime\") << endl;\n    return 0;\n}",
+            "is_published": false,
+            "earned_stars": 7,
+            "language": 4,
+            "finished_date": "2025-05-06T11:40:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 12,
+        "fields": {
+            "user": 6,
+            "project": 1,
+            "is_completed": true,
+            "code": "print('Hello, World!')",
+            "is_published": true,
+            "earned_stars": 3,
+            "language": 1,
+            "finished_date": "2025-05-01T14:20:00Z"
+        }
+    },
+
+    {
+        "model": "users.userproject",
+        "pk": 13,
+        "fields": {
+            "user": 7,
+            "project": 2,
+            "is_completed": true,
+            "code": "function calculateBMI(weight, height) {\n  return weight / (height ** 2);\n}\n\nconsole.log(calculateBMI(70, 1.75));",
+            "is_published": true,
+            "earned_stars": 4,
+            "language": 2,
+            "finished_date": "2025-05-02T17:30:00Z"
+        }
+    },
+
+    {
+        "model": "users.userproject",
+        "pk": 14,
+        "fields": {
+            "user": 8,
+            "project": 1,
+            "is_completed": true,
+            "code": "public class HelloWorld {\n  public static void main(String[] args) {\n    System.out.println(\"Hello, World!\");\n  }\n}",
+            "is_published": true,
+            "earned_stars": 3,
+            "language": 3,
+            "finished_date": "2025-05-01T11:45:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 15,
+        "fields": {
+            "user": 8,
+            "project": 3,
+            "is_completed": true,
+            "code": "public class TemperatureConverter {\n  public static double celsiusToFahrenheit(double c) {\n    return c * 9/5 + 32;\n  }\n}",
+            "is_published": false,
+            "earned_stars": 5,
+            "language": 3,
+            "finished_date": "2025-05-03T13:10:00Z"
+        }
+    },
+
+    {
+        "model": "users.userproject",
+        "pk": 16,
+        "fields": {
+            "user": 10,
+            "project": 1,
+            "is_completed": true,
+            "code": "#include <iostream>\n\nint main() {\n  std::cout << \"Hello, World!\" << std::endl;\n  return 0;\n}",
+            "is_published": true,
+            "earned_stars": 3,
+            "language": 4,
+            "finished_date": "2025-05-01T10:05:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 17,
+        "fields": {
+            "user": 10,
+            "project": 4,
+            "is_completed": true,
+            "code": "#include <iostream>\n\nbool isEven(int num) {\n  return num % 2 == 0;\n}\n\nint main() {\n  int number;\n  std::cin >> number;\n  std::cout << (isEven(number) ? \"Even\" : \"Odd\") << std::endl;\n  return 0;\n}",
+            "is_published": true,
+            "earned_stars": 4,
+            "language": 4,
+            "finished_date": "2025-05-02T14:50:00Z"
+        }
+    },
+
+    {
+        "model": "users.userproject",
+        "pk": 18,
+        "fields": {
+            "user": 12,
+            "project": 5,
+            "is_completed": true,
+            "code": "def calculate(a, b, operation):\n    if operation == '+':\n        return a + b\n    elif operation == '-':\n        return a - b\n    elif operation == '*':\n        return a * b\n    elif operation == '/':\n        return a / b if b != 0 else \"Error\"\n    else:\n        return \"Invalid operation\"",
+            "is_published": true,
+            "earned_stars": 6,
+            "language": 1,
+            "finished_date": "2025-05-03T16:25:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 19,
+        "fields": {
+            "user": 11,
+            "project": 1,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 3,
+            "language": 1,
+            "finished_date": "2025-05-01T09:00:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 20,
+        "fields": {
+            "user": 11,
+            "project": 2,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 4,
+            "language": 1,
+            "finished_date": "2025-05-02T11:00:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 21,
+        "fields": {
+            "user": 11,
+            "project": 3,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 5,
+            "language": 1,
+            "finished_date": "2025-05-03T14:00:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 22,
+        "fields": {
+            "user": 11,
+            "project": 4,
+            "is_completed": true,
+            "is_published": false,
+            "earned_stars": 4,
+            "language": 2,
+            "finished_date": "2025-05-04T10:30:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 23,
+        "fields": {
+            "user": 11,
+            "project": 5,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 6,
+            "language": 3,
+            "finished_date": "2025-05-06T13:15:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 24,
+        "fields": {
+            "user": 11,
+            "project": 6,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 6,
+            "language": 1,
+            "finished_date": "2025-05-08T15:45:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 25,
+        "fields": {
+            "user": 11,
+            "project": 7,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 7,
+            "language": 1,
+            "finished_date": "2025-05-10T11:20:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 26,
+        "fields": {
+            "user": 11,
+            "project": 8,
+            "is_completed": true,
+            "is_published": false,
+            "earned_stars": 8,
+            "language": 2,
+            "finished_date": "2025-05-12T16:30:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 27,
+        "fields": {
+            "user": 11,
+            "project": 9,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 5,
+            "language": 1,
+            "finished_date": "2025-05-14T10:00:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 28,
+        "fields": {
+            "user": 11,
+            "project": 10,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 8,
+            "language": 3,
+            "finished_date": "2025-05-16T14:00:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 29,
+        "fields": {
+            "user": 11,
+            "project": 11,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 8,
+            "language": 1,
+            "finished_date": "2025-05-18T09:30:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 30,
+        "fields": {
+            "user": 11,
+            "project": 12,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 10,
+            "language": 2,
+            "finished_date": "2025-05-20T13:15:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 31,
+        "fields": {
+            "user": 11,
+            "project": 13,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 12,
+            "language": 2,
+            "finished_date": "2025-05-22T15:45:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 32,
+        "fields": {
+            "user": 11,
+            "project": 14,
+            "is_completed": true,
+            "is_published": false,
+            "earned_stars": 9,
+            "language": 1,
+            "finished_date": "2025-05-24T11:20:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 33,
+        "fields": {
+            "user": 11,
+            "project": 15,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 11,
+            "language": 1,
+            "finished_date": "2025-05-26T14:30:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 34,
+        "fields": {
+            "user": 11,
+            "project": 16,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 7,
+            "language": 2,
+            "finished_date": "2025-05-28T10:15:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 35,
+        "fields": {
+            "user": 11,
+            "project": 17,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 9,
+            "language": 1,
+            "finished_date": "2025-05-30T16:20:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 36,
+        "fields": {
+            "user": 11,
+            "project": 18,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 10,
+            "language": 3,
+            "finished_date": "2025-06-01T12:45:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 37,
+        "fields": {
+            "user": 11,
+            "project": 19,
+            "is_completed": true,
+            "is_published": false,
+            "earned_stars": 12,
+            "language": 4,
+            "finished_date": "2025-06-03T14:10:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 38,
+        "fields": {
+            "user": 11,
+            "project": 20,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 15,
+            "language": 1,
+            "finished_date": "2025-06-05T17:00:00Z"
+        }
+    }
+]

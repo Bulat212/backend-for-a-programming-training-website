@@ -1,1 +1,322 @@
-[{"model": "project.project", "pk": 1, "fields": {"slug": "massivy", "name": "Массивы", "description": "Описание массивов", "theory": "", "time_to_leave": "2025-03-23T16:31:38Z", "experience": 0, "difficulty": 0, "coins": 0, "created_data": "2025-02-26T13:56:49.310Z", "is_limited": false}}, {"model": "project.project", "pk": 2, "fields": {"slug": "matricy", "name": "Матрицы", "description": "Описание матрицы", "theory": "", "time_to_leave": "2025-03-23T16:31:34Z", "experience": 0, "difficulty": 0, "coins": 0, "created_data": "2025-02-26T13:57:21.276Z", "is_limited": false}}, {"model": "project.project", "pk": 3, "fields": {"slug": "derevya", "name": "Деревья", "description": "Описание проекта про деревья", "theory": "", "time_to_leave": "2025-03-22T09:32:13Z", "experience": 0, "difficulty": 0, "coins": 0, "created_data": "2025-02-26T13:57:38.594Z", "is_limited": true}}, {"model": "project.project", "pk": 4, "fields": {"slug": "baza-dannyh", "name": "База данных", "description": "Описание базы данных", "theory": "", "time_to_leave": "2025-03-22T09:09:25Z", "experience": 0, "difficulty": 0, "coins": 0, "created_data": "2025-02-26T13:58:06.150Z", "is_limited": false}}, {"model": "project.project", "pk": 5, "fields": {"slug": "sql", "name": "sql", "description": "", "theory": "", "time_to_leave": "2025-03-22T09:08:39Z", "experience": 0, "difficulty": 0, "coins": 0, "created_data": "2025-02-26T13:58:12.509Z", "is_limited": false}}, {"model": "project.project", "pk": 6, "fields": {"slug": "decimal", "name": "Decimal", "description": "", "theory": "", "time_to_leave": "2025-03-23T09:40:22Z", "experience": 0, "difficulty": 0, "coins": 0, "created_data": "2025-03-22T09:09:17.117Z", "is_limited": true}}]
+[
+    {
+      "model": "project.project",
+      "pk": 1,
+      "fields": {
+        "slug": "sum-two-numbers",
+        "name": "Сумма двух чисел",
+        "description": "Напишите программу, которая принимает два числа и выводит их сумму",
+        "theory": "Используйте базовые операции сложения. В Python можно использовать функцию input() для ввода данных.",
+        "time_to_leave": "2025-04-25T12:00:00Z",
+        "experience": 10,
+        "difficulty": 1,
+        "coins": 5,
+        "created_data": "2025-04-25T12:00:00Z",
+        "is_limited": false
+      }
+    },
+    {
+      "model": "project.project",
+      "pk": 2,
+      "fields": {
+        "slug": "bmi-calculator",
+        "name": "Калькулятор ИМТ",
+        "description": "Напишите программу, которая рассчитывает индекс массы тела (ИМТ) по формуле: вес (кг) / (рост (м))²",
+        "theory": "ИМТ = вес / (рост × рост). Например, при весе 70кг и росте 1.75м: 70 / (1.75*1.75) ≈ 22.86",
+        "time_to_leave": "2025-04-25T12:00:00Z",
+        "experience": 15,
+        "difficulty": 2,
+        "coins": 8,
+        "created_data": "2025-04-25T12:00:00Z",
+        "is_limited": false
+      }
+    },
+    {
+      "model": "project.project",
+      "pk": 3,
+      "fields": {
+        "slug": "temp-converter",
+        "name": "Конвертер температур",
+        "description": "Напишите программу, которая конвертирует температуру из Цельсия в Фаренгейты и наоборот",
+        "theory": "Формулы: °F = °C × 9/5 + 32; °C = (°F - 32) × 5/9. Программа должна спрашивать тип конвертации.",
+        "time_to_leave": "2025-04-25T12:00:00Z",
+        "experience": 20,
+        "difficulty": 3,
+        "coins": 12,
+        "created_data": "2025-04-25T12:00:00Z",
+        "is_limited": false
+      }
+    },
+    {
+      "model": "project.project",
+      "pk": 4,
+      "fields": {
+        "slug": "even-or-odd",
+        "name": "Проверка четности",
+        "description": "Напишите программу, которая определяет, является ли введенное число четным или нечетным",
+        "theory": "Четное число делится на 2 без остатка (используйте оператор %). Нечетное - с остатком.",
+        "time_to_leave": "2025-04-25T12:00:00Z",
+        "experience": 25,
+        "difficulty": 4,
+        "coins": 15,
+        "created_data": "2025-04-25T12:00:00Z",
+        "is_limited": false
+      }
+    },
+    {
+      "model": "project.project",
+      "pk": 5,
+      "fields": {
+        "slug": "mini-calculator",
+        "name": "Мини-калькулятор",
+        "description": "Создайте простой калькулятор с 4 операциями: +, -, *, / для двух чисел",
+        "theory": "Используйте условные операторы (if/elif/else) для выбора операции. Обработайте деление на ноль.",
+        "time_to_leave": "2025-04-25T12:00:00Z",
+        "experience": 30,
+        "difficulty": 5,
+        "coins": 20,
+        "created_data": "2025-04-25T12:00:00Z",
+        "is_limited": false
+      }
+    },
+    {
+      "model": "project.project",
+      "pk": 6,
+      "fields": {
+          "slug": "factorial",
+          "name": "Факториал числа",
+          "description": "Напишите программу, которая вычисляет факториал введенного числа (n!).",
+          "theory": "Факториал числа n - произведение всех положительных целых чисел от 1 до n. Например, 5! = 1×2×3×4×5 = 120. Учтите, что 0! = 1.",
+          "time_to_leave": "2025-05-10T12:00:00Z",
+          "experience": 35,
+          "difficulty": 6,
+          "coins": 25,
+          "created_data": "2025-04-25T12:00:00Z",
+          "is_limited": false
+      }
+  },
+  {
+    "model": "project.project",
+    "pk": 7,
+    "fields": {
+        "slug": "prime-numbers",
+        "name": "Простые числа",
+        "description": "Напишите программу, которая определяет, является ли число простым, и выводит все простые числа до заданного N.",
+        "theory": "Простое число - натуральное число больше 1, которое делится только на 1 и само себя. Оптимизируйте проверку, проверяя делители только до √n.",
+        "time_to_leave": "2025-05-12T12:00:00Z",
+        "experience": 45,
+        "difficulty": 7,
+        "coins": 30,
+        "created_data": "2025-04-25T12:00:00Z",
+        "is_limited": false
+    }
+},
+{
+  "model": "project.project",
+  "pk": 8,
+  "fields": {
+      "slug": "guess-number",
+      "name": "Угадай число",
+      "description": "Создайте игру, где компьютер загадывает число от 1 до 100, а пользователь пытается его угадать с подсказками 'больше'/'меньше'.",
+      "theory": "Используйте модуль random для генерации случайного числа. Реализуйте цикл с условиями и счетчиком попыток.",
+      "time_to_leave": "2025-05-15T12:00:00Z",
+      "experience": 50,
+      "difficulty": 8,
+      "coins": 35,
+      "created_data": "2025-04-25T12:00:00Z",
+      "is_limited": false
+  }
+},
+{
+  "model": "project.project",
+  "pk": 9,
+  "fields": {
+      "slug": "leap-year",
+      "name": "Калькулятор високосных лет",
+      "description": "Напишите программу, которая определяет, является ли год високосным, и выводит следующий високосный год.",
+      "theory": "Год високосный, если он делится на 4, но не на 100, либо делится на 400. Например, 2000 - високосный, 1900 - нет.",
+      "time_to_leave": "2025-05-18T12:00:00Z",
+      "experience": 60,
+      "difficulty": 9,
+      "coins": 40,
+      "created_data": "2025-04-25T12:00:00Z",
+      "is_limited": true
+  }
+},
+{
+  "model": "project.project",
+  "pk": 10,
+  "fields": {
+      "slug": "loan-calculator",
+      "name": "Калькулятор кредита",
+      "description": "Создайте программу, которая рассчитывает ежемесячный платеж по кредиту (аннуитетный платеж) по формуле: сумма, срок, процентная ставка.",
+      "theory": "Формула аннуитетного платежа: Платеж = S×(P×(1+P)^N)/((1+P)^N−1), где S - сумма кредита, P - месячная ставка (годовая/12/100), N - количество месяцев.",
+      "time_to_leave": "2025-05-20T12:00:00Z",
+      "experience": 70,
+      "difficulty": 10,
+      "coins": 50,
+      "created_data": "2025-04-25T12:00:00Z",
+      "is_limited": true
+  }
+},
+{
+  "model": "project.project",
+  "pk": 11,
+  "fields": {
+      "slug": "bubble-sort",
+      "name": "Сортировка пузырьком",
+      "description": "Реализуйте алгоритм сортировки пузырьком для массива чисел с визуализацией каждого шага",
+      "theory": "Алгоритм попарно сравнивает элементы и меняет их местами, если они не в порядке. После каждого прохода наибольший элемент «всплывает» в конец массива.",
+      "time_to_leave": "2025-05-25T12:00:00Z",
+      "experience": 80,
+      "difficulty": 11,
+      "coins": 60,
+      "created_data": "2025-04-25T12:00:00Z",
+      "is_limited": false
+  }
+},
+{
+  "model": "project.project",
+  "pk": 12,
+  "fields": {
+    "slug": "a-star-pathfinding",
+    "name": "Поиск пути (A*)",
+    "description": "Реализуйте алгоритм A* для поиска кратчайшего пути на двумерной сетке с препятствиями",
+    "theory": "A* сочетает в себе преимущества Dijkstra (точность) и жадного поиска (скорость), используя эвристическую функцию для оценки расстояния до цели.",
+    "time_to_leave": "2025-05-28T12:00:00Z",
+    "experience": 100,
+    "difficulty": 13,
+    "coins": 80,
+    "created_data": "2025-04-25T12:00:00Z",
+    "is_limited": true
+  }
+},
+{
+  "model": "project.project",
+  "pk": 13,
+  "fields": {
+      "slug": "chat-server",
+      "name": "Чат-сервер",
+      "description": "Создайте простой чат-сервер, обрабатывающий несколько подключений с возможностью broadcast сообщений",
+      "theory": "Используйте сокеты и потоки/асинхронность. Сервер должен принимать подключения, получать сообщения и рассылать их всем подключенным клиентам.",
+      "time_to_leave": "2025-06-01T12:00:00Z",
+      "experience": 120,
+      "difficulty": 15,
+      "coins": 100,
+      "created_data": "2025-04-25T12:00:00Z",
+      "is_limited": true
+  }
+},
+{
+  "model": "project.project",
+  "pk": 14,
+  "fields": {
+      "slug": "mini-base64",
+      "name": "Мини-Base64",
+      "description": "Реализуйте кодирование/декодирование строк в формат Base64 без использования стандартных библиотек",
+      "theory": "Base64 преобразует 3 байта (24 бита) в 4 печатных символа. Каждые 6 бит (0-63) кодируются символами A-Z, a-z, 0-9, + и /.",
+      "time_to_leave": "2025-06-05T12:00:00Z",
+      "experience": 90,
+      "difficulty": 12,
+      "coins": 70,
+      "created_data": "2025-04-25T12:00:00Z",
+      "is_limited": false
+  }
+},
+{
+  "model": "project.project",
+  "pk": 15,
+  "fields": {
+      "slug": "virtual-fs",
+      "name": "Виртуальный файловый менеджер",
+      "description": "Создайте систему виртуальных файлов и папок с командами cd, ls, mkdir, touch, cat и поиском",
+      "theory": "Используйте объектно-ориентированный подход. Создайте классы File и Directory с соответствующими методами. Реализуйте дерево каталогов.",
+      "time_to_leave": "2025-06-10T12:00:00Z",
+      "experience": 110,
+      "difficulty": 14,
+      "coins": 90,
+      "created_data": "2025-04-25T12:00:00Z",
+      "is_limited": true
+  }
+},
+{
+  "model": "project.project",
+  "pk": 16,
+  "fields": {
+      "slug": "currency-converter",
+      "name": "Конвертер валют",
+      "description": "Создайте конвертер валют с актуальным курсом (можно использовать фиксированные курсы или API)",
+      "theory": "Программа должна запрашивать исходную валюту, целевую и сумму. Используйте словарь для хранения курсов. Доп.сложность: подключение к API ЦБ или других источников.",
+      "time_to_leave": "2025-06-15T12:00:00Z",
+      "experience": 75,
+      "difficulty": 10,
+      "coins": 55,
+      "created_data": "2025-04-25T12:00:00Z",
+      "is_limited": false
+  }
+},
+{
+  "model": "project.project",
+  "pk": 17,
+  "fields": {
+      "slug": "password-generator",
+      "name": "Генератор паролей",
+      "description": "Напишите программу генерации сложных паролей с настройкой длины и типов символов",
+      "theory": "Используйте модуль random. Пароль должен включать буквы разного регистра, цифры и спецсимволы. Добавьте проверку надежности пароля.",
+      "time_to_leave": "2025-06-18T12:00:00Z",
+      "experience": 65,
+      "difficulty": 9,
+      "coins": 45,
+      "created_data": "2025-04-25T12:00:00Z",
+      "is_limited": false
+  }
+},
+{
+  "model": "project.project",
+  "pk": 18,
+  "fields": {
+      "slug": "countdown-timer",
+      "name": "Таймер обратного отсчета",
+      "description": "Создайте таймер с визуальным отображением оставшегося времени и звуковым уведомлением",
+      "theory": "Используйте модуль time для отслеживания времени и winsound/playsound для уведомления. Доп.сложность: графический интерфейс.",
+      "time_to_leave": "2025-06-20T12:00:00Z",
+      "experience": 70,
+      "difficulty": 10,
+      "coins": 50,
+      "created_data": "2025-04-25T12:00:00Z",
+      "is_limited": false
+  }
+},
+{
+  "model": "project.project",
+  "pk": 19,
+  "fields": {
+      "slug": "text-analyzer",
+      "name": "Анализатор текста",
+      "description": "Напишите программу, которая анализирует текст: количество слов, символов, частоту букв, среднюю длину слова",
+      "theory": "Используйте методы работы со строками и словарями. Разделяйте текст на слова, учитывайте пунктуацию. Доп.сложность: вывод гистограммы.",
+      "time_to_leave": "2025-06-22T12:00:00Z",
+      "experience": 80,
+      "difficulty": 11,
+      "coins": 60,
+      "created_data": "2025-04-25T12:00:00Z",
+      "is_limited": false
+  }
+},
+{
+  "model": "project.project",
+  "pk": 20,
+  "fields": {
+      "slug": "quiz-game",
+      "name": "Викторина",
+      "description": "Создайте викторину с вопросами из файла/БД, подсчетом баллов и таймером на ответ",
+      "theory": "Храните вопросы в структурированном формате (JSON, CSV). Реализуйте систему подсчета очков, возможность пропускать вопросы.",
+      "time_to_leave": "2025-06-25T12:00:00Z",
+      "experience": 85,
+      "difficulty": 11,
+      "coins": 65,
+      "created_data": "2025-04-25T12:00:00Z",
+      "is_limited": false
+  }
+}
+  ]

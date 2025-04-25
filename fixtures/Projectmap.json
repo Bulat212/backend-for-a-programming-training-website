@@ -1,1 +1,0 @@
-[{"model": "map.projectmap", "pk": 1, "fields": {"project": 1, "prev_project": null}}, {"model": "map.projectmap", "pk": 2, "fields": {"project": 2, "prev_project": 1}}, {"model": "map.projectmap", "pk": 3, "fields": {"project": 4, "prev_project": 2}}, {"model": "map.projectmap", "pk": 4, "fields": {"project": 5, "prev_project": 4}}]

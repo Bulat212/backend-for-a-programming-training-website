@@ -1,1 +1,0 @@
-[{"model": "compiler.test", "pk": 1, "fields": {"project": 1, "input_data": "3\\n7", "output": "10"}}]

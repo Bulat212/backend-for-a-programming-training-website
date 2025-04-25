@@ -1,1 +1,368 @@
-[{"model": "users.userprogress", "pk": 2, "fields": {"user": 2, "stars": 3, "experience": 3, "date": "2025-03-20"}}, {"model": "users.userprogress", "pk": 3, "fields": {"user": 2, "stars": 2, "experience": 2, "date": "2025-03-01"}}, {"model": "users.userprogress", "pk": 4, "fields": {"user": 2, "stars": 5, "experience": 5, "date": "2025-03-25"}}]
+[
+    {
+        "model": "users.userprogress",
+        "pk": 1,
+        "fields": {
+            "user": 11,
+            "stars": 0,
+            "experience": 0,
+            "date": "2025-04-30"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 2,
+        "fields": {
+            "user": 11,
+            "stars": 22,
+            "experience": 220,
+            "date": "2025-05-06"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 3,
+        "fields": {
+            "user": 11,
+            "stars": 56,
+            "experience": 560,
+            "date": "2025-05-16"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 4,
+        "fields": {
+            "user": 11,
+            "stars": 98,
+            "experience": 980,
+            "date": "2025-05-28"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 5,
+        "fields": {
+            "user": 11,
+            "stars": 150,
+            "experience": 1500,
+            "date": "2025-06-05"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 6,
+        "fields": {
+            "user": 11,
+            "stars": 12,
+            "experience": 120,
+            "date": "2025-05-03"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 7,
+        "fields": {
+            "user": 11,
+            "stars": 34,
+            "experience": 340,
+            "date": "2025-05-10"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 8,
+        "fields": {
+            "user": 11,
+            "stars": 75,
+            "experience": 750,
+            "date": "2025-05-20"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 9,
+        "fields": {
+            "user": 11,
+            "stars": 115,
+            "experience": 1150,
+            "date": "2025-06-01"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 10,
+        "fields": {
+            "user": 2,
+            "stars": 0,
+            "experience": 0,
+            "date": "2025-04-30"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 11,
+        "fields": {
+            "user": 2,
+            "stars": 3,
+            "experience": 30,
+            "date": "2025-05-01"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 12,
+        "fields": {
+            "user": 2,
+            "stars": 7,
+            "experience": 70,
+            "date": "2025-05-02"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 13,
+        "fields": {
+            "user": 2,
+            "stars": 12,
+            "experience": 120,
+            "date": "2025-05-03"
+        }
+    },
+
+    {
+        "model": "users.userprogress",
+        "pk": 20,
+        "fields": {
+            "user": 3,
+            "stars": 0,
+            "experience": 0,
+            "date": "2025-04-30"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 21,
+        "fields": {
+            "user": 3,
+            "stars": 3,
+            "experience": 30,
+            "date": "2025-05-01"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 22,
+        "fields": {
+            "user": 3,
+            "stars": 7,
+            "experience": 70,
+            "date": "2025-05-02"
+        }
+    },
+
+    {
+        "model": "users.userprogress",
+        "pk": 30,
+        "fields": {
+            "user": 4,
+            "stars": 0,
+            "experience": 0,
+            "date": "2025-04-30"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 31,
+        "fields": {
+            "user": 4,
+            "stars": 3,
+            "experience": 30,
+            "date": "2025-05-01"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 32,
+        "fields": {
+            "user": 4,
+            "stars": 9,
+            "experience": 90,
+            "date": "2025-05-03"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 40,
+        "fields": {
+            "user": 5,
+            "stars": 0,
+            "experience": 0,
+            "date": "2025-04-30"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 41,
+        "fields": {
+            "user": 5,
+            "stars": 3,
+            "experience": 30,
+            "date": "2025-05-01"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 42,
+        "fields": {
+            "user": 5,
+            "stars": 7,
+            "experience": 70,
+            "date": "2025-05-02"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 43,
+        "fields": {
+            "user": 5,
+            "stars": 13,
+            "experience": 130,
+            "date": "2025-05-04"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 44,
+        "fields": {
+            "user": 5,
+            "stars": 20,
+            "experience": 200,
+            "date": "2025-05-06"
+        }
+    },
+
+    {
+        "model": "users.userprogress",
+        "pk": 50,
+        "fields": {
+            "user": 6,
+            "stars": 0,
+            "experience": 0,
+            "date": "2025-04-30"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 51,
+        "fields": {
+            "user": 6,
+            "stars": 3,
+            "experience": 30,
+            "date": "2025-05-01"
+        }
+    },
+
+    {
+        "model": "users.userprogress",
+        "pk": 60,
+        "fields": {
+            "user": 7,
+            "stars": 0,
+            "experience": 0,
+            "date": "2025-04-30"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 61,
+        "fields": {
+            "user": 7,
+            "stars": 4,
+            "experience": 40,
+            "date": "2025-05-02"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 70,
+        "fields": {
+            "user": 8,
+            "stars": 0,
+            "experience": 0,
+            "date": "2025-04-30"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 71,
+        "fields": {
+            "user": 8,
+            "stars": 3,
+            "experience": 30,
+            "date": "2025-05-01"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 72,
+        "fields": {
+            "user": 8,
+            "stars": 8,
+            "experience": 80,
+            "date": "2025-05-03"
+        }
+    },
+
+    {
+        "model": "users.userprogress",
+        "pk": 80,
+        "fields": {
+            "user": 10,
+            "stars": 0,
+            "experience": 0,
+            "date": "2025-04-30"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 81,
+        "fields": {
+            "user": 10,
+            "stars": 3,
+            "experience": 30,
+            "date": "2025-05-01"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 82,
+        "fields": {
+            "user": 10,
+            "stars": 7,
+            "experience": 70,
+            "date": "2025-05-02"
+        }
+    },
+
+    {
+        "model": "users.userprogress",
+        "pk": 90,
+        "fields": {
+            "user": 12,
+            "stars": 0,
+            "experience": 0,
+            "date": "2025-04-30"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 91,
+        "fields": {
+            "user": 12,
+            "stars": 6,
+            "experience": 60,
+            "date": "2025-05-03"
+        }
+    }
+]

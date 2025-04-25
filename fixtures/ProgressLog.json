@@ -1,1 +1,389 @@
-[{"model": "users.progresslog", "pk": 1, "fields": {"user": 2, "experience_change": 100, "stars_change": 0, "date": "2025-02-28T18:18:14Z"}}, {"model": "users.progresslog", "pk": 2, "fields": {"user": 2, "experience_change": 100, "stars_change": 0, "date": "2025-03-18T18:18:31Z"}}, {"model": "users.progresslog", "pk": 3, "fields": {"user": 2, "experience_change": 20, "stars_change": 0, "date": "2025-03-24T18:20:07Z"}}, {"model": "users.progresslog", "pk": 4, "fields": {"user": 2, "experience_change": 12, "stars_change": 12, "date": "2025-03-25T18:35:01Z"}}, {"model": "users.progresslog", "pk": 5, "fields": {"user": 1, "experience_change": 123, "stars_change": 123, "date": "2025-03-25T18:42:43Z"}}, {"model": "users.progresslog", "pk": 6, "fields": {"user": 3, "experience_change": 0, "stars_change": 123, "date": "2025-03-25T18:47:15Z"}}, {"model": "users.progresslog", "pk": 7, "fields": {"user": 5, "experience_change": 0, "stars_change": 100, "date": "2025-03-01T19:37:26Z"}}]
+[
+    {
+        "model": "users.progresslog",
+        "pk": 1,
+        "fields": {
+            "user": 2,
+            "experience_change": 30,
+            "stars_change": 3,
+            "date": "2025-05-01T10:00:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "experience_change": 40,
+            "stars_change": 4,
+            "date": "2025-05-02T11:30:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 3,
+        "fields": {
+            "user": 2,
+            "experience_change": 50,
+            "stars_change": 5,
+            "date": "2025-05-03T14:15:00Z"
+        }
+    },
+
+    {
+        "model": "users.progresslog",
+        "pk": 4,
+        "fields": {
+            "user": 3,
+            "experience_change": 30,
+            "stars_change": 3,
+            "date": "2025-05-01T09:20:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 5,
+        "fields": {
+            "user": 3,
+            "experience_change": 40,
+            "stars_change": 4,
+            "date": "2025-05-02T16:45:00Z"
+        }
+    },
+
+    {
+        "model": "users.progresslog",
+        "pk": 6,
+        "fields": {
+            "user": 4,
+            "experience_change": 30,
+            "stars_change": 3,
+            "date": "2025-05-01T13:10:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 7,
+        "fields": {
+            "user": 4,
+            "experience_change": 60,
+            "stars_change": 6,
+            "date": "2025-05-03T10:30:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 8,
+        "fields": {
+            "user": 5,
+            "experience_change": 30,
+            "stars_change": 3,
+            "date": "2025-05-01T08:15:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 9,
+        "fields": {
+            "user": 5,
+            "experience_change": 40,
+            "stars_change": 4,
+            "date": "2025-05-02T12:20:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 10,
+        "fields": {
+            "user": 5,
+            "experience_change": 60,
+            "stars_change": 6,
+            "date": "2025-05-04T15:10:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 11,
+        "fields": {
+            "user": 5,
+            "experience_change": 70,
+            "stars_change": 7,
+            "date": "2025-05-06T11:40:00Z"
+        }
+    },
+
+    {
+        "model": "users.progresslog",
+        "pk": 12,
+        "fields": {
+            "user": 6,
+            "experience_change": 30,
+            "stars_change": 3,
+            "date": "2025-05-01T14:20:00Z"
+        }
+    },
+
+    {
+        "model": "users.progresslog",
+        "pk": 13,
+        "fields": {
+            "user": 7,
+            "experience_change": 40,
+            "stars_change": 4,
+            "date": "2025-05-02T17:30:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 14,
+        "fields": {
+            "user": 8,
+            "experience_change": 30,
+            "stars_change": 3,
+            "date": "2025-05-01T11:45:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 15,
+        "fields": {
+            "user": 8,
+            "experience_change": 50,
+            "stars_change": 5,
+            "date": "2025-05-03T13:10:00Z"
+        }
+    },
+
+    {
+        "model": "users.progresslog",
+        "pk": 16,
+        "fields": {
+            "user": 10,
+            "experience_change": 30,
+            "stars_change": 3,
+            "date": "2025-05-01T10:05:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 17,
+        "fields": {
+            "user": 10,
+            "experience_change": 40,
+            "stars_change": 4,
+            "date": "2025-05-02T14:50:00Z"
+        }
+    },
+
+    {
+        "model": "users.progresslog",
+        "pk": 18,
+        "fields": {
+            "user": 12,
+            "experience_change": 60,
+            "stars_change": 6,
+            "date": "2025-05-03T16:25:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 19,
+        "fields": {
+            "user": 11,
+            "experience_change": 30,
+            "stars_change": 3,
+            "date": "2025-05-01T09:00:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 20,
+        "fields": {
+            "user": 11,
+            "experience_change": 40,
+            "stars_change": 4,
+            "date": "2025-05-02T11:00:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 21,
+        "fields": {
+            "user": 11,
+            "experience_change": 50,
+            "stars_change": 5,
+            "date": "2025-05-03T14:00:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 22,
+        "fields": {
+            "user": 11,
+            "experience_change": 40,
+            "stars_change": 4,
+            "date": "2025-05-04T10:30:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 23,
+        "fields": {
+            "user": 11,
+            "experience_change": 60,
+            "stars_change": 6,
+            "date": "2025-05-06T13:15:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 24,
+        "fields": {
+            "user": 11,
+            "experience_change": 60,
+            "stars_change": 6,
+            "date": "2025-05-08T15:45:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 25,
+        "fields": {
+            "user": 11,
+            "experience_change": 70,
+            "stars_change": 7,
+            "date": "2025-05-10T11:20:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 26,
+        "fields": {
+            "user": 11,
+            "experience_change": 80,
+            "stars_change": 8,
+            "date": "2025-05-12T16:30:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 27,
+        "fields": {
+            "user": 11,
+            "experience_change": 50,
+            "stars_change": 5,
+            "date": "2025-05-14T10:00:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 28,
+        "fields": {
+            "user": 11,
+            "experience_change": 80,
+            "stars_change": 8,
+            "date": "2025-05-16T14:00:00Z"
+        }
+    },
+
+    {
+        "model": "users.progresslog",
+        "pk": 29,
+        "fields": {
+            "user": 11,
+            "experience_change": 80,
+            "stars_change": 8,
+            "date": "2025-05-18T09:30:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 30,
+        "fields": {
+            "user": 11,
+            "experience_change": 100,
+            "stars_change": 10,
+            "date": "2025-05-20T13:15:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 31,
+        "fields": {
+            "user": 11,
+            "experience_change": 120,
+            "stars_change": 12,
+            "date": "2025-05-22T15:45:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 32,
+        "fields": {
+            "user": 11,
+            "experience_change": 90,
+            "stars_change": 9,
+            "date": "2025-05-24T11:20:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 33,
+        "fields": {
+            "user": 11,
+            "experience_change": 110,
+            "stars_change": 11,
+            "date": "2025-05-26T14:30:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 34,
+        "fields": {
+            "user": 11,
+            "experience_change": 70,
+            "stars_change": 7,
+            "date": "2025-05-28T10:15:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 35,
+        "fields": {
+            "user": 11,
+            "experience_change": 90,
+            "stars_change": 9,
+            "date": "2025-05-30T16:20:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 36,
+        "fields": {
+            "user": 11,
+            "experience_change": 100,
+            "stars_change": 10,
+            "date": "2025-06-01T12:45:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 37,
+        "fields": {
+            "user": 11,
+            "experience_change": 120,
+            "stars_change": 12,
+            "date": "2025-06-03T14:10:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 38,
+        "fields": {
+            "user": 11,
+            "experience_change": 150,
+            "stars_change": 15,
+            "date": "2025-06-05T17:00:00Z"
+        }
+    }
+]

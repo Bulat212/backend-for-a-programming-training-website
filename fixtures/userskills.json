@@ -1,0 +1,137 @@
+[
+    {
+        "model": "users.userskill",
+        "pk": 1,
+        "fields": {
+            "user": 2,
+            "language": 1,  
+            "experience": 120 
+        }
+    },
+
+    {
+        "model": "users.userskill",
+        "pk": 2,
+        "fields": {
+            "user": 3,
+            "language": 2,
+            "experience": 70  
+        }
+    },
+
+    {
+        "model": "users.userskill",
+        "pk": 3,
+        "fields": {
+            "user": 4,
+            "language": 3, 
+            "experience": 90 
+        }
+    },
+    
+    {
+        "model": "users.userskill",
+        "pk": 4,
+        "fields": {
+            "user": 4,
+            "language": 1, 
+            "experience": 30  
+        }
+    },
+    {
+        "model": "users.userskill",
+        "pk": 5,
+        "fields": {
+            "user": 5,
+            "language": 4,  
+            "experience": 200  
+        }
+    },
+    
+        {
+            "model": "users.userskill",
+            "pk": 6,
+            "fields": {
+                "user": 6,
+                "language": 1,
+                "experience": 30  
+            }
+        },
+        {
+        "model": "users.userskill",
+        "pk": 7,
+        "fields": {
+            "user": 7,
+            "language": 2, 
+            "experience": 40  
+        }
+    },
+    {
+        "model": "users.userskill",
+        "pk": 8,
+        "fields": {
+            "user": 8,
+            "language": 3,
+            "experience": 80
+        }
+    },
+
+    {
+        "model": "users.userskill",
+        "pk": 9,
+        "fields": {
+            "user": 10,
+            "language": 4, 
+            "experience": 70 
+        }
+    },
+
+    {
+        "model": "users.userskill",
+        "pk": 10,
+        "fields": {
+            "user": 12,
+            "language": 1, 
+            "experience": 60 
+        }
+    },
+    {
+        "model": "users.userskill",
+        "pk": 11,
+        "fields": {
+            "user": 11,
+            "language": 1, 
+            "experience": 680  
+        }
+    },
+
+    {
+        "model": "users.userskill",
+        "pk": 12,
+        "fields": {
+            "user": 11,
+            "language": 2,  
+            "experience": 370 
+        }
+    },
+
+    {
+        "model": "users.userskill",
+        "pk": 13,
+        "fields": {
+            "user": 11,
+            "language": 3,  
+            "experience": 260 
+        }
+    },
+
+    {
+        "model": "users.userskill",
+        "pk": 14,
+        "fields": {
+            "user": 11,
+            "language": 4,  
+            "experience": 120 
+        }
+    }
+]

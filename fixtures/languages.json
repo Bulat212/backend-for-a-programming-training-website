@@ -1,0 +1,34 @@
+[
+    {
+      "model": "project.language",
+      "pk": 1,
+      "fields": {
+        "name": "Python",
+        "compiler_name": "python"
+      }
+    },
+    {
+      "model": "project.language",
+      "pk": 2,
+      "fields": {
+        "name": "JavaScript",
+        "compiler_name": "javascript"
+      }
+    },
+    {
+      "model": "project.language",
+      "pk": 3,
+      "fields": {
+        "name": "Java",
+        "compiler_name": "java"
+      }
+    },
+    {
+      "model": "project.language",
+      "pk": 4,
+      "fields": {
+        "name": "C++",
+        "compiler_name": "cpp"
+      }
+    }
+  ]

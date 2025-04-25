@@ -1,0 +1,75 @@
+[
+    {
+        "model": "comment.comment",
+        "pk": 1,
+        "fields": {
+            "user": 1, 
+            "user_project": 1,
+            "text": "Отличное начало! Попробуй добавить вывод на разных языках."
+        }
+    },
+    {
+        "model": "comment.comment",
+        "pk": 2,
+        "fields": {
+            "user": 3,
+            "user_project": 2,
+            "text": "Хороший расчет ИМТ, но нужно добавить проверку ввода данных."
+        }
+    },
+    {
+        "model": "comment.comment",
+        "pk": 3,
+        "fields": {
+            "user": 4,
+            "user_project": 4, 
+            "text": "Классический пример, теперь попробуй сделать то же самое с React!"
+        }
+    },
+    {
+        "model": "comment.comment",
+        "pk": 4,
+        "fields": {
+            "user": 5, 
+            "user_project": 6, 
+            "text": "Правильное использование System.out.println()"
+        }
+    },
+    {
+        "model": "comment.comment",
+        "pk": 5,
+        "fields": {
+            "user": 2, 
+            "user_project": 7, 
+            "text": "Не хватает обработки деления на ноль!"
+        }
+    },
+
+    {
+        "model": "comment.comment",
+        "pk": 6,
+        "fields": {
+            "user": 11,
+            "user_project": 8, 
+            "text": "Используй using namespace std; для упрощения кода"
+        }
+    },
+    {
+        "model": "comment.comment",
+        "pk": 7,
+        "fields": {
+            "user": 6, 
+            "user_project": 10,  
+            "text": "Оптимизируй рекурсию через мемоизацию"
+        }
+    },
+    {
+        "model": "comment.comment",
+        "pk": 8,
+        "fields": {
+            "user": 5,  
+            "user_project": 28, 
+            "text": "Профессиональная реализация! Добавь график платежей."
+        }
+    }
+]

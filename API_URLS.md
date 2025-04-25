@@ -5,7 +5,7 @@ API сервера позволяет управлять пользовател�
 **1. Регистрация**
 
  **1.1 /register/ (POST)**
-   - **POST**: Создает нового пользователя. Входные данные — JSON с полями name, email, password. Выходные данные — JSON с access и refresh токеном.
+   - **POST**: Создает нового пользователя. Входные данные — JSON с полями username, email, password. Выходные данные — JSON с access и refresh токеном.
    {
     "refresh": "string",
     "access": "string"

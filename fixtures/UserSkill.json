@@ -1,1 +1,0 @@
-[{"model": "users.userskill", "pk": 1, "fields": {"user": 2, "language": 1, "experience": 650}}, {"model": "users.userskill", "pk": 3, "fields": {"user": 2, "language": 2, "experience": 51}}, {"model": "users.userskill", "pk": 4, "fields": {"user": 2, "language": 3, "experience": 5}}]
