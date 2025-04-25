@@ -25,7 +25,7 @@ class ProjectLanguageSerializer(serializers.ModelSerializer):
 
 class UserProjectSerializer(serializers.ModelSerializer):
     user_project = serializers.IntegerField(source='id', read_only=True)
-    language = serializers.SlugRelatedField(slug_field='compiler_name', queryset=Language.objects.all(), required=False)
+    language = serializers.SlugRelatedField(slug_field='compiler_name', queryset=Language.objects.all(), required=False, default=Language.objects.first())
     project = serializers.PrimaryKeyRelatedField(queryset=Project.objects.all())
     project_name = serializers.CharField(source='project.name', read_only=True)
     project_description = serializers.CharField(source='project.description', read_only=True)
@@ -60,7 +60,7 @@ class TemporaryProjects(serializers.ModelSerializer):
         days = remeaning.days
         hours, remainder  = divmod(remeaning.seconds, 3600)
         minutes, seconds = divmod(remainder , 60)
-        return f"Оставшееся время - {days} дней, {hours} часов, {minutes} минут."
+        return f"{days}д:{hours}ч:{minutes}м."
    
    
 class StatusUserProject(serializers.ModelSerializer):

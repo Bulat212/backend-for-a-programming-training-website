@@ -38,7 +38,6 @@ class User(AbstractUser):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 
-
 class UserProject(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='user_projects')

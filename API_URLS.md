@@ -96,7 +96,7 @@ API сервера позволяет управлять пользовател�
 **2.4 /user-projects/get_user_project/ (POST)**
    - **POST**: Начинает новый проект для пользователя при соблюдении условий. Входные данные — JSON с project_id. Выходные данные — JSON с созданным проектом или сообщением об ошибке
    {
-    "project_id": int
+    "project": int
    }
    Выход
    {
@@ -370,7 +370,7 @@ API сервера позволяет управлять пользовател�
       "id": int,
       "name": str,
       "description": str,
-      "time_remaining": "Оставшееся время - 0 дней, 23 часов, 58 минут.", str
+      "time_remaining": "0д:23ч:58м.", str
       "experience": int или null
       "difficulty": int или null
       "coins": int или null
