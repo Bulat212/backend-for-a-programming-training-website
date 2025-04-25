@@ -49,7 +49,7 @@ class UserMinInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'coins', 'stars', 'photo', 'nickname_id', 'is_staff']
+        fields = ['id', 'username', 'coins', 'stars', 'photo', 'nickname_id', 'is_staff']
         
     def get_nickname_id(self, obj):
         user = self.context['request'].user

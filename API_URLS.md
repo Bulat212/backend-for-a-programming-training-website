@@ -475,6 +475,7 @@ API сервера позволяет управлять пользовател�
 **7.5 /usermininfo/ (GET)** авторизован
    - **GET**: Возвращает минимальную информацию об открытых проектах пользователя. Входные данные access токен. Выходные данные — JSON с полями username, coins, stars, photo, nickname_id, is_staff - если true то админ, если false то обычный юзер
    {
+    "id": int,
     "username": string,
     "coins": int,
     "stars": int,
