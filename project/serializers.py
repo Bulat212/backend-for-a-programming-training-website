@@ -47,11 +47,12 @@ class UserProjectSerializer(serializers.ModelSerializer):
 
 
 class TemporaryProjects(serializers.ModelSerializer):
+    project_id =serializers.IntegerField(source="id")
     time_remaining = serializers.SerializerMethodField()
     
     class Meta:
         model = Project
-        fields = ['id', 'name', 'description', 'time_remaining', 'experience', 'difficulty', 'coins']
+        fields = ['project_id', 'name', 'description', 'time_remaining', 'experience', 'difficulty', 'coins']
 
     def get_time_remaining(self, obj):
         if obj.time_to_leave < timezone.now():

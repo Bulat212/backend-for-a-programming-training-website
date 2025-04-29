@@ -6,6 +6,8 @@ from django.core.serializers import get_serializer, serialize
 from django.shortcuts import render
 import django_filters
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter
+
 
 from rest_framework import generics
 from rest_framework import viewsets
@@ -38,8 +40,10 @@ class StyleFilter(django_filters.FilterSet):
 
 class StyleViewSet(viewsets.ModelViewSet):
     serializer_class = StyleSerializer
-    filter_backends= [DjangoFilterBackend]
+    filter_backends= [DjangoFilterBackend, OrderingFilter]
     filterset_class = StyleFilter
+    ordering_fields = ['price_in_coin', 'price_in_stars']  # Поля для сортировки
+    # ordering = ['price_in_coin']  # Сортировка по умолчанию
 
     def get_queryset(self):
         pk = self.kwargs.get("pk")
