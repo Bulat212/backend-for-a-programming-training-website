@@ -1,4 +1,5 @@
 from django.core.serializers import serialize
+from django.http import Http404
 from django.db.models import Sum
 from django.shortcuts import render
 from django.templatetags.i18n import language
@@ -80,6 +81,11 @@ class UserExpGraphView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        user_id = self.kwargs.get('id', None)
+        if user_id:
+            if not User.objects.filter(id=user_id).exists():
+                raise Http404("Пользователь с таким id не найден.")
+            return UserProgress.objects.filter(user=user_id)
         return UserProgress.objects.filter(user=self.request.user)
 
 
@@ -110,11 +116,18 @@ class StarsRatingView(APIView):
 class UserSkillsAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get(self, request):
-        user = request.user
+    def get(self, request, *args, **kwargs):
+        user_id = kwargs.get('id', None)
+        if user_id:
+            user = user_id
+            if not User.objects.filter(id=user_id).exists():
+                raise Http404("Пользователь с таким id не найден.")
+        else:
+            user = request.user
+    
         all_languages = Language.objects.all()
 
-        user_skills = UserSkill.objects.filter(user=request.user)
+        user_skills = UserSkill.objects.filter(user=user)
         
         languages_with_zero_experience = []
         if not user_skills.exists():

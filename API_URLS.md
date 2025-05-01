@@ -434,23 +434,45 @@ API сервера позволяет управлять пользовател�
     },
    ]
 
-**7.4 /user-skills/ (GET, POST)** авторизован
+**7.4 /user-graph/id/ (GET)** авторизован
+   - **Get**: Выдает информацию о прогрессе юзера по id.
+   
+   Пример запроса /api/user-graph/6/
+   [
+    {
+        "user": "Katya",
+        "experience": 0,
+        "date": "2025-04-30"
+    },
+    {
+        "user": "Katya",
+        "experience": 30,
+        "date": "2025-05-01"
+    }
+   ]
+
+   Если пользователя с переданным id нет, то выдаст следующее
+   {
+      "detail": "Пользователь с таким id не найден."
+   }
+
+**7.5 /user-skills/ (GET, POST)** авторизован
    - **GET**: Выдает список навыков пользователя вместе с опытом. 
    Вывод
-[
-   {
-      "language": "Python",
-      "experience": 0
-   },
-   {
-      "language": "Java",
-      "experience": 0
-   },
-   {
-      "language": "C++",
-      "experience": 0
-   }
-]
+   [
+      {
+         "language": "Python",
+         "experience": 0
+      },
+      {
+         "language": "Java",
+         "experience": 0
+      },
+      {
+         "language": "C++",
+         "experience": 0
+      }
+   ]
 
    - **POST**: Входные параметры - JSON с полями language, experience 
    Входные данные
@@ -475,7 +497,34 @@ API сервера позволяет управлять пользовател�
       ]
    }
 
-**7.5 /usermininfo/ (GET)** авторизован
+**7.6 /user-skills/id/ (GET)** авторизован
+   - **GET**: Выдает список навыков по id пользователя вместе с опытом. 
+   Пример запроса /api/user-skills/6/
+   [
+      {
+         "language": "Python",
+         "experience": 30
+      },
+      {
+         "language": "JavaScript",
+         "experience": 0
+      },
+      {
+         "language": "Java",
+         "experience": 0
+      },
+      {
+         "language": "C++",
+         "experience": 0
+      }
+   ]
+
+   Если пользователя с переданным id нет, то выдаст следующее
+   {
+      "detail": "Пользователь с таким id не найден."
+   }
+
+**7.7 /usermininfo/ (GET)** авторизован
    - **GET**: Возвращает минимальную информацию об открытых проектах пользователя. Входные данные access токен. Выходные данные — JSON с полями username, coins, stars, photo, nickname_id, is_staff - если true то админ, если false то обычный юзер
    {
     "id": int,
