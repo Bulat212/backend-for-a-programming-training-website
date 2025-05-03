@@ -13,7 +13,9 @@ from rest_framework.response import Response
 
 
 from comment.serializers import CommentSerializer, ProjectCommentSerializer, SetLikeInCodeSerializer, WriteCommentSerializer
-from users.models import UserProject
+from style.models import UserStyle
+from users.models import User, UserProject
+from users.utils import update_user_progress
 
 from .models import Comment, Like
 # Create your views here.
@@ -26,7 +28,15 @@ class CommentListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         pk = self.kwargs.get('pk')
-        return UserProject.objects.filter(project=pk, is_published=True)
+        return UserProject.objects.filter(project=pk, is_published=True).select_related('project', 'user')
+    
+    def get_serializer_context(self):
+        # Добавляем дополнительные данные в контекст сериализатора
+        context = super().get_serializer_context()
+        context['users_nickname'] = UserStyle.objects.filter(is_active=True, style__category=2)
+        context['users_with_photo'] = User.objects.filter(photo__isnull=False).exclude(photo='')
+
+        return context
         
 
 class SetLikeInUserProjectView(generics.RetrieveAPIView):
@@ -50,6 +60,7 @@ class SetLikeInUserProjectView(generics.RetrieveAPIView):
         Like.objects.create(user=liker, project=user_project)
         user_project.earned_stars += 1
         user_project.save()
+        update_user_progress(user_project.user, None, 0, 0, 1)
         serializer = SetLikeInCodeSerializer(user_project, context={'liker': liker})
         return Response({"message": f"Лайк добавлен на {user_project}.", "data": serializer.data})
 

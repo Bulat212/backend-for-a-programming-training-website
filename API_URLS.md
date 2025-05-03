@@ -609,37 +609,43 @@ API сервера позволяет управлять пользовател�
       {
          "user": "bulat",
          "project": "Деревья",
+         "photo": "http://127.0.0.1:8000/media/profile_pictures/image313.png",
+         "nickname_id": 8,
          "user_project": "2",
          "code": "print(\"Деревья\")",
          "earned_stars": 0,
          "comments": [
             {
-               "user": "andrey",
-               "text": "а я по другому сделал"
+               "user": "root",
+               "nickname_id": 0,
+               "photo": "http://127.0.0.1:8000/media/profile_pictures/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2024-12-19_104405.png",
+               "text": "Отличное начало! Попробуй добавить вывод на разных языках."
             },
             {
-               "user": "gena",
-               "text": "круто"
-            },
-            {
-               "user": "andrey",
-               "text": "второй коммент"
+               "user": "Sergey",
+               "nickname_id": 5,
+               "photo": null,
+               "text": "Классический пример, теперь попробуй сделать то же самое с React!"
             }
          ]
       },
       {
-         "user": "victor",
-         "project": "Деревья",
-         "user_project": "3",
-         "code": "print(\"Написал victor\")",
-         "earned_stars": 0,
+         "user": "Maria",
+         "project": "Сумма двух чисел",
+         "photo": null,
+         "nickname_id": 0,
+         "user_project": 4,
+         "code": "console.log('Hello, World!')",
+         "earned_stars": 3,
          "comments": [
             {
-               "user": "bulat",
-               "text": "этот коммент под виктора"
+               "user": "Oleg",
+               "nickname_id": 3,
+               "photo": null,
+               "text": "Используй using namespace std; для упрощения кода"
             }
          ]
-      }
+      },
    ]
 
 **9.2 /set-like/ (POST)** 

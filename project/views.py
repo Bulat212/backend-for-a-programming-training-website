@@ -100,8 +100,7 @@ class UserProjectViewSet(viewsets.ModelViewSet):
         result_tests = run_tests(code, language, project)
         if result_tests['status']==False:
             return Response({"Project completion status": "Failed"})
-         
-        update_user_progress(request.user, project.experience)
+        update_user_progress(request.user, user_project.language, project.experience, project.coins)
         
         user_project.finished_date = timezone.now()
         user_project.is_completed = True

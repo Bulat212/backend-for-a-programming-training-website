@@ -7,7 +7,6 @@ class ProjectMap(models.Model):
     project = models.ForeignKey(to=Project, on_delete=models.CASCADE, related_name='maps')
     prev_project = models.ForeignKey(to=Project, on_delete=models.SET_NULL, null=True, blank=True, related_name='next_projects')
 
-
     class Meta:
         verbose_name = 'Карта проектов'
         verbose_name_plural = 'Карта проектов'
