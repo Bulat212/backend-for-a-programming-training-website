@@ -45,6 +45,7 @@ class CommentSerializer(serializers.ModelSerializer):
 class ProjectCommentSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='user.username')
     project = serializers.CharField(source='project.name')
+    language = serializers.CharField(source='language.name')
     photo = serializers.SerializerMethodField()
     nickname_id = serializers.SerializerMethodField()
     user_project = serializers.SerializerMethodField(read_only=True)
@@ -52,7 +53,7 @@ class ProjectCommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProject
-        fields = ['user', 'project', 'photo','nickname_id', 'user_project', 'code', 'earned_stars', 'comments']
+        fields = ['user', 'project', 'photo','nickname_id', 'user_project', 'code', 'earned_stars', 'language', 'comments']
 
     def get_comments(self, obj):
         comments = Comment.objects.filter(user_project=obj)

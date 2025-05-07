@@ -614,6 +614,7 @@ API сервера позволяет управлять пользовател�
          "user_project": "2",
          "code": "print(\"Деревья\")",
          "earned_stars": 0,
+         "language": "Python",
          "comments": [
             {
                "comment_id": 2,
@@ -640,6 +641,7 @@ API сервера позволяет управлять пользовател�
          "nickname_id": 0,
          "user_project": 4,
          "code": "console.log('Hello, World!')",
+         "language": "JavaScript",
          "earned_stars": 3,
          "comments": [
             {
