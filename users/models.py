@@ -61,7 +61,6 @@ class UserProgress(models.Model):
     experience = models.IntegerField(default=0)
     date = models.DateField(default=timezone.now)
 
-
     class Meta:
         ordering = ['-date']
 

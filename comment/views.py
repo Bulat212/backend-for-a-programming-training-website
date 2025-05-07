@@ -1,6 +1,7 @@
 from logging.config import valid_ident
 from lzma import FORMAT_ALONE
 from shutil import register_unpack_format
+from sys import is_stack_trampoline_active
 from django.core.serializers import serialize
 from django.http import QueryDict
 from django.shortcuts import render
@@ -12,6 +13,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 
 
+from comment.permissions import IsAdminOrOwner
 from comment.serializers import CommentSerializer, ProjectCommentSerializer, SetLikeInCodeSerializer, WriteCommentSerializer
 from style.models import UserStyle
 from users.models import User, UserProject
@@ -39,9 +41,9 @@ class CommentListAPIView(generics.ListAPIView):
         return context
     
 class CommentDeleteAPIView(generics.DestroyAPIView):
-    permission_classes = [IsAdminUser]
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
+    permission_classes = [IsAdminOrOwner]
 
 
 class SetLikeInUserProjectView(generics.RetrieveAPIView):

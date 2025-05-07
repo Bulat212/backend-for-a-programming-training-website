@@ -3,6 +3,7 @@ from ast import TypeVarTuple
 from tkinter.messagebox import RETRY
 
 from requests import ReadTimeout
+from django.utils.timezone import localtime
 
 from comment.utils import get_user_nickname
 from users.models import UserProject
@@ -117,5 +118,6 @@ class WriteCommentSerializer(serializers.ModelSerializer):
 
     def get_date(self, obj):
         if obj.date:
+            print(obj.date)
             return obj.date.strftime('%d.%m.%Y %H:%M')
         return None
