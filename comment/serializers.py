@@ -12,13 +12,20 @@ from rest_framework import serializers
 from app import settings
 
 class CommentSerializer(serializers.ModelSerializer):
+    comment_id = serializers.IntegerField(source='id')
     user = serializers.CharField(source='user.username')
     nickname_id = serializers.SerializerMethodField()
     photo = serializers.SerializerMethodField()
+    date = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
-        fields = ['user', 'nickname_id', 'photo', 'text']
+        fields = ['comment_id', 'user', 'nickname_id', 'photo', 'text', 'date']
+    
+    def get_date(self, obj):
+        if obj.date:
+            return obj.date.strftime('%d.%m.%Y %H:%M')
+        return None
     
     # тут obj - объект Comment и ник берется у пользователя привязанного к Comment
     def get_nickname_id(self, obj):
@@ -101,7 +108,13 @@ class SetLikeInCodeSerializer(serializers.ModelSerializer):
 
 class WriteCommentSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='user.username', read_only=True)
+    date = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
-        fields = ['user', 'user_project', 'text']
+        fields = ['user', 'user_project', 'text', 'date']
+
+    def get_date(self, obj):
+        if obj.date:
+            return obj.date.strftime('%d.%m.%Y %H:%M')
+        return None

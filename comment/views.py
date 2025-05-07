@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.template import context
 from rest_framework import generics
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 
 
@@ -37,7 +37,12 @@ class CommentListAPIView(generics.ListAPIView):
         context['users_with_photo'] = User.objects.filter(photo__isnull=False).exclude(photo='')
 
         return context
-        
+    
+class CommentDeleteAPIView(generics.DestroyAPIView):
+    permission_classes = [IsAdminUser]
+    serializer_class = CommentSerializer
+    queryset = Comment.objects.all()
+
 
 class SetLikeInUserProjectView(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
