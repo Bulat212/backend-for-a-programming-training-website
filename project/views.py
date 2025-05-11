@@ -105,8 +105,9 @@ class UserProjectViewSet(viewsets.ModelViewSet):
         user_project.finished_date = timezone.now()
         user_project.is_completed = True
         user_project.code = code
+        print(language)
         user_project.language = language
-        user_project.save(update_fields=['finished_date', 'is_completed'])
+        user_project.save(update_fields=['finished_date', 'is_completed', 'language', 'code'])
         serializer = self.get_serializer(user_project)
         return Response(serializer.data)
 
