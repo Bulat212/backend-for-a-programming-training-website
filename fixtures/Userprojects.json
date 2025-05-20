@@ -517,5 +517,266 @@
             "language": 1,
             "finished_date": "2025-06-05T17:00:00Z"
         }
+    },
+
+    {
+        "model": "users.userproject",
+        "pk": 39,
+        "fields": {
+            "user": 14,
+            "project": 1,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 3,
+            "language": 1,
+            "finished_date": "2025-05-01T09:00:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 40,
+        "fields": {
+            "user": 14,
+            "project": 2,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 4,
+            "language": 1,
+            "finished_date": "2025-05-02T11:00:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 41,
+        "fields": {
+            "user": 14,
+            "project": 3,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 5,
+            "language": 1,
+            "finished_date": "2025-05-03T14:00:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 42,
+        "fields": {
+            "user": 14,
+            "project": 4,
+            "is_completed": true,
+            "is_published": false,
+            "earned_stars": 4,
+            "language": 2,
+            "finished_date": "2025-05-04T10:30:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 43,
+        "fields": {
+            "user": 14,
+            "project": 5,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 6,
+            "language": 3,
+            "finished_date": "2025-05-06T13:15:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 44,
+        "fields": {
+            "user": 14,
+            "project": 6,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 6,
+            "language": 1,
+            "finished_date": "2025-05-08T15:45:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 45,
+        "fields": {
+            "user": 14,
+            "project": 7,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 7,
+            "language": 1,
+            "finished_date": "2025-05-10T11:20:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 46,
+        "fields": {
+            "user": 14,
+            "project": 8,
+            "is_completed": true,
+            "is_published": false,
+            "earned_stars": 8,
+            "language": 2,
+            "finished_date": "2025-05-12T16:30:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 47,
+        "fields": {
+            "user": 14,
+            "project": 9,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 5,
+            "language": 1,
+            "finished_date": "2025-05-14T10:00:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 48,
+        "fields": {
+            "user": 14,
+            "project": 10,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 8,
+            "language": 3,
+            "finished_date": "2025-05-16T14:00:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 49,
+        "fields": {
+            "user": 14,
+            "project": 11,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 8,
+            "language": 1,
+            "finished_date": "2025-05-18T09:30:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 50,
+        "fields": {
+            "user": 14,
+            "project": 12,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 10,
+            "language": 2,
+            "finished_date": "2025-05-20T13:15:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 51,
+        "fields": {
+            "user": 14,
+            "project": 13,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 12,
+            "language": 2,
+            "finished_date": "2025-05-22T15:45:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 52,
+        "fields": {
+            "user": 14,
+            "project": 14,
+            "is_completed": true,
+            "is_published": false,
+            "earned_stars": 9,
+            "language": 1,
+            "finished_date": "2025-05-24T11:20:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 53,
+        "fields": {
+            "user": 14,
+            "project": 15,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 11,
+            "language": 1,
+            "finished_date": "2025-05-26T14:30:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 54,
+        "fields": {
+            "user": 14,
+            "project": 16,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 7,
+            "language": 2,
+            "finished_date": "2025-05-28T10:15:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 55,
+        "fields": {
+            "user": 14,
+            "project": 17,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 9,
+            "language": 1,
+            "finished_date": "2025-05-30T16:20:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 56,
+        "fields": {
+            "user": 14,
+            "project": 18,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 10,
+            "language": 3,
+            "finished_date": "2025-06-01T12:45:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 57,
+        "fields": {
+            "user": 14,
+            "project": 19,
+            "is_completed": true,
+            "is_published": false,
+            "earned_stars": 12,
+            "language": 4,
+            "finished_date": "2025-06-03T14:10:00Z"
+        }
+    },
+    {
+        "model": "users.userproject",
+        "pk": 58,
+        "fields": {
+            "user": 14,
+            "project": 20,
+            "is_completed": true,
+            "is_published": true,
+            "earned_stars": 15,
+            "language": 1,
+            "finished_date": "2025-06-05T17:00:00Z"
+        }
     }
 ]

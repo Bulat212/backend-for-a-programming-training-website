@@ -21,7 +21,6 @@ from users.utils import get_ranking, update_or_create_user_skill
 
 from .serializers import ProfileSerializer, RegisterSerializer, UserExpGraphSerializer, UserMinInfoSerializer, UserRankingExperienceSerializer, UserRankingStarsSerializer, UserSkillsSerializer
 
-# Create your views here.
 class RegisterView(CreateAPIView):
     serializer_class = RegisterSerializer
 
@@ -68,12 +67,6 @@ class ProfileView(generics.RetrieveUpdateAPIView):
         serializer.save()
         return Response(serializer.data)
         
-
-
-    # def get(self, request):
-    #     user = request.user
-    #     serializer = ProfileSerializer(user)
-    #     return Response(serializer.data)
     
 
 class UserExpGraphView(generics.ListAPIView):

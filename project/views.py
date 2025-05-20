@@ -43,16 +43,6 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProjectSerializer
     permission_classes = [IsAuthenticated]
 
-    # def get_queryset(self):
-    #     pk = self.kwargs.get("pk")
-    #     if not pk:
-    #         return Project.objects.all()
-    #     return Project.objects.filter(pk=pk)
-    
-    # @action(methods=['get'], detail=True) #True одна запись, False список
-    # def language(self, request, pk):
-    #     language = Language.objects.get(pk=pk)
-    #     return Response({'post': language.name})
 
 class UserProjectViewSet(viewsets.ModelViewSet):
     serializer_class = UserProjectSerializer

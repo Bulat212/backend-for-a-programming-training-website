@@ -23,7 +23,6 @@ from .models import Comment, Like
 # Create your views here.
 
 
-
 class CommentListAPIView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = ProjectCommentSerializer
@@ -37,7 +36,6 @@ class CommentListAPIView(generics.ListAPIView):
         context = super().get_serializer_context()
         context['users_nickname'] = UserStyle.objects.filter(is_active=True, style__category=2)
         context['users_with_photo'] = User.objects.filter(photo__isnull=False).exclude(photo='')
-
         return context
     
 class CommentDeleteAPIView(generics.DestroyAPIView):

@@ -364,5 +364,96 @@
             "experience": 60,
             "date": "2025-05-03"
         }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 92,
+        "fields": {
+            "user": 14,
+            "stars": 0,
+            "experience": 0,
+            "date": "2025-05-10"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 93,
+        "fields": {
+            "user": 14,
+            "stars": 25,
+            "experience": 250,
+            "date": "2025-05-15"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 94,
+        "fields": {
+            "user": 14,
+            "stars": 60,
+            "experience": 600,
+            "date": "2025-05-25"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 95,
+        "fields": {
+            "user": 14,
+            "stars": 105,
+            "experience": 1050,
+            "date": "2025-06-04"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 96,
+        "fields": {
+            "user": 14,
+            "stars": 150,
+            "experience": 1500,
+            "date": "2025-06-10"
+        }
+    },
+
+    {
+        "model": "users.userprogress",
+        "pk": 97,
+        "fields": {
+            "user": 14,
+            "stars": 15,
+            "experience": 150,
+            "date": "2025-05-12"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 98,
+        "fields": {
+            "user": 14,
+            "stars": 40,
+            "experience": 400,
+            "date": "2025-05-20"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 99,
+        "fields": {
+            "user": 14,
+            "stars": 80,
+            "experience": 800,
+            "date": "2025-05-28"
+        }
+    },
+    {
+        "model": "users.userprogress",
+        "pk": 100,
+        "fields": {
+            "user": 14,
+            "stars": 130,
+            "experience": 1300,
+            "date": "2025-06-07"
+        }
     }
 ]

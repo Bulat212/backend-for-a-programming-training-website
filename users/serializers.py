@@ -138,9 +138,7 @@ class UserExpGraphSerializer(serializers.ModelSerializer):
         model = UserProgress
         fields = ['user', 'experience', 'date']
 
-
 class UserSkillsSerializer(serializers.ModelSerializer):
-    # user = serializers.CharField(source='user.username', read_only=True)
     language = serializers.SlugRelatedField(slug_field='name', queryset=Language.objects.all(), required=True)
     experience = serializers.IntegerField(required=True)
 

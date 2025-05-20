@@ -133,5 +133,41 @@
             "language": 4,  
             "experience": 120 
         }
+    },
+    {
+        "model": "users.userskill",
+        "pk": 15,
+        "fields": {
+            "user": 14,
+            "language": 2, 
+            "experience": 550  
+        }
+    },
+    {
+        "model": "users.userskill",
+        "pk": 16,
+        "fields": {
+            "user": 14,
+            "language": 1,  
+            "experience": 480  
+        }
+    },
+    {
+        "model": "users.userskill",
+        "pk": 17,
+        "fields": {
+            "user": 14,
+            "language": 3, 
+            "experience": 320  
+        }
+    },
+    {
+        "model": "users.userskill",
+        "pk": 18,
+        "fields": {
+            "user": 14,
+            "language": 4,  
+            "experience": 150  
+        }
     }
 ]

@@ -54,7 +54,6 @@ class StyleViewSet(viewsets.ModelViewSet):
     
 
 class UserStyleAPIView(generics.ListCreateAPIView):
-    # queryset = UserStyle.objects.all()
     serializer_class = UserStyleSerializer
     permission_classes = [IsAuthenticated]
 

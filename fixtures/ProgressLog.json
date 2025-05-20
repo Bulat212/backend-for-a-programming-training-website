@@ -385,5 +385,207 @@
             "stars_change": 15,
             "date": "2025-06-05T17:00:00Z"
         }
+    },
+
+    {
+        "model": "users.progresslog",
+        "pk": 39,
+        "fields": {
+            "user": 14,
+            "experience_change": 30,
+            "stars_change": 3,
+            "date": "2025-05-01T09:00:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 40,
+        "fields": {
+            "user": 14,
+            "experience_change": 40,
+            "stars_change": 4,
+            "date": "2025-05-02T11:00:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 41,
+        "fields": {
+            "user": 14,
+            "experience_change": 50,
+            "stars_change": 5,
+            "date": "2025-05-03T14:00:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 42,
+        "fields": {
+            "user": 14,
+            "experience_change": 40,
+            "stars_change": 4,
+            "date": "2025-05-04T10:30:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 43,
+        "fields": {
+            "user": 14,
+            "experience_change": 60,
+            "stars_change": 6,
+            "date": "2025-05-06T13:15:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 44,
+        "fields": {
+            "user": 14,
+            "experience_change": 60,
+            "stars_change": 6,
+            "date": "2025-05-08T15:45:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 45,
+        "fields": {
+            "user": 14,
+            "experience_change": 70,
+            "stars_change": 7,
+            "date": "2025-05-10T11:20:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 46,
+        "fields": {
+            "user": 14,
+            "experience_change": 80,
+            "stars_change": 8,
+            "date": "2025-05-12T16:30:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 47,
+        "fields": {
+            "user": 14,
+            "experience_change": 50,
+            "stars_change": 5,
+            "date": "2025-05-14T10:00:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 48,
+        "fields": {
+            "user": 14,
+            "experience_change": 80,
+            "stars_change": 8,
+            "date": "2025-05-16T14:00:00Z"
+        }
+    },
+
+    {
+        "model": "users.progresslog",
+        "pk": 49,
+        "fields": {
+            "user": 14,
+            "experience_change": 80,
+            "stars_change": 8,
+            "date": "2025-05-18T09:30:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 50,
+        "fields": {
+            "user": 14,
+            "experience_change": 100,
+            "stars_change": 10,
+            "date": "2025-05-20T13:15:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 51,
+        "fields": {
+            "user": 14,
+            "experience_change": 120,
+            "stars_change": 12,
+            "date": "2025-05-22T15:45:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 52,
+        "fields": {
+            "user": 14,
+            "experience_change": 90,
+            "stars_change": 9,
+            "date": "2025-05-24T11:20:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 53,
+        "fields": {
+            "user": 14,
+            "experience_change": 110,
+            "stars_change": 11,
+            "date": "2025-05-26T14:30:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 54,
+        "fields": {
+            "user": 14,
+            "experience_change": 70,
+            "stars_change": 7,
+            "date": "2025-05-28T10:15:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 55,
+        "fields": {
+            "user": 14,
+            "experience_change": 90,
+            "stars_change": 9,
+            "date": "2025-05-30T16:20:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 56,
+        "fields": {
+            "user": 14,
+            "experience_change": 100,
+            "stars_change": 10,
+            "date": "2025-06-01T12:45:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 57,
+        "fields": {
+            "user": 14,
+            "experience_change": 120,
+            "stars_change": 12,
+            "date": "2025-06-03T14:10:00Z"
+        }
+    },
+    {
+        "model": "users.progresslog",
+        "pk": 58,
+        "fields": {
+            "user": 14,
+            "experience_change": 150,
+            "stars_change": 15,
+            "date": "2025-06-05T17:00:00Z"
+        }
     }
 ]
